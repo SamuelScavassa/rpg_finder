@@ -4,9 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // ignore: unused_import
 import 'package:firebase_core/firebase_core.dart';
-import 'package:email_validator/email_validator.dart';
-// ignore: unused_import
-import 'package:rpg_finder/user/cadastro.dart';
+//import 'package:email_validator/email_validator.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -88,9 +86,9 @@ class _Login extends State<Login> {
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "Campo de Email Obrigatorio.";
-                    } else if (!EmailValidator.validate(value)) {
+                    } /*else if (!EmailValidator.validate(value)) {
                       return "Digite um email valido";
-                    }
+                    }*/
                     return null;
                   },
                 ),
