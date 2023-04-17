@@ -24,6 +24,10 @@ class _CadastroState extends State<Cadastro> {
     }
   }
 
+  void login(BuildContext context) {
+    Navigator.of(context).pushNamed("/login");
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -69,7 +73,7 @@ class _CadastroState extends State<Cadastro> {
                 },
               ),
               Container(
-                height: 10,
+                height: 20,
               ),
               TextFormField(
                 onChanged: (value) => senha = value,
@@ -114,6 +118,14 @@ class _CadastroState extends State<Cadastro> {
               ElevatedButton(
                 onPressed: () => salvar(context),
                 child: const Text("Cadastre-se"),
+              ),
+              const SizedBox(height: 20),
+              GestureDetector(
+                onTap: () => login(context),
+                child: const Text(
+                  "Já possui uma conta? Faça login aqui",
+                  style: TextStyle(color: Colors.blue),
+                ),
               )
             ],
           ),
