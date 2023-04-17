@@ -16,12 +16,33 @@ class _CadastroState extends State<Cadastro> {
   String? senha = '';
   var formKey = GlobalKey<FormState>();
 
-  void salvar(BuildContext context) {
-    if (formKey.currentState!.validate()) {
-      firestore
-          .collection('user')
-          .add({'Name': name, 'Email': email, 'Senha': senha});
+  void salvar(BuildContext context) async {
+    var x = await testeEmail(context);
+    if (x) {
+      if (formKey.currentState!.validate()) {
+        firestore
+            .collection('user')
+            .add({'Name': name, 'Email': email, 'Senha': senha});
+      }
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Tente outro email')),
+      );
     }
+  }
+
+  Future<bool> testeEmail(BuildContext context) async {
+    if (formKey.currentState!.validate()) {
+      final verificarUsuario = await FirebaseFirestore.instance
+          .collection("user")
+          .where("Email", isEqualTo: email)
+          .get();
+      // Verificando se o email existe
+      if (verificarUsuario.docs.isNotEmpty) {
+        return false;
+      }
+    }
+    return true;
   }
 
   void login(BuildContext context) {
@@ -50,6 +71,7 @@ class _CadastroState extends State<Cadastro> {
                   if (value!.isEmpty) {
                     return "Campo obrigatório";
                   }
+
                   return null;
                 },
               ),
