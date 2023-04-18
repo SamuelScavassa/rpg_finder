@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -23,7 +25,7 @@ class _FeedState extends State<Feed> {
               .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return CircularProgressIndicator();
+              return const CircularProgressIndicator();
             }
 
             var campanhas = snapshot.data!.docs;
@@ -69,6 +71,18 @@ class _FeedState extends State<Feed> {
                   .toList(),
             );
           }),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.abc),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.abc),
+            label: 'Pesquisa',
+          ),
+        ],
+      ),
     );
   }
 }
