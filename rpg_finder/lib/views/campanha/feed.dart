@@ -16,7 +16,25 @@ class _FeedState extends State<Feed> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('HomePage'),
+        title: const Text("Bem vindo!  "),
+        actions: const <Widget>[
+          SizedBox(
+            width: 200,
+            child: TextField(
+              decoration: InputDecoration(hintText: 'Pesquise aqui'),
+            ),
+          ),
+          SizedBox(
+            width: 20,
+          ),
+          ElevatedButton(
+            onPressed: null,
+            child: Icon(
+              Icons.search,
+              color: Colors.white,
+            ),
+          ),
+        ],
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: firestore
@@ -72,14 +90,25 @@ class _FeedState extends State<Feed> {
             );
           }),
       bottomNavigationBar: BottomNavigationBar(
+        unselectedItemColor: Colors.blue,
+        selectedItemColor: Colors.blue,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
-            icon: Icon(Icons.abc),
+            icon: Icon(Icons.home),
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.abc),
-            label: 'Pesquisa',
+              icon: Icon(
+                Icons.search,
+              ),
+              label: "Pesquisa"),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.add),
+            label: 'Adicionar',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.people),
+            label: 'Usuário',
           ),
         ],
       ),
