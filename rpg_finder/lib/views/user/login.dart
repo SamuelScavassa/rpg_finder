@@ -43,7 +43,7 @@ class _Login extends State<Login> {
         final dadoUsuario = verificarUsuario.docs.first;
         if (dadoUsuario['Senha'] == senha) {
           // ignore: use_build_context_synchronously
-          Navigator.of(context).popAndPushNamed("/home");
+          Navigator.of(context).popAndPushNamed("/feed");
         } else {
           // ignore: use_build_context_synchronously
           ScaffoldMessenger.of(context).showSnackBar(
