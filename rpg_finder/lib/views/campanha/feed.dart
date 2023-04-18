@@ -32,34 +32,39 @@ class _FeedState extends State<Feed> {
               children: campanhas
                   .map(
                     (campanha) => (GestureDetector(
-                        onTap: () {},
-                        child: Container(
-                            padding: const EdgeInsets.all(20),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        campanha['nome'],
-                                        style: const TextStyle(
-                                          fontSize: 30,
-                                          fontWeight: FontWeight.bold,
-                                        ),
-                                      ),
-                                      Text(
-                                        campanha['descricao'],
-                                        style: const TextStyle(fontSize: 13),
-                                      ),
-                                    ]),
-                                Text(
-                                  campanha['players'].toString(),
-                                  style: const TextStyle(fontSize: 30),
-                                )
-                              ],
-                            )))),
+                      onTap: () {},
+                      child: Container(
+                        padding: const EdgeInsets.all(40),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Container(
+                              alignment: AlignmentDirectional.centerStart,
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    campanha['nome'],
+                                    style: const TextStyle(
+                                      fontSize: 30,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  Text(
+                                    campanha['descricao'],
+                                    style: const TextStyle(fontSize: 13),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Text(
+                              campanha['players'].toString(),
+                              style: const TextStyle(fontSize: 30),
+                            )
+                          ],
+                        ),
+                      ),
+                    )),
                   )
                   .toList(),
             );
