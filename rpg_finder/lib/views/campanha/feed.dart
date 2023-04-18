@@ -90,18 +90,21 @@ class _FeedState extends State<Feed> {
             );
           }),
       bottomNavigationBar: BottomNavigationBar(
-        unselectedItemColor: Colors.blue,
-        selectedItemColor: Colors.blue,
+        backgroundColor: Colors.blue,
+        currentIndex: 0,
+        unselectedItemColor: Colors.white,
+        selectedItemColor: Colors.white,
+        showUnselectedLabels: true,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
             label: 'Home',
           ),
-          BottomNavigationBarItem(
+          /*BottomNavigationBarItem(
               icon: Icon(
                 Icons.search,
               ),
-              label: "Pesquisa"),
+              label: "Pesquisa"),*/
           BottomNavigationBarItem(
             icon: Icon(Icons.add),
             label: 'Adicionar',
@@ -112,6 +115,11 @@ class _FeedState extends State<Feed> {
           ),
         ],
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: null,
+        child: Icon(Icons.add),
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
