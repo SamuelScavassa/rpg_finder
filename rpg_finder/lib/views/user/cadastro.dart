@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
+import 'package:rpg_finder/controllers/userController.dart';
 
 class Cadastro extends StatefulWidget {
   const Cadastro({Key? key}) : super(key: key);
@@ -10,39 +9,23 @@ class Cadastro extends StatefulWidget {
 }
 
 class _CadastroState extends State<Cadastro> {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
   String? name = '';
   String? email = '';
   String? senha = '';
   var formKey = GlobalKey<FormState>();
 
   void salvar(BuildContext context) async {
-    var x = await testeEmail(context);
+    var x = await checkUserEmail(email!);
     if (x) {
       if (formKey.currentState!.validate()) {
-        firestore
-            .collection('user')
-            .add({'Name': name, 'Email': email, 'Senha': senha});
+        createUser(name!, email!, senha!);
+        login(context);
       }
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Tente outro email')),
       );
     }
-  }
-
-  Future<bool> testeEmail(BuildContext context) async {
-    if (formKey.currentState!.validate()) {
-      final verificarUsuario = await FirebaseFirestore.instance
-          .collection("user")
-          .where("Email", isEqualTo: email)
-          .get();
-      // Verificando se o email existe
-      if (verificarUsuario.docs.isNotEmpty) {
-        return false;
-      }
-    }
-    return true;
   }
 
   void login(BuildContext context) {

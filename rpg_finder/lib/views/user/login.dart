@@ -4,6 +4,8 @@ import 'package:flutter/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 // ignore: unused_import
 import 'package:firebase_core/firebase_core.dart';
+
+import '../../model/user.dart';
 //import 'package:email_validator/email_validator.dart';
 
 class Login extends StatefulWidget {
@@ -15,10 +17,15 @@ class Login extends StatefulWidget {
 
 class _Login extends State<Login> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   bool visiPassword = true;
+
   var formKey = GlobalKey<FormState>();
+
   var senha = "";
   var email = "";
+
+  static User user = User();
 
   void cadastro(BuildContext context) {
     Navigator.of(context).pushNamed("/cadastro");
@@ -43,6 +50,8 @@ class _Login extends State<Login> {
         final dadoUsuario = verificarUsuario.docs.first;
         if (dadoUsuario['Senha'] == senha) {
           // ignore: use_build_context_synchronously
+          user.email = dadoUsuario['Email'];
+          user.name = dadoUsuario['Name'];
           Navigator.of(context).popAndPushNamed("/feed");
         } else {
           // ignore: use_build_context_synchronously

@@ -1,5 +1,4 @@
 import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
@@ -12,27 +11,29 @@ class Feed extends StatefulWidget {
 
 class _FeedState extends State<Feed> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
+  TextEditingController pesquisa = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Bem vindo!  "),
-        actions: const <Widget>[
-          SizedBox(
-            width: 200,
-            child: TextField(
-              decoration: InputDecoration(hintText: 'Pesquise aqui'),
-            ),
+        title: TextField(
+          controller: pesquisa,
+          decoration: const InputDecoration(
+              hintText: 'Encontre seu RPG aqui',
+              border: InputBorder.none,
+              hintStyle: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold)),
+          style: const TextStyle(
+            color: Colors.white,
           ),
-          SizedBox(
-            width: 20,
-          ),
-          ElevatedButton(
-            onPressed: null,
-            child: Icon(
-              Icons.search,
-              color: Colors.white,
-            ),
+        ),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.search),
+            onPressed: () {},
           ),
         ],
       ),
@@ -115,7 +116,7 @@ class _FeedState extends State<Feed> {
           ),
         ],
       ),
-      floatingActionButton: FloatingActionButton(
+      floatingActionButton: const FloatingActionButton(
         onPressed: null,
         child: Icon(Icons.add),
       ),
