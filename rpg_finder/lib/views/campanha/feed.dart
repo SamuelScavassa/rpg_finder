@@ -12,6 +12,18 @@ class Feed extends StatefulWidget {
 class _FeedState extends State<Feed> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   TextEditingController pesquisa = TextEditingController();
+/*
+  void feed(BuildContext context) {
+    Navigator.of(context).popAndPushNamed("/feed");
+  }*/
+
+  void user(BuildContext context) {
+    Navigator.of(context).popAndPushNamed("/user-home");
+  }
+
+  void createCampanha(BuildContext context) {
+    Navigator.of(context).popAndPushNamed("/create-campanha");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +102,39 @@ class _FeedState extends State<Feed> {
                   .toList(),
             );
           }),
-      bottomNavigationBar: BottomNavigationBar(
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => createCampanha(context),
+        child: const Icon(Icons.add),
+      ),
+      //
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        color: Theme.of(context).colorScheme.primary,
+        child: IconTheme(
+          data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                    onPressed: () => null,
+                    icon: const Icon(
+                      Icons.home,
+                      color: Colors.black54,
+                    )),
+                const SizedBox(width: 80),
+                IconButton(
+                    onPressed: () => user(context),
+                    icon: const Icon(Icons.people))
+              ],
+            ),
+          ),
+        ),
+        //Legado
+        /*
         backgroundColor: Colors.blue,
         currentIndex: 0,
         unselectedItemColor: Colors.white,
@@ -115,12 +159,9 @@ class _FeedState extends State<Feed> {
             label: 'Usuário',
           ),
         ],
+        onTap: (pagina) {},
+      */
       ),
-      floatingActionButton: const FloatingActionButton(
-        onPressed: null,
-        child: Icon(Icons.add),
-      ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
     );
   }
 }
