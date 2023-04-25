@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rpg_finder/controllers/navigationController.dart';
 
 class CreateCampanha extends StatefulWidget {
   const CreateCampanha({super.key});
@@ -8,18 +9,6 @@ class CreateCampanha extends StatefulWidget {
 }
 
 class _CreateCampanha extends State<CreateCampanha> {
-  void feed(BuildContext context) {
-    Navigator.of(context).popAndPushNamed("/feed");
-  }
-
-  void user(BuildContext context) {
-    Navigator.of(context).popAndPushNamed("/user-home");
-  }
-  /*
-  void createCampanha(BuildContext context) {
-    Navigator.of(context).popAndPushNamed("/create-campanha");
-  }*/
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
