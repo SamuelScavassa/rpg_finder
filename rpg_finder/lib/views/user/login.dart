@@ -68,13 +68,9 @@ class _Login extends State<Login> {
       }
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Login '),
-      ),
       body: Form(
         //padding: const EdgeInsets.all(16.0),
         key: formKey,
@@ -82,31 +78,51 @@ class _Login extends State<Login> {
             padding: const EdgeInsets.all(16),
             child: Column(
               children: [
-                TextFormField(
-                  maxLines: 1,
-                  maxLength: 100,
-                  decoration: const InputDecoration(
-                    icon: Icon(Icons.people_alt_rounded),
-                    hintText: "Digite o seu email",
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.black)),
+                const SizedBox(
+                  height: 50,
+                ),
+                const Icon(
+                  Icons.login,
+                  size: 100,
+                ),
+                const SizedBox(
+                  height: 25,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: TextFormField(
+                    maxLines: 1,
+                    maxLength: 100,
+                    decoration: InputDecoration(
+                        prefixIcon: const Icon(Icons.people_alt_rounded),
+                        labelText: "E-mail",
+                        hintText: "E-mail",
+                        enabledBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.white)),
+                        focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey.shade400),
+                        ),
+                        filled: true),
+                    onChanged: (value) => email = value,
+                    validator: (value) {
+                      if (value!.isEmpty) {
+                        return "Campo de Email Obrigatorio.";
+                      } /*else if (!EmailValidator.validate(value)) {
+                        return "Digite um email valido";
+                      }*/
+                      return null;
+                    },
                   ),
-                  onChanged: (value) => email = value,
-                  validator: (value) {
-                    if (value!.isEmpty) {
-                      return "Campo de Email Obrigatorio.";
-                    } /*else if (!EmailValidator.validate(value)) {
-                      return "Digite um email valido";
-                    }*/
-                    return null;
-                  },
                 ),
                 TextFormField(
                   decoration: InputDecoration(
-                      icon: const Icon(Icons.lock),
-                      hintText: "Digite sua Senha",
-                      enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: Colors.black)),
+                      prefixIcon: const Icon(Icons.lock),
+                      labelText:"Senha",
+                      hintText: "Senha",
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.white)),
+                      focusedBorder: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey.shade400)),
                       suffixIcon: GestureDetector(
                         child: Icon(visiPassword == true
                             ? Icons.visibility_off
@@ -116,7 +132,8 @@ class _Login extends State<Login> {
                             visiPassword = !visiPassword;
                           });
                         },
-                      )),
+                      ),
+                      filled: true),
                   obscureText: visiPassword,
                   onChanged: (value) => senha = value,
                   validator: (value) {
@@ -126,18 +143,51 @@ class _Login extends State<Login> {
                     return null; // deu certo
                   },
                 ),
-                const SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () => login(context),
-                  child: const Text("Login"),
+                const SizedBox(
+                  height: 15,
+                ),
+                Padding(
+                  padding: const EdgeInsets.all(2.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: [
+                      Text(
+                        'Esqueceu a Senha',
+                        style: TextStyle(color: Colors.grey[600]),
+                      ),
+                    ],
+                  ),
+                ),
+                const SizedBox(height: 15),
+                Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: SizedBox(
+                    width: MediaQuery.of(context).size.width + 10,
+                    child: ElevatedButton(
+                      onPressed: () => login(context),
+                      child: const Text("Login"),
+                    ),
+                  ),
                 ),
                 const SizedBox(height: 60),
-                GestureDetector(
-                  onTap: () => cadastro(context),
-                  child: const Text(
-                    "Não tem cadastro? Crie Agora",
-                    style: TextStyle(color: Colors.blue),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () => cadastro(context),
+                      child: const Text(
+                        "Não tem conta? ",
+                        style: TextStyle(color: Colors.black),
+                      ),
+                    ),
+                    GestureDetector(
+                      onTap: () => cadastro(context),
+                      child: const Text(
+                        "Crie Agora.",
+                        style: TextStyle(color: Colors.blue),
+                      ),
+                    ),
+                  ],
                 )
               ],
             )),
@@ -145,3 +195,4 @@ class _Login extends State<Login> {
     );
   }
 }
+
