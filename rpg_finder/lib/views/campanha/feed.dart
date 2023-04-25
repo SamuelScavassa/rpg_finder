@@ -16,6 +16,9 @@ class _FeedState extends State<Feed> {
 
   @override
   Widget build(BuildContext context) {
+    /////////////
+
+/////////////////////
     return Scaffold(
       appBar: AppBar(
         title: TextField(
@@ -48,14 +51,11 @@ class _FeedState extends State<Feed> {
             }
 
             var campanhas = snapshot.data!.docs;
-
             return ListView(
               children: campanhas
                   .map(
                     (campanha) => (GestureDetector(
-                      onTap: () {
-                        
-                      },
+                      onTap: () {},
                       child: Container(
                         padding: const EdgeInsets.all(40),
                         child: Row(
@@ -69,7 +69,7 @@ class _FeedState extends State<Feed> {
                                   Text(
                                     campanha['nome'],
                                     style: const TextStyle(
-                                      fontSize: 30,
+                                      fontSize: 25,
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
@@ -83,7 +83,7 @@ class _FeedState extends State<Feed> {
                                           maxLines: 3,
                                         ),
                                         Text(
-                                          '...',
+                                          "",
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       ],
@@ -92,6 +92,7 @@ class _FeedState extends State<Feed> {
                                 ],
                               ),
                             ),
+                            Icon(Icons.people),
                             Text(
                               campanha['players'].toString(),
                               style: const TextStyle(fontSize: 30),
