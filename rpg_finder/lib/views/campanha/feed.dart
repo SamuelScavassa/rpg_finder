@@ -1,6 +1,7 @@
 import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:rpg_finder/controllers/navigationController.dart';
 
 class Feed extends StatefulWidget {
   const Feed({Key? key}) : super(key: key);
@@ -12,18 +13,6 @@ class Feed extends StatefulWidget {
 class _FeedState extends State<Feed> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   TextEditingController pesquisa = TextEditingController();
-/*
-  void feed(BuildContext context) {
-    Navigator.of(context).popAndPushNamed("/feed");
-  }*/
-
-  void user(BuildContext context) {
-    Navigator.of(context).popAndPushNamed("/user-home");
-  }
-
-  void createCampanha(BuildContext context) {
-    Navigator.of(context).popAndPushNamed("/create-campanha");
-  }
 
   @override
   Widget build(BuildContext context) {
