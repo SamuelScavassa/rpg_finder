@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:rpg_finder/controllers/navigationController.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -8,17 +9,6 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
-  void feed(BuildContext context) {
-    Navigator.of(context).popAndPushNamed("/feed");
-  }
-/*
-  void user(BuildContext context) {
-    Navigator.of(context).popAndPushNamed("/user-home");
-  }*/
-
-  void createCampanha(BuildContext context) {
-    Navigator.of(context).popAndPushNamed("/create-campanha");
-  }
 
   @override
   Widget build(BuildContext context) {
