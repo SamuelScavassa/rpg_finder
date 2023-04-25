@@ -32,12 +32,11 @@ class _FeedState extends State<Feed> {
         title: TextField(
           controller: pesquisa,
           decoration: const InputDecoration(
-              hintText: 'Encontre seu RPG aqui',
-              border: InputBorder.none,
-              hintStyle: TextStyle(
-                  color: Colors.white,
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold)),
+            hintText: 'Encontre seu RPG aqui',
+            border: InputBorder.none,
+            hintStyle: TextStyle(
+                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
           style: const TextStyle(
             color: Colors.white,
           ),
@@ -65,7 +64,9 @@ class _FeedState extends State<Feed> {
               children: campanhas
                   .map(
                     (campanha) => (GestureDetector(
-                      onTap: () {},
+                      onTap: () {
+                        
+                      },
                       child: Container(
                         padding: const EdgeInsets.all(40),
                         child: Row(
@@ -83,9 +84,21 @@ class _FeedState extends State<Feed> {
                                       fontWeight: FontWeight.bold,
                                     ),
                                   ),
-                                  Text(
-                                    campanha['descricao'],
-                                    style: const TextStyle(fontSize: 13),
+                                  Container(
+                                    width: 300,
+                                    child: Wrap(
+                                      children: <Text>[
+                                        Text(
+                                          campanha['descricao'],
+                                          style: TextStyle(fontSize: 15),
+                                          maxLines: 3,
+                                        ),
+                                        Text(
+                                          '...',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      ],
+                                    ),
                                   ),
                                 ],
                               ),
