@@ -29,7 +29,7 @@ class _CadastroState extends State<Cadastro> {
   }
 
   void login(BuildContext context) {
-    Navigator.of(context).pushNamed("/login");
+    Navigator.of(context).popAndPushNamed("/login");
   }
 
   @override
@@ -47,6 +47,7 @@ class _CadastroState extends State<Cadastro> {
               TextFormField(
                 maxLines: 1,
                 decoration: const InputDecoration(
+                  prefixIcon: Icon(Icons.people),
                   hintText: "Nome",
                 ),
                 onChanged: (value) => name = value,
@@ -59,12 +60,14 @@ class _CadastroState extends State<Cadastro> {
                 },
               ),
               Container(
-                height: 10,
+                height: 20,
               ),
               TextFormField(
                 maxLines: 1,
                 decoration: const InputDecoration(
+                  prefixIcon: const Icon(Icons.email),
                   hintText: "Email",
+                  labelText: "Email",
                 ),
                 onChanged: (value) => email = value,
                 validator: (value) {
@@ -86,6 +89,8 @@ class _CadastroState extends State<Cadastro> {
                 obscureText: true,
                 maxLines: 1,
                 decoration: const InputDecoration(
+                  prefixIcon: const Icon(Icons.lock),
+                  labelText: "Senha",
                   hintText: "Senha",
                 ),
                 onSaved: (value) => senha = value,
@@ -100,13 +105,15 @@ class _CadastroState extends State<Cadastro> {
                 },
               ),
               Container(
-                height: 10,
+                height: 20,
               ),
               TextFormField(
                 autofocus: true,
                 obscureText: true,
                 maxLines: 1,
                 decoration: const InputDecoration(
+                  labelText: "Confirmação",
+                  prefixIcon: const Icon(Icons.lock),
                   hintText: "Confirmação de senha",
                 ),
                 onSaved: (value) {},
@@ -118,7 +125,7 @@ class _CadastroState extends State<Cadastro> {
                 },
               ),
               Container(
-                height: 10,
+                height: 20,
               ),
               ElevatedButton(
                 onPressed: () => salvar(context),

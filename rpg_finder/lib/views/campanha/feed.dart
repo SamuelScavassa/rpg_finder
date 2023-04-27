@@ -66,15 +66,22 @@ class _FeedState extends State<Feed> {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  Text(
-                                    campanha['nome'],
-                                    style: const TextStyle(
-                                      fontSize: 25,
-                                      fontWeight: FontWeight.bold,
+                                  Container(
+                                    width: 200,
+                                    child: Wrap(
+                                      children: [
+                                        Text(
+                                          campanha['nome'],
+                                          style: const TextStyle(
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ],
                                     ),
                                   ),
                                   Container(
-                                    width: 300,
+                                    width: 200,
                                     child: Wrap(
                                       children: <Text>[
                                         Text(
@@ -83,7 +90,7 @@ class _FeedState extends State<Feed> {
                                           maxLines: 3,
                                         ),
                                         Text(
-                                          "",
+                                          " ...",
                                           style: TextStyle(fontSize: 15),
                                         ),
                                       ],

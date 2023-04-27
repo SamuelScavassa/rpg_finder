@@ -28,7 +28,7 @@ class _Login extends State<Login> {
   static User user = User();
 
   void cadastro(BuildContext context) {
-    Navigator.of(context).pushNamed("/cadastro");
+    Navigator.of(context).popAndPushNamed("/cadastro");
   }
 
   void login(BuildContext context) async {
@@ -68,6 +68,7 @@ class _Login extends State<Login> {
       }
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -106,7 +107,7 @@ class _Login extends State<Login> {
                     onChanged: (value) => email = value,
                     validator: (value) {
                       if (value!.isEmpty) {
-                        return "Campo de Email Obrigatorio.";
+                        return "Campo de email obrigatório.";
                       } /*else if (!EmailValidator.validate(value)) {
                         return "Digite um email valido";
                       }*/
@@ -117,7 +118,7 @@ class _Login extends State<Login> {
                 TextFormField(
                   decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
-                      labelText:"Senha",
+                      labelText: "Senha",
                       hintText: "Senha",
                       enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white)),
@@ -138,7 +139,7 @@ class _Login extends State<Login> {
                   onChanged: (value) => senha = value,
                   validator: (value) {
                     if (value!.isEmpty) {
-                      return "Campo de senha obrigatorio.";
+                      return "Campo de senha obrigatório.";
                     }
                     return null; // deu certo
                   },
@@ -146,17 +147,17 @@ class _Login extends State<Login> {
                 const SizedBox(
                   height: 15,
                 ),
-                Padding(
-                  padding: const EdgeInsets.all(2.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text(
-                        'Esqueceu a Senha',
-                        style: TextStyle(color: Colors.grey[600]),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () => cadastro(context),
+                      child: const Text(
+                        "Esqueceu a senha.",
+                        style: TextStyle(color: Colors.black87),
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 15),
                 Padding(
@@ -195,4 +196,3 @@ class _Login extends State<Login> {
     );
   }
 }
-
