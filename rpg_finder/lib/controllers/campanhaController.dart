@@ -40,22 +40,30 @@ void enviarConvite(String idCampanha) async {
 }
 
 void aceitarConvite(String idConvite) async {
-  var convite = await firestore.collection('invites').doc(idConvite).get();
-  var campanha =
-      await firestore.collection('campanhas').doc(convite['campanha']).get();
-  var sessao = await firestore
-      .collection('sessoes')
-      .where('campanha', isEqualTo: campanha.id)
-      .get();
-  if (campanha['players'] > 0) {
-    await firestore
-        .collection('campanhas')
-        .doc(campanha.id)
-        .update({'players': (campanha['players'] - 1)});
-    var py = campanha['players'];
-    await firestore
+  try {
+    var convite = await firestore.collection('invites').doc(idConvite).get();
+    var campanha =
+        await firestore.collection('campanhas').doc(convite['campanha']).get();
+    var sessao = await firestore
         .collection('sessoes')
-        .doc(sessao.docs.first.id)
-        .update({'$py': convite['remetente']});
+        .where('campanha', isEqualTo: campanha.id)
+        .get();
+    if (campanha['players'] > 0) {
+      await firestore
+          .collection('campanhas')
+          .doc(campanha.id)
+          .update({'players': (campanha['players'] - 1)});
+      var py = campanha['players'];
+      await firestore
+          .collection('sessoes')
+          .doc(sessao.docs.first.id)
+          .update({'$py': convite['remetente']});
+    }
+  } catch (e) {
+    print(e);
   }
+}
+
+void negarConvite(String idConvite) async {
+  await firestore.collection('invites').doc(idConvite).delete();
 }
