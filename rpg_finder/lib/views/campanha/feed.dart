@@ -43,7 +43,7 @@ class _FeedState extends State<Feed> {
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: firestore
               .collection('campanha')
-              //.where('finished', isEqualTo: false)
+              .where('players', isGreaterThan: 0)
               .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {

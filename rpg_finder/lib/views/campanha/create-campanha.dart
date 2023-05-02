@@ -1,11 +1,8 @@
 import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
+import 'package:rpg_finder/controllers/campanhaController.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
-
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
 class CreateCampanha extends StatefulWidget {
@@ -53,7 +50,7 @@ class _CreateCampanha extends State<CreateCampanha> {
     Navigator.of(context).popAndPushNamed("/create-campanha");
   }*/
 /////////////////////////////////
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  
   List<String> Tags = [];
   String name = '';
   int jogadores = 0;
@@ -66,13 +63,7 @@ class _CreateCampanha extends State<CreateCampanha> {
     print(Tags);
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
-      firestore.collection('campanha').add({
-        'descricao': descricao,
-        'discord': discord,
-        'nome': name,
-        'players': jogadores,
-        'tags': _controller.getTags,
-      });
+      salvarCampanha(descricao, discord, name, jogadores, _controller.getTags);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Campanha criada com sucesso')),
       );

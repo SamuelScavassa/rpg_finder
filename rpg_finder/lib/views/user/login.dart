@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
-// ignore: unnecessary_import
 import 'package:flutter/widgets.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-// ignore: unused_import
-import 'package:firebase_core/firebase_core.dart';
-
+import '../../controllers/userController.dart';
 import '../../model/user.dart';
-//import 'package:email_validator/email_validator.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -16,7 +11,7 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
-  FirebaseFirestore firestore = FirebaseFirestore.instance;
+  
 
   bool visiPassword = true;
 
@@ -25,46 +20,17 @@ class _Login extends State<Login> {
   var senha = "";
   var email = "";
 
-  static User user = User();
-
   void cadastro(BuildContext context) {
     Navigator.of(context).popAndPushNamed("/cadastro");
   }
 
   void login(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      try {
-        //Aqui e quero pegar o campo no banco que tem o enail iqual que foi passado
-        final verificarUsuario = await FirebaseFirestore.instance
-            .collection("user")
-            .where("Email", isEqualTo: email)
-            .get();
-        // Verificando se o email existe
-        if (verificarUsuario.docs.isEmpty) {
-          // ignore: use_build_context_synchronously
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Email Incorreto')),
-          );
+      if (formKey.currentState!.validate()) {
+        var response = userLogin(email, senha);
+        if (await response) {
+          Navigator.of(context).popAndPushNamed('/feed');
         }
-        //Verificando se a senha está correta se tiver vai para a tela principal(home)
-        final dadoUsuario = verificarUsuario.docs.first;
-        if (dadoUsuario['Senha'] == senha) {
-          // ignore: use_build_context_synchronously
-          user.email = dadoUsuario['Email'];
-          user.name = dadoUsuario['Name'];
-          Navigator.of(context).popAndPushNamed("/feed");
-        } else {
-          // ignore: use_build_context_synchronously
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('Senha incorreta.')),
-          );
-        }
-      } // tratanto caso acha algum erro
-      catch (e) {
-        // ignore: use_build_context_synchronously
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Erro no login')),
-        );
       }
     }
   }

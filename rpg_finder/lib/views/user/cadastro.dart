@@ -14,13 +14,10 @@ class _CadastroState extends State<Cadastro> {
   String? senha = '';
   var formKey = GlobalKey<FormState>();
 
-  void salvar(BuildContext context) async {
-    var x = await checkUserEmail(email!);
-    if (x) {
-      if (formKey.currentState!.validate()) {
-        createUser(name!, email!, senha!);
-        login(context);
-      }
+  Future<void> salvar(BuildContext context) async {
+    if (formKey.currentState!.validate()) {
+      createUser(name!, email!, senha!);
+      Navigator.of(context).popAndPushNamed("/feed");
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Tente outro email')),
