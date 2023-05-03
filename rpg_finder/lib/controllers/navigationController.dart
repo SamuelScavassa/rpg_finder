@@ -11,3 +11,11 @@ void user(BuildContext context) {
 void createCampanha(BuildContext context) {
   Navigator.of(context).popAndPushNamed("/create-campanha");
 }
+
+void navigationEsqueceuSenha(BuildContext context) {
+  Navigator.of(context).pushNamed('/esqueceuSenha');
+}
+
+void navigationCadastro(BuildContext context) {
+  Navigator.of(context).popAndPushNamed("/cadastro");
+}
