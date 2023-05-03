@@ -55,7 +55,8 @@ class _FeedState extends State<Feed> {
               children: campanhas
                   .map(
                     (campanha) => (GestureDetector(
-                      onTap: () {},
+                      onTap: () => detalhesCampanha(
+                          context, campanhas, campanhas.indexOf(campanha)),
                       child: Container(
                         padding: const EdgeInsets.all(40),
                         child: Row(
