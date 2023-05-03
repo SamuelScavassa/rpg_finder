@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../../controllers/userController.dart';
 import '../../model/user.dart';
+import 'package:rpg_finder/controllers/navigationController.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -11,8 +12,6 @@ class Login extends StatefulWidget {
 }
 
 class _Login extends State<Login> {
-  
-
   bool visiPassword = true;
 
   var formKey = GlobalKey<FormState>();
@@ -20,17 +19,11 @@ class _Login extends State<Login> {
   var senha = "";
   var email = "";
 
-  void cadastro(BuildContext context) {
-    Navigator.of(context).popAndPushNamed("/cadastro");
-  }
-
   void login(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      if (formKey.currentState!.validate()) {
-        var response = userLogin(email, senha);
-        if (await response) {
-          Navigator.of(context).popAndPushNamed('/feed');
-        }
+      var response = userLogin(email, senha);
+      if (await response) {
+        Navigator.of(context).popAndPushNamed('/feed');
       }
     }
   }
@@ -63,7 +56,6 @@ class _Login extends State<Login> {
                     decoration: InputDecoration(
                         prefixIcon: const Icon(Icons.people_alt_rounded),
                         labelText: "E-mail",
-                        hintText: "E-mail",
                         enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white)),
                         focusedBorder: OutlineInputBorder(
@@ -74,9 +66,7 @@ class _Login extends State<Login> {
                     validator: (value) {
                       if (value!.isEmpty) {
                         return "Campo de email obrigatório.";
-                      } /*else if (!EmailValidator.validate(value)) {
-                        return "Digite um email valido";
-                      }*/
+                      }
                       return null;
                     },
                   ),
@@ -85,7 +75,6 @@ class _Login extends State<Login> {
                   decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
                       labelText: "Senha",
-                      hintText: "Senha",
                       enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white)),
                       focusedBorder: OutlineInputBorder(
@@ -117,7 +106,7 @@ class _Login extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.end,
                   children: [
                     GestureDetector(
-                      onTap: () => cadastro(context),
+                      onTap: () => navigationEsqueceuSenha(context),
                       child: const Text(
                         "Esqueceu a senha.",
                         style: TextStyle(color: Colors.black87),
@@ -141,14 +130,14 @@ class _Login extends State<Login> {
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     GestureDetector(
-                      onTap: () => cadastro(context),
+                      onTap: () => navigationCadastro(context),
                       child: const Text(
                         "Não tem conta? ",
                         style: TextStyle(color: Colors.black),
                       ),
                     ),
                     GestureDetector(
-                      onTap: () => cadastro(context),
+                      onTap: () => navigationCadastro(context),
                       child: const Text(
                         "Crie Agora.",
                         style: TextStyle(color: Colors.blue),
