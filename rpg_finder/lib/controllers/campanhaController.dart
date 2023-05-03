@@ -1,6 +1,10 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+//novos
+import 'package:flutter/material.dart';
+import '../views/campanha/details-campanha.dart';
+
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseAuth auth = FirebaseAuth.instance;
@@ -66,4 +70,13 @@ void aceitarConvite(String idConvite) async {
 
 void negarConvite(String idConvite) async {
   await firestore.collection('invites').doc(idConvite).delete();
+}
+//
+void detalhesCampanha(BuildContext context, campanhas, index) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => DetalhesCampanha(campanha: campanhas[index]),
+    ),
+  );
 }
