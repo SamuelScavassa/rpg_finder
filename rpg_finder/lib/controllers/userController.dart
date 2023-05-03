@@ -41,3 +41,12 @@ void addNome(String name) {
     auth.currentUser!.updateDisplayName(name);
   }
 }
+//
+Future esqueceuSenha(String email) async {
+  try {
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    // ignore: use_build_context_synchronously
+  } catch (e) {
+    return false;
+  }
+}
