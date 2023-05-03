@@ -2,7 +2,8 @@ import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
-import 'package:rpg_finder/controllers/navigationController.dart';
+import '../../controllers/campanhaController.dart';
+
 
 
 class Feed extends StatefulWidget {
