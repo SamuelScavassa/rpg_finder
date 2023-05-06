@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
+import 'package:rpg_finder/controllers/userController.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -9,16 +10,27 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Perfil")),
-      body: Container(
-        child: const Text("Bem Vindo"),
-      ),
-
-      
+      body: Column(children: [
+        ElevatedButton(
+          onPressed: () => navigationConvites(context),
+          child: Text('Convites'),
+        ),
+        ElevatedButton(
+          onPressed: () => navigationAtivas(context),
+          child: Text('Campanhas ativas'),
+        ),
+        ElevatedButton(
+          onPressed: () {
+            auth.signOut();
+            Navigator.of(context).popAndPushNamed('/login');
+          },
+          child: Text('Sair'),
+        )
+      ]),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(

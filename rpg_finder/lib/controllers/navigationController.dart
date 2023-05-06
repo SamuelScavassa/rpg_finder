@@ -19,3 +19,11 @@ void navigationEsqueceuSenha(BuildContext context) {
 void navigationCadastro(BuildContext context) {
   Navigator.of(context).popAndPushNamed("/cadastro");
 }
+
+void navigationConvites(BuildContext context) {
+  Navigator.of(context).popAndPushNamed("/convites");
+}
+
+void navigationAtivas(BuildContext context) {
+  Navigator.of(context).popAndPushNamed('ativas');
+}
