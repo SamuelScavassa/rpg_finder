@@ -41,6 +41,7 @@ void addNome(String name) {
     auth.currentUser!.updateDisplayName(name);
   }
 }
+
 //
 Future esqueceuSenha(String email) async {
   try {

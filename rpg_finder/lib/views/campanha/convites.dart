@@ -37,8 +37,8 @@ class _Convites extends State<Convites> {
                       children: [
                         Column(
                           children: [
-                            Text(convite['campanha']),
-                            Text(convite['remetente']),
+                            Text('Campanha: ' + convite['nome-campanha'].toString()),
+                            Text('User: ' + convite['nome-user'].toString()),
                           ],
                         ),
                         Column(

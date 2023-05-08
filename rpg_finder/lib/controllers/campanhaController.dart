@@ -36,7 +36,9 @@ void enviarConvite(String idCampanha) async {
       firestore.collection('invites').add({
         'remetente': auth.currentUser!.uid,
         'campanha': idCampanha,
-        'destinatario': campanha['user']
+        'destinatario': campanha['user'],
+        'nome-campanha': campanha['nome'],
+        'nome-user': auth.currentUser!.displayName
       });
     }
   } catch (e) {

@@ -4,8 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
 import '../../controllers/campanhaController.dart';
 
-
-
 class Feed extends StatefulWidget {
   const Feed({Key? key}) : super(key: key);
 
@@ -46,7 +44,8 @@ class _FeedState extends State<Feed> {
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: firestore
               .collection('campanha')
-              .where('players', isGreaterThan: 0)
+              .where('user', isNotEqualTo: auth.currentUser!.uid)
+              
               .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
