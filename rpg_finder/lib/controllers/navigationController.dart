@@ -25,5 +25,10 @@ void navigationConvites(BuildContext context) {
 }
 
 void navigationAtivas(BuildContext context) {
-  Navigator.of(context).popAndPushNamed('ativas');
+  Navigator.of(context).popAndPushNamed('/ativas');
 }
+
+void navigationParticipando(BuildContext context) {
+  Navigator.of(context).popAndPushNamed('/participando');
+}
+

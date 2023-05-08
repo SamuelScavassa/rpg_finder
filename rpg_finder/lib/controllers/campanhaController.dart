@@ -21,9 +21,14 @@ void salvarCampanha(String descricao, String discord, String name,
       'tags': tags,
       'user': auth.currentUser!.uid
     });
-    await firestore
-        .collection('sessoes')
-        .add({'campanha': campanha.id, 'mestre': auth.currentUser!.uid});
+    await firestore.collection('sessoes').add({
+      'campanha-name': name,
+      'campanha': campanha.id,
+      'mestre': auth.currentUser!.uid,
+      'mestre-name': auth.currentUser!.displayName.toString(),
+      'players': [],
+      'players-name': []
+    });
   } catch (e) {
     print(e);
   }
@@ -48,11 +53,17 @@ void enviarConvite(String idCampanha) async {
 
 void aceitarConvite(String idConvite) async {
   try {
+    List listaPlayers = [];
+    List playersName = [];
+
     var convite = await firestore.collection('invites').doc(idConvite).get();
     var sessao = await firestore
         .collection('sessoes')
         .where('campanha', isEqualTo: convite['campanha'])
         .get();
+
+    listaPlayers = sessao.docs.first['players'];
+    playersName = sessao.docs.first['players-name'];
 
     var campanha =
         await firestore.collection('campanha').doc(convite['campanha']).get();
@@ -63,10 +74,17 @@ void aceitarConvite(String idConvite) async {
           .doc(campanha.id)
           .update({'players': campanha['players'] - 1});
 
+      listaPlayers.add(convite['remetente']);
+      playersName.add(convite['nome-user']);
+
       await firestore
           .collection('sessoes')
           .doc(sessao.docs.first.id)
-          .update({x: convite['remetente']});
+          .update({'players-id': listaPlayers});
+      await firestore
+          .collection('sessoes')
+          .doc(sessao.docs.first.id)
+          .update({'players-name': playersName});
 
       await firestore.collection('invites').doc(idConvite).delete();
     }

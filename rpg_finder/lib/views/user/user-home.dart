@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
 import 'package:rpg_finder/controllers/userController.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -14,23 +17,35 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Perfil")),
-      body: Column(children: [
-        ElevatedButton(
-          onPressed: () => navigationConvites(context),
-          child: Text('Convites'),
-        ),
-        ElevatedButton(
-          onPressed: () => navigationAtivas(context),
-          child: Text('Campanhas ativas'),
-        ),
-        ElevatedButton(
-          onPressed: () {
-            auth.signOut();
-            Navigator.of(context).popAndPushNamed('/login');
-          },
-          child: Text('Sair'),
-        )
-      ]),
+      body: Center(
+          child: Column(
+        children: [
+          Column(children: [
+            Text(auth.currentUser!.displayName.toString()),
+            ElevatedButton(
+              onPressed: () => navigationConvites(context),
+              child: Text('Convites'),
+            ),
+            ElevatedButton(
+              onPressed: () => navigationAtivas(context),
+              child: Text('Minhas campanhas'),
+            ),
+            ElevatedButton(
+              onPressed: () => navigationParticipando(context),
+              child: Text('Estou participando'),
+            ),
+            ElevatedButton(
+              onPressed: () {
+                auth.signOut();
+                Navigator.of(context).popAndPushNamed('/login');
+              },
+
+              child: Text('Sair'),
+            ),
+            
+          ]),
+        ],
+      )),
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(

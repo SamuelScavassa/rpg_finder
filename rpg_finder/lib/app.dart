@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:rpg_finder/views/campanha/campanhasAtivas.dart';
+import 'package:rpg_finder/views/campanha/campanhasParticipando.dart';
 import 'package:rpg_finder/views/campanha/convites.dart';
 import 'package:rpg_finder/views/campanha/feed.dart';
 import 'package:rpg_finder/views/user/cadastro.dart';
@@ -27,6 +29,8 @@ class App extends StatelessWidget {
         '/feed': (context) => Feed(),
         '/create-campanha': (context) => CreateCampanha(),
         '/convites': (context) => Convites(),
+        '/ativas': (context) => CampanhasAtivas(),
+        '/participando': (context) => CampanhasParticipando()
       },
       initialRoute: route,
     );
