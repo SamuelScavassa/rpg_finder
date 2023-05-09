@@ -87,6 +87,9 @@ void aceitarConvite(String idConvite) async {
           .update({'players-name': playersName});
 
       await firestore.collection('invites').doc(idConvite).delete();
+      if (campanha['player'] == 1) {
+        await firestore.collection('campanhas').doc(campanha.id).delete();
+      }
     }
   } catch (e) {
     print(e);

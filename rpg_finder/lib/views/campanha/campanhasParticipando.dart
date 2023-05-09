@@ -14,11 +14,12 @@ class CampanhasParticipando extends StatefulWidget {
 class _CampanhasParticipandoState extends State<CampanhasParticipando> {
   FirebaseFirestore firestore = FirebaseFirestore.instance;
   FirebaseAuth auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text(''),
+        title: const Text('Estou participando'),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: firestore
@@ -35,20 +36,45 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
             var sessoes = snapshot.data!.docs;
             return ListView(
               children: sessoes
-                  .map((sessao) => Row(
-                        children: [
-                          Row(
-                            children: [
-                              Text('Campanha: ' +
-                                  sessao['campanha-name'].toString()),
-                              Text('Mestre: ' +
-                                  sessao['mestre-name'].toString()),
-                              Text('Players: ' +
-                                  sessao['players-name'].toString()),
-                            ],
-                          ),
-                        ],
-                      ))
+                  .map(
+                    (sessao) => GestureDetector(
+                        child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Row(
+                          children: [
+                            Container(
+                                margin: EdgeInsets.all(10),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    Text(
+                                      'Campanha: ' +
+                                          sessao['campanha-name'].toString(),
+                                      style: TextStyle(
+                                          fontSize: 20,
+                                          fontWeight: FontWeight.bold),
+                                    ),
+                                    Text(
+                                      'Mestre: ' +
+                                          sessao['mestre-name'].toString(),
+                                      style: TextStyle(fontSize: 20),
+                                    ),
+                                    Text(
+                                      'Seus companheiros:',
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                    Text(
+                                      sessao['players-name'].toString(),
+                                      style: TextStyle(fontSize: 15),
+                                    ),
+                                  ],
+                                )),
+                          ],
+                        ),
+                      ],
+                    )),
+                  )
                   .toList(),
             );
           }),

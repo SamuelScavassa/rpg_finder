@@ -34,24 +34,41 @@ class _Convites extends State<Convites> {
           return ListView(
             children: convites
                 .map((convite) => Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Column(
                           children: [
-                            Text('Campanha: ' + convite['nome-campanha'].toString()),
-                            Text('User: ' + convite['nome-user'].toString()),
+                            Text(
+                              'Campanha: ' +
+                                  convite['nome-campanha'].toString(),
+                              style: TextStyle(fontSize: 20),
+                            ),
+                            Text(
+                              'User: ' + convite['nome-user'].toString(),
+                              style: TextStyle(fontSize: 20),
+                            ),
                           ],
                         ),
-                        Column(
-                          children: [
-                            ElevatedButton(
-                              onPressed: () => aceitarConvite(convite.id),
-                              child: Text('Aceitar'),
-                            ),
-                            ElevatedButton(
-                              onPressed: () => negarConvite(convite.id),
-                              child: Text('Negar'),
-                            )
-                          ],
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Container(
+                          padding: EdgeInsets.all(10),
+                          child: Column(
+                            children: [
+                              ElevatedButton(
+                                onPressed: () => aceitarConvite(convite.id),
+                                child: Text('Aceitar'),
+                              ),
+                              SizedBox(
+                                height: 5,
+                              ),
+                              ElevatedButton(
+                                onPressed: () => negarConvite(convite.id),
+                                child: Text('Negar'),
+                              )
+                            ],
+                          ),
                         )
                       ],
                     ))

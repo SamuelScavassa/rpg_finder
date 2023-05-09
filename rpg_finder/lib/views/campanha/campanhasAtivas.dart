@@ -35,19 +35,39 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
           var sessoes = snapshot.data!.docs;
           return ListView(
             children: sessoes
-                .map((sessao) => Row(
-                      children: [
-                        Column(
-                          children: [
-                            Text('Campanha: ' +
-                                sessao['campanha-name'].toString()),
-                            Text('Mestre: ' + sessao['mestre-name'].toString()),
-                            Text('Players: ' +
-                                sessao['players-name'].toString()),
-                          ],
-                        ),
-                      ],
-                    ))
+                .map(
+                  (sessao) => GestureDetector(
+                      child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Row(
+                        children: [
+                          Container(
+                              margin: EdgeInsets.all(10),
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    sessao['campanha-name'].toString(),
+                                    style: TextStyle(
+                                        fontSize: 20,
+                                        fontWeight: FontWeight.bold),
+                                  ),
+                                  Text(
+                                    'Participantes:',
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                  Text(
+                                    sessao['players-name'].toString(),
+                                    style: TextStyle(fontSize: 15),
+                                  ),
+                                ],
+                              )),
+                        ],
+                      ),
+                    ],
+                  )),
+                )
                 .toList(),
           );
         },

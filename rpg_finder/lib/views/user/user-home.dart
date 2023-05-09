@@ -21,28 +21,44 @@ class _Home extends State<Home> {
           child: Column(
         children: [
           Column(children: [
-            Text(auth.currentUser!.displayName.toString()),
+            SizedBox(
+              height: 10,
+            ),
+            Text(
+              auth.currentUser!.displayName.toString(),
+              style: TextStyle(fontSize: 30),
+            ),
+            SizedBox(
+              height: 10,
+            ),
             ElevatedButton(
               onPressed: () => navigationConvites(context),
               child: Text('Convites'),
+            ),
+            SizedBox(
+              height: 10,
             ),
             ElevatedButton(
               onPressed: () => navigationAtivas(context),
               child: Text('Minhas campanhas'),
             ),
+            SizedBox(
+              height: 10,
+            ),
             ElevatedButton(
               onPressed: () => navigationParticipando(context),
               child: Text('Estou participando'),
+            ),
+            SizedBox(
+              height: 10,
             ),
             ElevatedButton(
               onPressed: () {
                 auth.signOut();
                 Navigator.of(context).popAndPushNamed('/login');
               },
-
               child: Text('Sair'),
             ),
-            
           ]),
         ],
       )),
