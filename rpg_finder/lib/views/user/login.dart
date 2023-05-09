@@ -24,6 +24,10 @@ class _Login extends State<Login> {
       var response = userLogin(email, senha);
       if (await response) {
         Navigator.of(context).popAndPushNamed('/feed');
+      } else {
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Erro no login')),
+        );
       }
     }
   }

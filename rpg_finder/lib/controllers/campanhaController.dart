@@ -69,10 +69,15 @@ void aceitarConvite(String idConvite) async {
         await firestore.collection('campanha').doc(convite['campanha']).get();
     var x = campanha['players'].toString();
     if (int.parse(x) > 0) {
-      await firestore
-          .collection('campanha')
-          .doc(campanha.id)
-          .update({'players': campanha['players'] - 1});
+      int atual = campanha['players'] - 1;
+      if (atual == 0) {
+        await firestore.collection('campanha').doc(campanha.id).delete();
+      } else {
+        await firestore
+            .collection('campanha')
+            .doc(campanha.id)
+            .update({'players': atual});
+      }
 
       listaPlayers.add(convite['remetente']);
       playersName.add(convite['nome-user']);
@@ -87,9 +92,6 @@ void aceitarConvite(String idConvite) async {
           .update({'players-name': playersName});
 
       await firestore.collection('invites').doc(idConvite).delete();
-      if (campanha['player'] == 1) {
-        await firestore.collection('campanhas').doc(campanha.id).delete();
-      }
     }
   } catch (e) {
     print(e);
