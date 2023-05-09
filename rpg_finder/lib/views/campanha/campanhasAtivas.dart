@@ -43,26 +43,37 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
                       Row(
                         children: [
                           Container(
-                              margin: EdgeInsets.all(10),
                               child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Text(
-                                    sessao['campanha-name'].toString(),
-                                    style: TextStyle(
-                                        fontSize: 20,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                  Text(
-                                    'Participantes:',
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                  Text(
-                                    sessao['players-name'].toString(),
-                                    style: TextStyle(fontSize: 15),
-                                  ),
-                                ],
-                              )),
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                sessao['campanha-name'].toString(),
+                                style: TextStyle(
+                                    fontSize: 20, fontWeight: FontWeight.bold),
+                              ),
+                              Text(
+                                'Participantes:',
+                                style: TextStyle(fontSize: 15),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                width: 300,
+                                height: 80,
+                                child: GridView.count(
+                                    crossAxisCount: 2,
+                                    children: List.generate(
+                                        sessao['players-name'].length, (index) {
+                                      return Text(
+                                        
+                                        sessao['players-name'][index],
+                                        style: TextStyle(fontSize: 20),
+                                      );
+                                    })),
+                              )
+                            ],
+                          )),
                         ],
                       ),
                     ],

@@ -64,10 +64,20 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
                                       'Seus companheiros:',
                                       style: TextStyle(fontSize: 15),
                                     ),
-                                    Text(
-                                      sessao['players-name'].toString(),
-                                      style: TextStyle(fontSize: 15),
-                                    ),
+                                    Container(
+                                      width: 300,
+                                      height: 80,
+                                      child: GridView.count(
+                                          crossAxisCount: 2,
+                                          children: List.generate(
+                                              sessao['players-name'].length,
+                                              (index) {
+                                            return Text(
+                                              sessao['players-name'][index],
+                                              style: TextStyle(fontSize: 20),
+                                            );
+                                          })),
+                                    )
                                   ],
                                 )),
                           ],
