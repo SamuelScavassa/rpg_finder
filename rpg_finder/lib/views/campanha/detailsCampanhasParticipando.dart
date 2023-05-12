@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:rpg_finder/controllers/campanhaController.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetalhesCampanhaParticipando extends StatefulWidget {
@@ -90,7 +91,11 @@ class _DetalhesCampanhaParticipandoState
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: ElevatedButton(
-                onPressed: () => null,
+                onPressed: () => sairCampanha(
+                    sessoes.id,
+                    auth.currentUser!.uid.toString(),
+                    auth.currentUser!.displayName!,
+                    context),
                 child: Text("Sair"),
                 style: ElevatedButton.styleFrom(
                   backgroundColor: Colors.red,

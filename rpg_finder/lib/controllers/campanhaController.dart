@@ -114,10 +114,27 @@ void detalhesCampanha(BuildContext context, campanhas, index) {
 }
 
 void detalhesCampanhaAtivas(BuildContext context, sessoes, index) {
-   Navigator.push(
+  Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) => DetalhesCampanhaParticipando(sessoes: sessoes[index]),
+      builder: (context) =>
+          DetalhesCampanhaParticipando(sessoes: sessoes[index]),
     ),
   );
+}
+
+void sairCampanha(
+    String idSessao, String idUser, String nome, BuildContext context) async {
+  try {
+    var sess = await firestore.collection('sessoes').doc(idSessao).get();
+    List nomes = await sess['players-name'];
+    nomes.remove(nome);
+    List ids = await sess['players-id'];
+    ids.remove(idUser);
+    await firestore.collection('sessoes').doc(idSessao).update({
+      'players-name': nomes,
+      'players-id': ids,
+    });
+    Navigator.of(context).pop();
+  } catch (e) {}
 }

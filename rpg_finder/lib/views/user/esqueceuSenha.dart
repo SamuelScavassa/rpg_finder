@@ -16,6 +16,19 @@ class EsqueceuSenha extends StatefulWidget {
 class _EsqueceuSenhaState extends State<EsqueceuSenha> {
   String email = "";
 
+  void salvar(BuildContext context) {
+    try {
+      esqueceuSenha(email);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Confirmação enviado para o email: $email')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erro ao enviar o email $e')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,7 +64,7 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width + 10,
                   child: ElevatedButton(
-                    onPressed: () => esqueceuSenha(email),
+                    onPressed: () => salvar(context),
                     child: const Text("Enviar"),
                   ),
                 ),

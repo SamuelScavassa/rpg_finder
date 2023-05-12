@@ -38,8 +38,7 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
             children: sessoes
                 .map(
                   (sessao) => GestureDetector(
-                      onTap: () => detalhesCampanhaAtivas(
-                          context, sessoes, sessoes.indexOf(sessao)),
+                      onTap: () => null,
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
@@ -75,7 +74,7 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
                                             style: TextStyle(fontSize: 20),
                                           );
                                         })),
-                                  )
+                                  ),
                                 ],
                               )),
                             ],

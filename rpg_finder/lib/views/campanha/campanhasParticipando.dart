@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import '../../controllers/campanhaController.dart';
 import '../../controllers/navigationController.dart';
 
 class CampanhasParticipando extends StatefulWidget {
@@ -38,52 +39,57 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
               children: sessoes
                   .map(
                     (sessao) => GestureDetector(
+                        onTap: () => detalhesCampanhaAtivas(
+                            context, sessoes, sessoes.indexOf(sessao)),
                         child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Container(
-                                margin: EdgeInsets.all(10),
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    Text(
-                                      'Campanha: ' +
-                                          sessao['campanha-name'].toString(),
-                                      style: TextStyle(
-                                          fontSize: 20,
-                                          fontWeight: FontWeight.bold),
-                                    ),
-                                    Text(
-                                      'Mestre: ' +
-                                          sessao['mestre-name'].toString(),
-                                      style: TextStyle(fontSize: 20),
-                                    ),
-                                    Text(
-                                      'Seus companheiros:',
-                                      style: TextStyle(fontSize: 15),
-                                    ),
-                                    Container(
-                                      width: 300,
-                                      height: 80,
-                                      child: GridView.count(
-                                          crossAxisCount: 2,
-                                          children: List.generate(
-                                              sessao['players-name'].length,
-                                              (index) {
-                                            return Text(
-                                              sessao['players-name'][index],
-                                              style: TextStyle(fontSize: 20),
-                                            );
-                                          })),
-                                    )
-                                  ],
-                                )),
+                            Row(
+                              children: [
+                                Container(
+                                    margin: EdgeInsets.all(10),
+                                    child: Column(
+                                      crossAxisAlignment:
+                                          CrossAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Campanha: ' +
+                                              sessao['campanha-name']
+                                                  .toString(),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              fontWeight: FontWeight.bold),
+                                        ),
+                                        Text(
+                                          'Mestre: ' +
+                                              sessao['mestre-name'].toString(),
+                                          style: TextStyle(fontSize: 20),
+                                        ),
+                                        Text(
+                                          'Seus companheiros:',
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                        Container(
+                                          width: 300,
+                                          height: 80,
+                                          child: GridView.count(
+                                              crossAxisCount: 2,
+                                              children: List.generate(
+                                                  sessao['players-name'].length,
+                                                  (index) {
+                                                return Text(
+                                                  sessao['players-name'][index],
+                                                  style:
+                                                      TextStyle(fontSize: 20),
+                                                );
+                                              })),
+                                        )
+                                      ],
+                                    )),
+                              ],
+                            ),
                           ],
-                        ),
-                      ],
-                    )),
+                        )),
                   )
                   .toList(),
             );
