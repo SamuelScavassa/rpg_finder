@@ -36,6 +36,19 @@ class _DetalhesCampanha extends State<DetalhesCampanha> {
     campanha = widget.campanha;
   }
 
+  void enviar() {
+    try {
+      enviarConvite(campanha.id);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Convite envido!')),
+      );
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Erro ao enviar o convite $e')),
+      );
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -77,8 +90,7 @@ class _DetalhesCampanha extends State<DetalhesCampanha> {
             child: SizedBox(
               width: MediaQuery.of(context).size.width + 10,
               child: ElevatedButton(
-                  onPressed: () => enviarConvite(campanha.id),
-                  child: const Text("Juntar-se")),
+                  onPressed: enviar, child: const Text("Juntar-se")),
             ),
           ),
         ],

@@ -51,29 +51,30 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
                                   Text(
                                     sessao['campanha-name'].toString(),
                                     style: TextStyle(
-                                        fontSize: 20,
+                                        fontSize: 40,
                                         fontWeight: FontWeight.bold),
                                   ),
                                   Text(
                                     'Participantes:',
-                                    style: TextStyle(fontSize: 15),
+                                    style: TextStyle(fontSize: 25),
                                   ),
                                   SizedBox(
                                     height: 20,
                                   ),
                                   Container(
                                     width: 300,
-                                    height: 80,
-                                    child: GridView.count(
-                                        crossAxisCount: 2,
+                                    height: 200,
+                                    child: ListView(
                                         children: List.generate(
                                             sessao['players-name'].length,
                                             (index) {
-                                          return Text(
-                                            sessao['players-name'][index],
-                                            style: TextStyle(fontSize: 20),
-                                          );
-                                        })),
+                                      return Center(
+                                        child: Text(
+                                          sessao['players-name'][index],
+                                          style: TextStyle(fontSize: 15),
+                                        ),
+                                      );
+                                    })),
                                   ),
                                 ],
                               )),
