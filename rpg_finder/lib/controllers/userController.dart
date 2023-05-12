@@ -43,11 +43,38 @@ void addNome(String name) {
 }
 
 //
-Future esqueceuSenha(String email) async {
+Future esqueceuSenha(BuildContext context, String email) async {
   try {
     await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
     // ignore: use_build_context_synchronously
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+              title: Text("Enviado o email"),
+              content: Text("Cheque o seu e-mail ou caixa de spam"),
+              actions: <Widget>[
+                TextButton(
+                    onPressed: () =>
+                        Navigator.of(context).popAndPushNamed('/login'),
+                    child: Text("Ok"))
+              ],
+            ));
+
+    // ignore: use_build_context_synchronously
   } catch (e) {
+    showDialog(
+        context: context,
+        builder: (BuildContext context) => AlertDialog(
+              title: Text("Erro no email"),
+              content:
+                  Text("Cheque se seu email está correto e verique a sua rede"),
+              actions: <Widget>[
+                TextButton(
+                    onPressed: () => Navigator.of(context).pop(),
+                    child: Text("Ok"))
+              ],
+            ));
+
     return false;
   }
 }
