@@ -135,6 +135,11 @@ void sairCampanha(
       'players-name': nomes,
       'players-id': ids,
     });
+
     Navigator.of(context).pop();
-  } catch (e) {}
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Erro ao sair')),
+    );
+  }
 }
