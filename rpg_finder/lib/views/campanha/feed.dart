@@ -44,8 +44,8 @@ class _FeedState extends State<Feed> {
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: firestore
               .collection('campanha')
-              .where('user', isNotEqualTo: auth.currentUser!.uid)
-              
+              .where('disable', isEqualTo: true)
+              .where('user', isNotEqualTo: auth.currentUser!.uid.toString())
               .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {

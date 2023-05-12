@@ -44,7 +44,8 @@ void enviarConvite(String idCampanha) async {
         'campanha': idCampanha,
         'destinatario': campanha['user'],
         'nome-campanha': campanha['nome'],
-        'nome-user': auth.currentUser!.displayName
+        'nome-user': auth.currentUser!.displayName,
+        'disable': false
       });
     }
   } catch (e) {
@@ -72,7 +73,10 @@ void aceitarConvite(String idConvite) async {
     if (int.parse(x) > 0) {
       int atual = campanha['players'] - 1;
       if (atual == 0) {
-        await firestore.collection('campanha').doc(campanha.id).delete();
+        await firestore
+            .collection('campanha')
+            .doc(campanha.id)
+            .update({'disable': true});
       } else {
         await firestore
             .collection('campanha')
@@ -135,6 +139,14 @@ void sairCampanha(
       'players-name': nomes,
       'players-id': ids,
     });
+    var campanha =
+        await firestore.collection('campanha').doc(sess['campanha']).get();
+    if (campanha['disable'] == true) {
+      await firestore
+          .collection('campanha')
+          .doc(campanha.id)
+          .update({'disable': false});
+    }
 
     Navigator.of(context).pop();
   } catch (e) {

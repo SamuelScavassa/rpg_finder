@@ -16,8 +16,8 @@ class _CadastroState extends State<Cadastro> {
 
   Future<void> salvar(BuildContext context) async {
     if (formKey.currentState!.validate()) {
-      createUser(name!, email!, senha!);
-      Navigator.of(context).popAndPushNamed("/feed");
+      createUser(name!, email!, senha!, context);
+      
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Tente outro email')),

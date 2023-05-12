@@ -4,16 +4,17 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:rpg_finder/views/user/esqueceuSenha.dart';
 
-
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseAuth auth = FirebaseAuth.instance;
 
-Future<void> createUser(String name, String email, String senha) async {
+Future<void> createUser(
+    String name, String email, String senha, BuildContext context) async {
   try {
     FirebaseAuth user = FirebaseAuth.instance;
     await user.createUserWithEmailAndPassword(email: email, password: senha);
     await userLogin(email, senha);
     addNome(name);
+    Navigator.of(context).popAndPushNamed("/feed");
   } catch (e) {
     print(e);
   }
@@ -81,5 +82,3 @@ Future esqueceuSenha(BuildContext context, String email) async {
     return false;
   }
 }
-
-
