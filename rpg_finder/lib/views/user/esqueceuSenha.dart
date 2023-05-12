@@ -64,7 +64,7 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width + 10,
                   child: ElevatedButton(
-                    onPressed: () => esqueceuSenha(context, email),,
+                    onPressed: () => esqueceuSenha(context, email),
                     child: const Text("Enviar"),
                   ),
                 ),
