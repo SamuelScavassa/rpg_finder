@@ -15,7 +15,7 @@ class EsqueceuSenha extends StatefulWidget {
 
 class _EsqueceuSenhaState extends State<EsqueceuSenha> {
   String email = "";
-
+/*
   void salvar(BuildContext context) {
     try {
       esqueceuSenha(email);
@@ -28,7 +28,7 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
       );
     }
   }
-
+*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +64,7 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width + 10,
                   child: ElevatedButton(
-                    onPressed: () => salvar(context),
+                    onPressed: () => esqueceuSenha(context, email),,
                     child: const Text("Enviar"),
                   ),
                 ),
