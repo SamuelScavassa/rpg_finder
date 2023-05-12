@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:rpg_finder/controllers/campanhaController.dart';
 
+//o operador ternario
+
 class DetalhesCampanha extends StatefulWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> campanha;
 
@@ -44,13 +46,41 @@ class _DetalhesCampanha extends State<DetalhesCampanha> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text('Nome da campanha: ${campanha['nome']}'),
-          Text('Descrição: ${campanha['descricao']}'),
-          Text('Jogadores: ${campanha['players']}'),
-          Text('Tags: ${campanha['tags'].join(", ")}'),
-          Text('Discord: ${campanha['discord']}'),
-          ElevatedButton(
-              onPressed: () => salvar(context), child: Text("Juntar-se")),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Center(
+                child: Text('${campanha['nome']}',
+                    style: const TextStyle(fontSize: 20))),
+          ),
+          const SizedBox(height: 5),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 3, 12, 3),
+            child: Text(
+              'Descrição: ${campanha['descricao']}',
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 3, 12, 3),
+            child: Text(
+              'Vagas disponiveis: ${campanha['players']}',
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(12, 3, 12, 3),
+            child: campanha['tags'] != null && campanha['tags'].isNotEmpty
+                ? Text("Tags: ${campanha['tags'].join(",")} ")
+                : const Text("Não tem tags essa campanha"),
+          ),
+          const SizedBox(height: 5),
+          Padding(
+            padding: const EdgeInsets.all(5.0),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width + 10,
+              child: ElevatedButton(
+                  onPressed: () => enviarConvite(campanha.id),
+                  child: const Text("Juntar-se")),
+            ),
+          ),
         ],
       ),
     );

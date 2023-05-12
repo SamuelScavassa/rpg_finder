@@ -6,6 +6,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 //novos
 import 'package:flutter/material.dart';
 import '../views/campanha/details-campanha.dart';
+import '../views/campanha/detailsCampanhasParticipando.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseAuth auth = FirebaseAuth.instance;
@@ -108,6 +109,15 @@ void detalhesCampanha(BuildContext context, campanhas, index) {
     context,
     MaterialPageRoute(
       builder: (context) => DetalhesCampanha(campanha: campanhas[index]),
+    ),
+  );
+}
+
+void detalhesCampanhaAtivas(BuildContext context, sessoes, index) {
+   Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) => DetalhesCampanhaParticipando(sessoes: sessoes[index]),
     ),
   );
 }
