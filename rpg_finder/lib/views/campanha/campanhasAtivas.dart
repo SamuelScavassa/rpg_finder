@@ -19,7 +19,7 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('CAMPANHAS ATIVAS')),
+      appBar: AppBar(title: const Text('CAMPANHAS ATIVAS')),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: firestore
             .collection('sessoes')
@@ -38,7 +38,8 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
             children: sessoes
                 .map(
                   (sessao) => GestureDetector(
-                      onTap: () => null,
+                      onTap: () => detalhesCampanhaAtivas(
+                          context, sessoes, sessoes.indexOf(sessao)),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [

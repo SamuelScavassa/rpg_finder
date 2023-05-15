@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
@@ -45,11 +44,10 @@ class _FeedState extends State<Feed> {
           stream: firestore
               .collection('campanha')
               .where('disable', isEqualTo: true)
-              .where('user', isNotEqualTo: auth.currentUser!.uid.toString())
               .snapshots(),
           builder: (context, snapshot) {
             if (!snapshot.hasData) {
-              return const CircularProgressIndicator();
+              return const Center(child: CircularProgressIndicator());
             }
 
             var campanhas = snapshot.data!.docs;

@@ -20,7 +20,8 @@ void salvarCampanha(String descricao, String discord, String name,
       'nome': name,
       'players': jogadores,
       'tags': tags,
-      'user': auth.currentUser!.uid
+      'user': auth.currentUser!.uid,
+      'disable': true
     });
     await firestore.collection('sessoes').add({
       'campanha-name': name,
@@ -113,6 +114,16 @@ void detalhesCampanha(BuildContext context, campanhas, index) {
     context,
     MaterialPageRoute(
       builder: (context) => DetalhesCampanha(campanha: campanhas[index]),
+    ),
+  );
+}
+
+void detalhesCampanhaPartcipando(BuildContext context, sessoes, index) {
+  Navigator.push(
+    context,
+    MaterialPageRoute(
+      builder: (context) =>
+          DetalhesCampanhaParticipando(sessoes: sessoes[index]),
     ),
   );
 }
