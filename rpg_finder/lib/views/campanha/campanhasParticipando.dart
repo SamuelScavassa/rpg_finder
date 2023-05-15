@@ -39,7 +39,7 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
               children: sessoes
                   .map(
                     (sessao) => GestureDetector(
-                        onTap: () => detalhesCampanhaAtivas(
+                        onTap: () => detalhesCampanhaPartcipando(
                             context, sessoes, sessoes.indexOf(sessao)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,

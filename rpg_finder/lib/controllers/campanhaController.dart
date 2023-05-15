@@ -5,6 +5,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 //novos
 import 'package:flutter/material.dart';
+import 'package:rpg_finder/views/campanha/detailsCampanhaAtivas.dart';
 import '../views/campanha/details-campanha.dart';
 import '../views/campanha/detailsCampanhasParticipando.dart';
 
@@ -132,8 +133,7 @@ void detalhesCampanhaAtivas(BuildContext context, sessoes, index) {
   Navigator.push(
     context,
     MaterialPageRoute(
-      builder: (context) =>
-          DetalhesCampanhaParticipando(sessoes: sessoes[index]),
+      builder: (context) => DetalhesCampanhaAtivas(sessoes: sessoes[index]),
     ),
   );
 }
