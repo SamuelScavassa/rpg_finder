@@ -29,7 +29,7 @@ void salvarCampanha(String descricao, String discord, String name,
       'campanha': campanha.id,
       'mestre': auth.currentUser!.uid,
       'mestre-name': auth.currentUser!.displayName.toString(),
-      'players': [],
+      'players-id': [],
       'players-name': []
     });
   } catch (e) {
@@ -75,7 +75,7 @@ void aceitarConvite(String idConvite) async {
         .where('campanha', isEqualTo: convite['campanha'])
         .get();
 
-    listaPlayers = sessao.docs.first['players'];
+    listaPlayers = sessao.docs.first['players-id'];
     playersName = sessao.docs.first['players-name'];
 
     var campanha =
@@ -87,7 +87,7 @@ void aceitarConvite(String idConvite) async {
         await firestore
             .collection('campanha')
             .doc(campanha.id)
-            .update({'disable': true});
+            .update({'disable': false});
       } else {
         await firestore
             .collection('campanha')
@@ -170,16 +170,58 @@ void sairCampanha(
     });
     var campanha =
         await firestore.collection('campanha').doc(sess['campanha']).get();
-    if (campanha['disable'] == true) {
+    if (campanha['disable']) {
+      await firestore
+          .collection('campanha')
+          .doc(sess['campanha'])
+          .update({'players': FieldValue.increment(1)});
+    } else {
       await firestore
           .collection('campanha')
           .doc(campanha.id)
-          .update({'disable': false});
+          .update({'disable': true});
     }
+
     Navigator.of(context).pop();
   } catch (e) {
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Erro ao sair')),
+    );
+  }
+}
+
+void retirarUserCampanha(
+    String idSessao, String idUser, String nome, BuildContext context) async {
+  try {
+    var sess = await firestore.collection('sessoes').doc(idSessao).get();
+    var campanha =
+        await firestore.collection('campanha').doc(sess['campanha']).get();
+    List nomes = await sess['players-name'];
+    nomes.remove(nome);
+    List ids = await sess['players-id'];
+    ids.remove(idUser);
+    await firestore.collection('sessoes').doc(idSessao).update({
+      'players-name': nomes,
+      'players-id': ids,
+    });
+    if (campanha['disable']) {
+      await firestore
+          .collection('campanha')
+          .doc(sess['campanha'])
+          .update({'players': FieldValue.increment(1)});
+    } else {
+      await firestore
+          .collection('campanha')
+          .doc(campanha.id)
+          .update({'disable': true});
+    }
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Player removido')),
+    );
+    Navigator.of(context).pop();
+  } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Erro ao remover :-(')),
     );
   }
 }

@@ -87,7 +87,11 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
                           style: TextStyle(fontSize: 16),
                         ),
                         trailing: GestureDetector(
-                          onTap: () => null,
+                          onTap: () => retirarUserCampanha(
+                              sessoes.id,
+                              sessoes['players-id'][index],
+                              sessoes['players-name'][index],
+                              context),
                           child: Icon(
                             Icons.highlight_remove_sharp,
                             color: Colors.red.shade700,

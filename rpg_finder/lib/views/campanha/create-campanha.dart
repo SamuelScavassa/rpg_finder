@@ -50,7 +50,7 @@ class _CreateCampanha extends State<CreateCampanha> {
     Navigator.of(context).popAndPushNamed("/create-campanha");
   }*/
 /////////////////////////////////
-  
+
   List<String> Tags = [];
   String name = '';
   int jogadores = 0;
@@ -133,7 +133,7 @@ class _CreateCampanha extends State<CreateCampanha> {
               ////////Link Discord
               TextFormField(
                 maxLines: 1,
-                maxLength: 20,
+                maxLength: 30,
                 decoration: const InputDecoration(
                   icon: Icon(Icons.discord),
                   labelText: "Link Discord",

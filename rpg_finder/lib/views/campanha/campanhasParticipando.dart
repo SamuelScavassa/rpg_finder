@@ -94,6 +94,11 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
                   .toList(),
             );
           }),
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => createCampanha(context),
+        child: const Icon(Icons.add),
+      ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
         color: Theme.of(context).colorScheme.primary,
