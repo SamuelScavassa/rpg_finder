@@ -20,47 +20,90 @@ class _Home extends State<Home> {
       body: Center(
           child: Column(
         children: [
-          Column(children: [
-            SizedBox(
-              height: 10,
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: Row(children: [
+              Container(
+                width: 150,
+                height: 150,
+                child: CircleAvatar(
+                    backgroundColor: Colors.brown.shade800,
+                    backgroundImage: AssetImage(''),
+                    child: IconButton(
+                      onPressed: () {
+                        ///
+                      },
+                      icon: Icon(Icons.camera_alt),
+                    )),
+              ),
+              const SizedBox(
+                height: 10,
+              ),
+              Text(
+                auth.currentUser!.displayName.toString(),
+                style: TextStyle(fontSize: 30),
+              ),
+            ]),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () => navigationConvites(context),
+                child: Text('Convites'),
+              ),
+              const SizedBox(width: 30), // Espaçamento horizontal de 20 pixels
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () => navigationAtivas(context),
+                child: const Text('Minhas campanhas'),
+              ),
+            ],
+          ),
+          Container(
+            padding: const EdgeInsets.all(16),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () => navigationParticipando(context),
+                  child: const Text('Estou participando'),
+                ),
+                const SizedBox(width: 30), // Espaçame
+                const SizedBox(
+                  height: 10,
+                ),
+                ElevatedButton(
+                  onPressed: () => null,
+                  child: const Text('Atualizar Dados'),
+                ),
+              ],
             ),
-            Text(
-              auth.currentUser!.displayName.toString(),
-              style: TextStyle(fontSize: 30),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: () => navigationConvites(context),
-              child: Text('Convites'),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: () => navigationAtivas(context),
-              child: Text('Minhas campanhas'),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: () => navigationParticipando(context),
-              child: Text('Estou participando'),
-            ),
-            SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: () {
-                auth.signOut();
-                Navigator.of(context).popAndPushNamed('/login');
-              },
-              child: Text('Sair'),
-            ),
-          ]),
-          
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              const SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                style: TextButton.styleFrom(backgroundColor: Colors.red),
+                onPressed: () {
+                  auth.signOut();
+                  Navigator.of(context).popAndPushNamed('/login');
+                },
+                child: const Text('Sair'),
+              ),
+            ],
+          )
         ],
       )),
 
