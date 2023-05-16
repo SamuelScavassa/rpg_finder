@@ -17,18 +17,6 @@ class DetalhesCampanha extends StatefulWidget {
 
 class _DetalhesCampanha extends State<DetalhesCampanha> {
   late final QueryDocumentSnapshot<Map<String, dynamic>> campanha;
-  Future<void> salvar(BuildContext context) async {
-    try {
-      enviarConvite(campanha.id);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Pedido enviado')),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erro $e')),
-      );
-    }
-  }
 
   @override
   void initState() {
@@ -38,10 +26,8 @@ class _DetalhesCampanha extends State<DetalhesCampanha> {
 
   void enviar() {
     try {
-      enviarConvite(campanha.id);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Convite envido!')),
-      );
+      enviarConvite(campanha.id, context);
+      
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text('Erro ao enviar o convite $e')),

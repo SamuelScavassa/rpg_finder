@@ -37,18 +37,27 @@ void salvarCampanha(String descricao, String discord, String name,
   }
 }
 
-void enviarConvite(String idCampanha) async {
+void enviarConvite(String idCampanha, BuildContext context) async {
   try {
     var campanha = await firestore.collection('campanha').doc(idCampanha).get();
-    if (campanha['players'] > 0) {
-      firestore.collection('invites').add({
-        'remetente': auth.currentUser!.uid,
-        'campanha': idCampanha,
-        'destinatario': campanha['user'],
-        'nome-campanha': campanha['nome'],
-        'nome-user': auth.currentUser!.displayName,
-        'disable': false
-      });
+    if (campanha['user'] == auth.currentUser!.uid) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Essa campanha é sua :-)')),
+      );
+    } else {
+      if (campanha['players'] > 0) {
+        firestore.collection('invites').add({
+          'remetente': auth.currentUser!.uid,
+          'campanha': idCampanha,
+          'destinatario': campanha['user'],
+          'nome-campanha': campanha['nome'],
+          'nome-user': auth.currentUser!.displayName,
+          'disable': false
+        });
+        ScaffoldMessenger.of(context).showSnackBar(
+          SnackBar(content: Text('Convite envido!')),
+        );
+      }
     }
   } catch (e) {
     print(e);
@@ -138,6 +147,15 @@ void detalhesCampanhaAtivas(BuildContext context, sessoes, index) {
   );
 }
 
+void deletarCampanha(String idSessao, BuildContext context) async {
+  try {
+    var sess = await firestore.collection('sessoes').doc(idSessao).get();
+    await firestore.collection('campanha').doc(sess['campanha']).delete();
+    await firestore.collection('sessoes').doc(sess.id).delete();
+    Navigator.of(context).pop();
+  } catch (e) {}
+}
+
 void sairCampanha(
     String idSessao, String idUser, String nome, BuildContext context) async {
   try {
@@ -158,7 +176,6 @@ void sairCampanha(
           .doc(campanha.id)
           .update({'disable': false});
     }
-
     Navigator.of(context).pop();
   } catch (e) {
     ScaffoldMessenger.of(context).showSnackBar(

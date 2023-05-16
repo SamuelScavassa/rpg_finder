@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-
+import 'package:rpg_finder/controllers/campanhaController.dart';
 
 class DetalhesCampanhaAtivas extends StatefulWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> sessoes;
@@ -105,7 +105,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
               child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
-                    onPressed: () => null,
+                    onPressed: () => deletarCampanha(sessoes.id, context),
                     child: Text("Apagar Campanha"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
