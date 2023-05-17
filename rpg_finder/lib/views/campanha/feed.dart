@@ -20,14 +20,18 @@ class _FeedState extends State<Feed> {
 
 /////////////////////
     return Scaffold(
+      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
+        backgroundColor: Color.fromARGB(255, 169, 12, 255),
         title: TextField(
           controller: pesquisa,
           decoration: const InputDecoration(
             hintText: 'Encontre seu RPG aqui',
             border: InputBorder.none,
             hintStyle: TextStyle(
-                color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),
+              color: Colors.white,
+              fontSize: 20,
+            ),
           ),
           style: const TextStyle(
             color: Colors.white,
@@ -74,9 +78,10 @@ class _FeedState extends State<Feed> {
                                         Text(
                                           campanha['nome'],
                                           style: const TextStyle(
-                                            fontSize: 25,
-                                            fontWeight: FontWeight.bold,
-                                          ),
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold,
+                                              color: Color.fromARGB(
+                                                  174, 255, 255, 255)),
                                         ),
                                       ],
                                     ),
@@ -87,7 +92,11 @@ class _FeedState extends State<Feed> {
                                       children: <Text>[
                                         Text(
                                           campanha['descricao'],
-                                          style: TextStyle(fontSize: 15),
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            color: Color.fromARGB(
+                                                174, 255, 255, 255),
+                                          ),
                                           maxLines: 3,
                                         ),
                                         Text(
@@ -103,7 +112,8 @@ class _FeedState extends State<Feed> {
                             Icon(Icons.people),
                             Text(
                               campanha['players'].toString(),
-                              style: const TextStyle(fontSize: 30),
+                              style: const TextStyle(
+                                  fontSize: 30, color: Colors.white),
                             )
                           ],
                         ),
@@ -116,13 +126,15 @@ class _FeedState extends State<Feed> {
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 169, 12, 255),
         onPressed: () => createCampanha(context),
         child: const Icon(Icons.add),
       ),
+
       //
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Theme.of(context).colorScheme.primary,
+        color: Color.fromARGB(255, 169, 12, 255),
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(
@@ -134,7 +146,7 @@ class _FeedState extends State<Feed> {
                     onPressed: () => null,
                     icon: const Icon(
                       Icons.home,
-                      color: Colors.black54,
+                      color: Colors.white,
                     )),
                 const SizedBox(width: 80),
                 IconButton(
