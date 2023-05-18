@@ -3,6 +3,7 @@ import 'package:rpg_finder/views/campanha/campanhasAtivas.dart';
 import 'package:rpg_finder/views/campanha/campanhasParticipando.dart';
 import 'package:rpg_finder/views/campanha/convites.dart';
 import 'package:rpg_finder/views/campanha/feed.dart';
+import 'package:rpg_finder/views/campanha/historicoCampanha.dart';
 import 'package:rpg_finder/views/user/cadastro.dart';
 import 'package:rpg_finder/views/user/esqueceuSenha.dart';
 import 'package:rpg_finder/views/user/user-home.dart';
@@ -30,7 +31,8 @@ class App extends StatelessWidget {
         '/create-campanha': (context) => CreateCampanha(),
         '/convites': (context) => Convites(),
         '/ativas': (context) => CampanhasAtivas(),
-        '/participando': (context) => CampanhasParticipando()
+        '/participando': (context) => CampanhasParticipando(),
+        '/historico': (context) => HistoricoCampanha()
       },
       initialRoute: route,
     );

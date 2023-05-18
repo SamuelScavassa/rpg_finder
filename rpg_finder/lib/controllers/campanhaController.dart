@@ -177,6 +177,27 @@ void deletarCampanha(String idSessao, BuildContext context) async {
   } catch (e) {}
 }
 
+void finalizarCampanha(String idSessao, BuildContext context) async {
+  try {
+    var sess = await firestore.collection('sessoes').doc(idSessao).get();
+    await firestore
+        .collection('campanha')
+        .doc(sess['campanha'])
+        .update({'disable': false});
+    var sessao = await firestore.collection('sessoes').doc(sess.id).get();
+    List ids = sessao['players-id'];
+    ids.add(sessao['mestre']);
+    await firestore.collection('finalizadas').add({
+      'campanha-name': sessao['campanha-name'],
+      'mestre-name': sessao['mestre-name'],
+      'players-id': ids,
+      'players-name': sessao['players-name']
+    });
+    await firestore.collection('sessoes').doc(sess.id).delete();
+    Navigator.of(context).pop();
+  } catch (e) {}
+}
+
 void sairCampanha(
     String idSessao, String idUser, String nome, BuildContext context) async {
   try {

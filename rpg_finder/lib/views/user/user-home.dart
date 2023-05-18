@@ -95,6 +95,11 @@ class _Home extends State<Home> {
                 height: 10,
               ),
               ElevatedButton(
+                  onPressed: () {
+                    Navigator.of(context).popAndPushNamed('/historico');
+                  },
+                  child: Text('Histórico')),
+              ElevatedButton(
                 style: TextButton.styleFrom(backgroundColor: Colors.red),
                 onPressed: () {
                   auth.signOut();
