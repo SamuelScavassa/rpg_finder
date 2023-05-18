@@ -1,11 +1,10 @@
-import 'dart:html';
-
+import 'dart:async';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-//novos
 import 'package:flutter/material.dart';
 import 'package:rpg_finder/views/campanha/detailsCampanhaAtivas.dart';
+import 'package:rpg_finder/views/campanha/resultadoPesquisa.dart';
 import '../views/campanha/details-campanha.dart';
 import '../views/campanha/detailsCampanhasParticipando.dart';
 
@@ -14,13 +13,18 @@ FirebaseAuth auth = FirebaseAuth.instance;
 
 void salvarCampanha(String descricao, String discord, String name,
     int jogadores, List<String>? tags) async {
+  List<String> tgs = [];
+  tgs.add(name);
+  if (tags?.first != null) {
+    tgs.addAll(tags!);
+  }
   try {
     var campanha = await firestore.collection('campanha').add({
       'descricao': descricao,
       'discord': discord,
       'nome': name,
       'players': jogadores,
-      'tags': tags,
+      'tags': tgs,
       'user': auth.currentUser!.uid,
       'disable': true
     });
@@ -143,6 +147,23 @@ void detalhesCampanhaAtivas(BuildContext context, sessoes, index) {
     context,
     MaterialPageRoute(
       builder: (context) => DetalhesCampanhaAtivas(sessoes: sessoes[index]),
+    ),
+  );
+}
+
+Future<void> procurar(String pesquisa, BuildContext context) async {
+  StreamController<QuerySnapshot<Map<String, dynamic>>> controller =
+      StreamController<QuerySnapshot<Map<String, dynamic>>>();
+
+  final query1 = await firestore
+      .collection('campanha')
+      .where('tags'.toLowerCase(), arrayContains: pesquisa.toLowerCase())
+      .snapshots();
+
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) => ResultadoPesquisa(campanha: query1),
     ),
   );
 }

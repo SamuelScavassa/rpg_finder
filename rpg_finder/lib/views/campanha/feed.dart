@@ -40,7 +40,7 @@ class _FeedState extends State<Feed> {
         actions: [
           IconButton(
             icon: Icon(Icons.search),
-            onPressed: () {},
+            onPressed: () => procurar(pesquisa.text, context),
           ),
         ],
       ),

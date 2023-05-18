@@ -63,6 +63,8 @@ class _CreateCampanha extends State<CreateCampanha> {
     print(Tags);
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
+      
+      
       salvarCampanha(descricao, discord, name, jogadores, _controller.getTags);
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Campanha criada com sucesso')),
