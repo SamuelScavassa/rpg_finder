@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:rpg_finder/controllers/campanhaController.dart';
+import 'package:rpg_finder/views/chat/chatView.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class DetalhesCampanhaParticipando extends StatefulWidget {
@@ -102,7 +103,28 @@ class _DetalhesCampanhaParticipandoState
                 ),
               ),
             ),
-          )
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: ElevatedButton(
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ChatView(campanha: sessoes['campanha'].toString()),
+                    ),
+                  )
+                },
+                child: Text("CHAT"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

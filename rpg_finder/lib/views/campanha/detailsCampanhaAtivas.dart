@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:rpg_finder/controllers/campanhaController.dart';
+import 'package:rpg_finder/views/chat/chatView.dart';
 
 class DetalhesCampanhaAtivas extends StatefulWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> sessoes;
@@ -109,23 +110,33 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
               child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
-                    onPressed: () => finalizarCampanha(sessoes.id, context),
-                    child: Text("Finalizar Campanha"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                    ),
-                  ))),
-          Padding(
-              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-              child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
                     onPressed: () => deletarCampanha(sessoes.id, context),
                     child: Text("Apagar Campanha"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: Colors.red,
                     ),
                   ))),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+            child: SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: ElevatedButton(
+                onPressed: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ChatView(campanha: sessoes['campanha'].toString()),
+                    ),
+                  )
+                },
+                child: Text("CHAT"),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.red,
+                ),
+              ),
+            ),
+          ),
         ],
       ),
     );

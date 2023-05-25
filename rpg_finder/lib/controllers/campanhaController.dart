@@ -1,30 +1,28 @@
 import 'dart:async';
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+//novos
 import 'package:flutter/material.dart';
 import 'package:rpg_finder/views/campanha/detailsCampanhaAtivas.dart';
-import 'package:rpg_finder/views/campanha/resultadoPesquisa.dart';
 import '../views/campanha/details-campanha.dart';
 import '../views/campanha/detailsCampanhasParticipando.dart';
+import '../views/campanha/resultadoPesquisa.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseAuth auth = FirebaseAuth.instance;
 
 void salvarCampanha(String descricao, String discord, String name,
     int jogadores, List<String>? tags) async {
-  List<String> tgs = [];
-  tgs.add(name);
-  if (tags?.first != null) {
-    tgs.addAll(tags!);
-  }
   try {
     var campanha = await firestore.collection('campanha').add({
       'descricao': descricao,
       'discord': discord,
       'nome': name,
       'players': jogadores,
-      'tags': tgs,
+      'tags': tags,
       'user': auth.currentUser!.uid,
       'disable': true
     });
@@ -151,48 +149,10 @@ void detalhesCampanhaAtivas(BuildContext context, sessoes, index) {
   );
 }
 
-Future<void> procurar(String pesquisa, BuildContext context) async {
-  StreamController<QuerySnapshot<Map<String, dynamic>>> controller =
-      StreamController<QuerySnapshot<Map<String, dynamic>>>();
-
-  final query1 = await firestore
-      .collection('campanha')
-      .where('tags'.toLowerCase(), arrayContains: pesquisa.toLowerCase())
-      .snapshots();
-
-  Navigator.pushReplacement(
-    context,
-    MaterialPageRoute(
-      builder: (context) => ResultadoPesquisa(campanha: query1),
-    ),
-  );
-}
-
 void deletarCampanha(String idSessao, BuildContext context) async {
   try {
     var sess = await firestore.collection('sessoes').doc(idSessao).get();
     await firestore.collection('campanha').doc(sess['campanha']).delete();
-    await firestore.collection('sessoes').doc(sess.id).delete();
-    Navigator.of(context).pop();
-  } catch (e) {}
-}
-
-void finalizarCampanha(String idSessao, BuildContext context) async {
-  try {
-    var sess = await firestore.collection('sessoes').doc(idSessao).get();
-    await firestore
-        .collection('campanha')
-        .doc(sess['campanha'])
-        .update({'disable': false});
-    var sessao = await firestore.collection('sessoes').doc(sess.id).get();
-    List ids = sessao['players-id'];
-    ids.add(sessao['mestre']);
-    await firestore.collection('finalizadas').add({
-      'campanha-name': sessao['campanha-name'],
-      'mestre-name': sessao['mestre-name'],
-      'players-id': ids,
-      'players-name': sessao['players-name']
-    });
     await firestore.collection('sessoes').doc(sess.id).delete();
     Navigator.of(context).pop();
   } catch (e) {}
@@ -266,4 +226,21 @@ void retirarUserCampanha(
       const SnackBar(content: Text('Erro ao remover :-(')),
     );
   }
+}
+
+Future<void> procurar(String pesquisa, BuildContext context) async {
+  StreamController<QuerySnapshot<Map<String, dynamic>>> controller =
+      StreamController<QuerySnapshot<Map<String, dynamic>>>();
+
+  final query1 = await firestore
+      .collection('campanha')
+      .where('tags'.toLowerCase(), arrayContains: pesquisa.toLowerCase())
+      .snapshots();
+
+  Navigator.pushReplacement(
+    context,
+    MaterialPageRoute(
+      builder: (context) => ResultadoPesquisa(campanha: query1),
+    ),
+  );
 }
