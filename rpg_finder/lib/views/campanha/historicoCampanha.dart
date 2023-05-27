@@ -45,7 +45,7 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
                               Text(
-                                'Campanha: ${sessao['campanha-name'].toString()}',
+                                '${sessao['campanha-name'].toString()}',
                                 style: TextStyle(
                                     fontSize: 40, fontWeight: FontWeight.bold),
                               ),

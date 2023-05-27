@@ -25,8 +25,12 @@ class _ChatViewState extends State<ChatView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
-        title: Text('Chat bolado do Samuel'),
+        title: Text('Voltar'),
+        bottomOpacity: 0.0,
+        elevation: 0.0,
+        backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: firestore
@@ -52,17 +56,21 @@ class _ChatViewState extends State<ChatView> {
                               Text(
                                 '${msg['nome']}:',
                                 textAlign: TextAlign.start,
-                                style: TextStyle(fontSize: 30),
-                              ),
-                              Text(
-                                msg['txt'],
-                                textAlign: TextAlign.start,
-                                style: TextStyle(fontSize: 20),
+                                style: TextStyle(
+                                    fontSize: 30,
+                                    color: Color.fromARGB(255, 169, 12, 255)),
                               ),
                               Text(
                                 msg['time'].toString(),
                                 textAlign: TextAlign.start,
-                                style: TextStyle(fontSize: 10),
+                                style: TextStyle(
+                                    fontSize: 10, color: Colors.white),
+                              ),
+                              Text(
+                                msg['txt'],
+                                textAlign: TextAlign.start,
+                                style: TextStyle(
+                                    fontSize: 20, color: Colors.white),
                               ),
                             ]),
                       ))
@@ -70,13 +78,13 @@ class _ChatViewState extends State<ChatView> {
             );
           }),
       bottomNavigationBar: BottomAppBar(
-        color: Colors.blue,
+        color: Color.fromRGBO(30, 32, 33, 1),
         child: Container(
           margin: EdgeInsets.all(5),
           width: 700,
           height: 50,
           decoration: BoxDecoration(
-            border: Border.all(color: Colors.white60),
+            border: Border.all(color: Color.fromARGB(255, 169, 12, 255)),
             borderRadius: BorderRadius.circular(
               70,
             ),
@@ -87,11 +95,6 @@ class _ChatViewState extends State<ChatView> {
                 child: TextField(
                   controller: controller,
                   decoration: InputDecoration(
-                    hintText: '...',
-                    hintStyle: const TextStyle(
-                      color: Colors.white70,
-                      fontSize: 13,
-                    ),
                     enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.transparent),
                         borderRadius: BorderRadius.only(
@@ -114,7 +117,7 @@ class _ChatViewState extends State<ChatView> {
                 child: IconButton(
                   icon: Icon(
                     Icons.send,
-                    color: Colors.white,
+                    color: Color.fromARGB(255, 169, 12, 255),
                     size: 20,
                   ),
                   onPressed: () {
@@ -128,7 +131,11 @@ class _ChatViewState extends State<ChatView> {
                           "/" +
                           tsdate.month.toString() +
                           "/" +
-                          tsdate.day.toString();
+                          tsdate.day.toString() +
+                          " - " +
+                          tsdate.hour.toString() +
+                          ":" +
+                          tsdate.minute.toString();
 
                       firestore.collection('chat').add({
                         'campanha': campanha,
@@ -138,7 +145,6 @@ class _ChatViewState extends State<ChatView> {
                         'order': DateTime.now()
                       });
                       controller.text = '';
-              
                     }
                   },
                 ),
