@@ -19,6 +19,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
   late final QueryDocumentSnapshot<Map<String, dynamic>> sessoes;
   late final FirebaseFirestore firestore;
   String? vagasDisponiveis;
+  var campanhaId;
 
   void listaUsuarios(sessoes) {}
 
@@ -29,6 +30,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
     setState(() {
       if (campanhaDoc.exists && campanhaDoc['players'] != null) {
         vagasDisponiveis = campanhaDoc['players'].toString();
+        campanhaId = campanhaDoc.id;
       } else {
         vagasDisponiveis = "0";
       }
@@ -110,6 +112,18 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
               child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
+                    onPressed: () => popUpAtualizarCampanha(
+                        context, sessoes, campanhaId, sessoes.id),
+                    child: Text("Atualizar Campanha"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                    ),
+                  ))),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: ElevatedButton(
                     onPressed: () => deletarCampanha(sessoes.id, context),
                     child: Text("Apagar Campanha"),
                     style: ElevatedButton.styleFrom(
@@ -130,13 +144,24 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
                     ),
                   )
                 },
-                child: Text("CHAT"),
+                child: Icon(Icons.send),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.blue,
                 ),
               ),
             ),
           ),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: ElevatedButton(
+                    onPressed: () => finalizarCampanha(sessoes.id, context),
+                    child: Text("Finalizar Campanha"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.green,
+                    ),
+                  ))),
         ],
       ),
     );

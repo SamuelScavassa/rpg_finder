@@ -35,6 +35,7 @@ class _Login extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       body: Form(
         //padding: const EdgeInsets.all(16.0),
         key: formKey,
@@ -48,6 +49,7 @@ class _Login extends State<Login> {
                 const Icon(
                   Icons.login,
                   size: 100,
+                  color: Color.fromARGB(255, 169, 12, 255),
                 ),
                 const SizedBox(
                   height: 25,
@@ -55,11 +57,21 @@ class _Login extends State<Login> {
                 Padding(
                   padding: const EdgeInsets.all(1.0),
                   child: TextFormField(
+                    style: TextStyle(color: Colors.white),
+                    
                     maxLines: 1,
                     maxLength: 100,
                     decoration: InputDecoration(
-                        prefixIcon: const Icon(Icons.people_alt_rounded),
+                        prefixIcon: const Icon(
+                          Icons.people_alt_rounded,
+                        ),
+                        prefixIconColor: Color.fromARGB(255, 169, 12, 255),
                         labelText: "E-mail",
+                        floatingLabelStyle:
+                            TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+                        labelStyle: TextStyle(
+                          color: Colors.white,
+                        ),
                         enabledBorder: const OutlineInputBorder(
                             borderSide: BorderSide(color: Colors.white)),
                         focusedBorder: OutlineInputBorder(
@@ -76,9 +88,17 @@ class _Login extends State<Login> {
                   ),
                 ),
                 TextFormField(
+                  style: TextStyle(color: Colors.white),
                   decoration: InputDecoration(
                       prefixIcon: const Icon(Icons.lock),
+                      prefixIconColor: Color.fromARGB(255, 169, 12, 255),
+                      suffixIconColor: Color.fromARGB(255, 169, 12, 255),
                       labelText: "Senha",
+                      labelStyle: TextStyle(
+                        color: Colors.white,
+                      ),
+                      floatingLabelStyle:
+                          TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
                       enabledBorder: const OutlineInputBorder(
                           borderSide: BorderSide(color: Colors.white)),
                       focusedBorder: OutlineInputBorder(
@@ -113,7 +133,7 @@ class _Login extends State<Login> {
                       onTap: () => navigationEsqueceuSenha(context),
                       child: const Text(
                         "Esqueceu a senha.",
-                        style: TextStyle(color: Colors.black87),
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                   ],
@@ -124,6 +144,9 @@ class _Login extends State<Login> {
                   child: SizedBox(
                     width: MediaQuery.of(context).size.width + 10,
                     child: ElevatedButton(
+                      style: const ButtonStyle(
+                          backgroundColor: MaterialStatePropertyAll(
+                              Color.fromARGB(255, 169, 12, 255))),
                       onPressed: () => login(context),
                       child: const Text("Login"),
                     ),
@@ -137,14 +160,15 @@ class _Login extends State<Login> {
                       onTap: () => navigationCadastro(context),
                       child: const Text(
                         "Não tem conta? ",
-                        style: TextStyle(color: Colors.black),
+                        style: TextStyle(color: Colors.white),
                       ),
                     ),
                     GestureDetector(
                       onTap: () => navigationCadastro(context),
                       child: const Text(
                         "Crie Agora.",
-                        style: TextStyle(color: Colors.blue),
+                        style:
+                            TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
                       ),
                     ),
                   ],

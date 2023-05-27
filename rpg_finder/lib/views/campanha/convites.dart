@@ -19,7 +19,18 @@ class _Convites extends State<Convites> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('CONVITES')),
+      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+      appBar: AppBar(
+        title: Center(
+          child: Icon(
+            Icons.mail,
+            color: Color.fromARGB(255, 169, 12, 255),
+          ),
+        ),
+        bottomOpacity: 0.0,
+        elevation: 0.0,
+        backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+      ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: firestore
             .collection('invites')
@@ -41,11 +52,13 @@ class _Convites extends State<Convites> {
                             Text(
                               'Campanha: ' +
                                   convite['nome-campanha'].toString(),
-                              style: TextStyle(fontSize: 20),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                             Text(
                               'User: ' + convite['nome-user'].toString(),
-                              style: TextStyle(fontSize: 20),
+                              style:
+                                  TextStyle(fontSize: 20, color: Colors.white),
                             ),
                           ],
                         ),
@@ -57,15 +70,25 @@ class _Convites extends State<Convites> {
                           child: Column(
                             children: [
                               ElevatedButton(
+                                style: const ButtonStyle(
+                                    backgroundColor: MaterialStatePropertyAll(
+                                        Color.fromARGB(255, 169, 12, 255))),
                                 onPressed: () => aceitarConvite(convite.id),
-                                child: Text('Aceitar'),
+                                child: Text(
+                                  'Aceitar',
+                                  style: TextStyle(color: Colors.white),
+                                ),
                               ),
                               SizedBox(
                                 height: 5,
                               ),
                               ElevatedButton(
+                                style: const ButtonStyle(
+                                    backgroundColor: MaterialStatePropertyAll(
+                                        Color.fromARGB(255, 169, 12, 255))),
                                 onPressed: () => negarConvite(convite.id),
-                                child: Text('Negar'),
+                                child: Text('Negar',
+                                    style: TextStyle(color: Colors.white)),
                               )
                             ],
                           ),
@@ -78,7 +101,7 @@ class _Convites extends State<Convites> {
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Theme.of(context).colorScheme.primary,
+        color: Color.fromARGB(255, 169, 12, 255),
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(

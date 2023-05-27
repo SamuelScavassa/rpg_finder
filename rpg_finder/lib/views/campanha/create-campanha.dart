@@ -82,8 +82,18 @@ class _CreateCampanha extends State<CreateCampanha> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0x5E2C82),
-      appBar: AppBar(title: const Text("Criação de campanha")),
+      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+      appBar: AppBar(
+        title: const Center(
+          child: Text("Criação de campanha",
+              style: TextStyle(
+                color: Colors.white,
+              )),
+        ),
+        bottomOpacity: 0.0,
+        elevation: 0.0,
+        backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+      ),
       body: Form(
         key: formKey,
         child: Container(
@@ -92,14 +102,24 @@ class _CreateCampanha extends State<CreateCampanha> {
             children: [
               ////////Nome da campanha
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 maxLines: 1,
                 maxLength: 100,
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.create_sharp),
+                  floatingLabelStyle:
+                      TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+                  icon: Icon(
+                    Icons.create_sharp,
+                    color: Colors.white,
+                  ),
                   labelText: "Nome da campanha",
                   hintText: "Digite o nome da campanha",
+                  labelStyle: TextStyle(color: Colors.white),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white)),
                   enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black)),
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 169, 12, 255))),
                 ),
                 onChanged: (value) => name = value,
                 validator: (value) {
@@ -111,15 +131,25 @@ class _CreateCampanha extends State<CreateCampanha> {
               ),
               ////////Descrição da campanha
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 minLines: 1,
                 maxLines: 5,
                 maxLength: 250,
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.description),
+                  floatingLabelStyle:
+                      TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+                  icon: Icon(
+                    Icons.description,
+                    color: Colors.white,
+                  ),
                   labelText: "Descrição da campanha",
                   hintText: "Descrição da campanha",
+                  labelStyle: TextStyle(color: Colors.white),
                   enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black)),
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 169, 12, 255))),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white)),
                 ),
                 onChanged: (value) => descricao = value,
                 validator: (value) {
@@ -132,14 +162,24 @@ class _CreateCampanha extends State<CreateCampanha> {
               ////////////////
               ////////Link Discord
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 maxLines: 1,
                 maxLength: 30,
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.discord),
+                  icon: Icon(
+                    Icons.discord,
+                    color: Colors.white,
+                  ),
                   labelText: "Link Discord",
                   hintText: "Link Discord",
+                  labelStyle: TextStyle(color: Colors.white),
+                  floatingLabelStyle:
+                      TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white)),
                   enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black)),
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 169, 12, 255))),
                 ),
                 onChanged: (value) => discord = value,
                 validator: (value) {
@@ -152,6 +192,7 @@ class _CreateCampanha extends State<CreateCampanha> {
               ////////////////
               ////////Numero players
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 maxLines: 1,
                 maxLength: 2,
                 keyboardType: TextInputType.number,
@@ -160,11 +201,20 @@ class _CreateCampanha extends State<CreateCampanha> {
                   FilteringTextInputFormatter.digitsOnly
                 ],
                 decoration: const InputDecoration(
-                  icon: Icon(Icons.people),
+                  icon: Icon(
+                    Icons.people,
+                    color: Colors.white,
+                  ),
                   labelText: "Numero de jogadores",
+                  labelStyle: TextStyle(color: Colors.white),
+                  floatingLabelStyle:
+                      TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
                   hintText: "Numero de jogadores",
+                  focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.white)),
                   enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.black)),
+                      borderSide:
+                          BorderSide(color: Color.fromARGB(255, 169, 12, 255))),
                 ),
                 onChanged: (value) => jogadores = int.parse(value),
                 validator: (value) {
@@ -195,27 +245,30 @@ class _CreateCampanha extends State<CreateCampanha> {
                     return Padding(
                       padding: const EdgeInsets.all(10.0),
                       child: TextField(
+                        style: TextStyle(color: Colors.white),
                         controller: tec,
                         focusNode: fn,
                         decoration: InputDecoration(
                           isDense: true,
                           border: const OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Color.fromARGB(255, 74, 137, 92),
+                              color: Color.fromARGB(255, 169, 12, 255),
                               width: 3.0,
                             ),
                           ),
                           focusedBorder: const OutlineInputBorder(
                             borderSide: BorderSide(
-                              color: Color.fromARGB(255, 74, 137, 92),
+                              color: Color.fromARGB(255, 169, 12, 255),
                               width: 3.0,
                             ),
                           ),
                           helperText: '',
                           helperStyle: const TextStyle(
-                            color: Color.fromARGB(255, 74, 137, 92),
+                            color: Color.fromARGB(255, 169, 12, 255),
                           ),
                           labelText: "Tags",
+                          labelStyle: TextStyle(color: Colors.white),
+                          hintStyle: TextStyle(color: Colors.white),
                           hintText: _controller.hasTags
                               ? ''
                               : "Adicione Tags de busca",
@@ -283,6 +336,9 @@ class _CreateCampanha extends State<CreateCampanha> {
               ////////////////
               ///////////////
               ElevatedButton(
+                style: const ButtonStyle(
+                    backgroundColor: MaterialStatePropertyAll(
+                        Color.fromARGB(255, 169, 12, 255))),
                 onPressed: () => save(context),
                 child: const Text("Criar campanha"),
               ),
@@ -294,17 +350,18 @@ class _CreateCampanha extends State<CreateCampanha> {
       //////////////////////////////////////////////
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 169, 12, 255),
         onPressed: () => null,
         child: const Icon(
           Icons.add,
-          color: Colors.black54,
+          color: Colors.white,
         ),
       ),
 
       //
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Theme.of(context).colorScheme.primary,
+        color: Color.fromARGB(255, 169, 12, 255),
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(

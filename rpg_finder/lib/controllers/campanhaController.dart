@@ -1,6 +1,4 @@
 import 'dart:async';
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -10,6 +8,7 @@ import 'package:rpg_finder/views/campanha/detailsCampanhaAtivas.dart';
 import '../views/campanha/details-campanha.dart';
 import '../views/campanha/detailsCampanhasParticipando.dart';
 import '../views/campanha/resultadoPesquisa.dart';
+import 'navigationController.dart';
 
 FirebaseFirestore firestore = FirebaseFirestore.instance;
 FirebaseAuth auth = FirebaseAuth.instance;
@@ -243,4 +242,122 @@ Future<void> procurar(String pesquisa, BuildContext context) async {
       builder: (context) => ResultadoPesquisa(campanha: query1),
     ),
   );
+}
+
+void atualizarCampanha(String nome, String descricao, String discord,
+    int jogadores, campanhaId, sessoesId, tags) {
+  final campanha = firestore.collection('campanha').doc(campanhaId);
+  final sessoes = firestore.collection('sessoes').doc(sessoesId);
+
+  sessoes.update({
+    'campanha-name': nome,
+  }).then((_) {
+    // ignore: avoid_print
+    print('sessoes atualizada com sucesso!');
+  }).catchError((error) {
+    print('Erro ao atualizar a sessoes: $error');
+  });
+  campanha.update({
+    'tags': tags,
+    'nome': nome,
+    'descricao': descricao,
+    'discord': discord,
+    'players': jogadores,
+  }).then((_) {
+    print('Campanha atualizada com sucesso!');
+  }).catchError((error) {
+    print('Erro ao atualizar a campanha: $error');
+  });
+}
+
+void popUpAtualizarCampanha(
+    BuildContext context, sessoes, campanhaId, sessoesId) async {
+  var campanhaRef = firestore.collection('campanha').doc(campanhaId);
+  var campanhaDoc = await campanhaRef.get();
+
+  var campanha = campanhaDoc.data() as Map<String, dynamic>;
+
+  // ignore: use_build_context_synchronously
+  showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      String nome = sessoes['campanha-name'].toString();
+      String descricao = campanha['descricao'].toString();
+      String discord = campanha['discord'].toString();
+      int jogadores = campanha['players'];
+      List<dynamic> tags = campanha['tags'].toList();
+
+      return AlertDialog(
+        title: const Text('Atualizar Campanha'),
+        content: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Título da campanha',
+              ),
+              onChanged: (value) => nome = value,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Descrição',
+              ),
+              onChanged: (value) => descricao = value,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Link Discord',
+              ),
+              onChanged: (value) => discord = value,
+            ),
+            TextFormField(
+              decoration: const InputDecoration(
+                labelText: 'Número de Jogadores',
+              ),
+              keyboardType: TextInputType.number,
+              onChanged: (value) => jogadores = int.tryParse(value) ?? 0,
+            ),
+          ],
+        ),
+        actions: [
+          TextButton(
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            child: const Text('Cancelar'),
+          ),
+          TextButton(
+            onPressed: () {
+              tags[0] = nome;
+              atualizarCampanha(nome, descricao, discord, jogadores, campanhaId,
+                  sessoesId, tags);
+              navigationAtivas(context);
+            },
+            child: const Text('Atualizar'),
+          ),
+        ],
+      );
+    },
+  );
+}
+
+void finalizarCampanha(String idSessao, BuildContext context) async {
+  try {
+    var sess = await firestore.collection('sessoes').doc(idSessao).get();
+    await firestore
+        .collection('campanha')
+        .doc(sess['campanha'])
+        .update({'disable': false});
+    var sessao = await firestore.collection('sessoes').doc(sess.id).get();
+    List ids = sessao['players-id'];
+    ids.add(sessao['mestre']);
+    await firestore.collection('finalizadas').add({
+      'campanha-name': sessao['campanha-name'],
+      'mestre-name': sessao['mestre-name'],
+      'players-id': ids,
+      'players-name': sessao['players-name']
+    });
+    await firestore.collection('sessoes').doc(sess.id).delete();
+    Navigator.of(context).pop();
+  } catch (e) {}
 }

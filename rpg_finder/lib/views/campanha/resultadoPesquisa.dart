@@ -27,26 +27,58 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
       backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
         backgroundColor: Color.fromARGB(255, 169, 12, 255),
-        title: TextField(
-          controller: pesquisa,
-          decoration: const InputDecoration(
-            hintText: 'Encontre seu RPG aqui',
-            border: InputBorder.none,
-            hintStyle: TextStyle(
-              color: Colors.white,
-              fontSize: 20,
+        //inicio da pesquisa
+        title: Container(
+          width: 700,
+          height: 40,
+          decoration: BoxDecoration(
+            border: Border.all(color: Colors.white60),
+            borderRadius: BorderRadius.circular(
+              70,
             ),
           ),
-          style: const TextStyle(
-            color: Colors.white,
+          child: Row(
+            children: [
+              Expanded(
+                child: TextField(
+                  controller: pesquisa,
+                  decoration: InputDecoration(
+                    hintText: 'Encontre seu RPG aqui',
+                    hintStyle: const TextStyle(
+                      color: Colors.white70,
+                      fontSize: 13,
+                    ),
+                    enabledBorder: OutlineInputBorder(
+                        borderSide: BorderSide(color: Colors.transparent),
+                        borderRadius: BorderRadius.only(
+                            topLeft: Radius.circular(70),
+                            bottomLeft: Radius.circular(70))),
+                    focusedBorder: const OutlineInputBorder(
+                      borderSide: BorderSide(color: Colors.transparent),
+                      borderRadius: BorderRadius.only(
+                          topLeft: Radius.circular(70),
+                          bottomLeft: Radius.circular(70)),
+                    ),
+                  ),
+                  style: const TextStyle(
+                    color: Colors.white70,
+                  ),
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(right: 10),
+                child: IconButton(
+                  icon: Icon(
+                    Icons.search,
+                    color: Colors.white,
+                    size: 20,
+                  ),
+                  onPressed: () => procurar(pesquisa.text, context),
+                ),
+              ),
+            ],
           ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.search),
-            onPressed: () => procurar(pesquisa.text, context),
-          ),
-        ],
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: campanha,

@@ -118,9 +118,9 @@ class _DetalhesCampanhaParticipandoState
                     ),
                   )
                 },
-                child: Text("CHAT"),
+                child: Icon(Icons.send),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  backgroundColor: Colors.blue,
                 ),
               ),
             ),

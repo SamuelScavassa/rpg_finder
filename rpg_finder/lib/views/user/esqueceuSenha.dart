@@ -15,34 +15,47 @@ class EsqueceuSenha extends StatefulWidget {
 
 class _EsqueceuSenhaState extends State<EsqueceuSenha> {
   String email = "";
-/*
-  void salvar(BuildContext context) {
-    try {
-      esqueceuSenha(email);
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Confirmação enviado para o email: $email')),
-      );
-    } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erro ao enviar o email $e')),
-      );
-    }
-  }
-*/
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: const Text("Teste")),
+        backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+        appBar: AppBar(
+          title: const Text("Voltar",
+              style: TextStyle(
+                color: Colors.white,
+              )),
+          bottomOpacity: 0.0,
+          elevation: 0.0,
+          backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+        ),
         body: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                "Insira o enderço de email cadastrado: ",
+                style: TextStyle(color: Colors.white, fontSize: 20),
+              ),
+              SizedBox(
+                height: 20,
+              ),
               TextFormField(
                 maxLines: 1,
                 maxLength: 100,
                 decoration: InputDecoration(
-                    prefixIcon: const Icon(Icons.people_alt_rounded),
+                    prefixIcon: const Icon(
+                      Icons.people_alt_rounded,
+                    ),
+                    prefixIconColor: Color.fromARGB(255, 169, 12, 255),
                     labelText: "E-mail",
+                    floatingLabelStyle:
+                        TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+                    labelStyle: TextStyle(
+                      color: Colors.white,
+                    ),
                     enabledBorder: const OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.white)),
                     focusedBorder: OutlineInputBorder(
@@ -64,6 +77,9 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
                 child: SizedBox(
                   width: MediaQuery.of(context).size.width + 10,
                   child: ElevatedButton(
+                    style: const ButtonStyle(
+                        backgroundColor: MaterialStatePropertyAll(
+                            Color.fromARGB(255, 169, 12, 255))),
                     onPressed: () => esqueceuSenha(context, email),
                     child: const Text("Enviar"),
                   ),
