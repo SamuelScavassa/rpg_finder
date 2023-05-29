@@ -48,7 +48,9 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 169, 12, 255),
         title: Text(
           'Detalhes da campanha ${sessoes['campanha-name'].toString().toLowerCase()}',
         ),
@@ -61,7 +63,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
             child: Center(
               child: Text(
                 '${sessoes['campanha-name']}',
-                style: const TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20, color: Colors.white),
               ),
             ),
           ),
@@ -72,7 +74,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
               children: [
                 Text(
                   'Participantes:',
-                  style: TextStyle(fontSize: 16),
+                  style: const TextStyle(fontSize: 16, color: Colors.white),
                 ),
                 SizedBox(height: 2),
                 ListView.separated(
@@ -87,7 +89,8 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
                     return ListTile(
                         title: Text(
                           playerName,
-                          style: TextStyle(fontSize: 16),
+                          style: const TextStyle(
+                              fontSize: 16, color: Colors.white),
                         ),
                         trailing: GestureDetector(
                           onTap: () => retirarUserCampanha(
@@ -97,39 +100,16 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
                               context),
                           child: Icon(
                             Icons.highlight_remove_sharp,
-                            color: Colors.red.shade700,
+                            color: Colors.purple.shade700,
                           ),
                         ));
                   },
                 ),
                 Text("Vagas restantes: $vagasDisponiveis",
-                    style: const TextStyle(fontSize: 16)),
+                    style: const TextStyle(fontSize: 16, color: Colors.white)),
               ],
             ),
           ),
-          Padding(
-              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-              child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
-                    onPressed: () => popUpAtualizarCampanha(
-                        context, sessoes, campanhaId, sessoes.id),
-                    child: Text("Atualizar Campanha"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
-                    ),
-                  ))),
-          Padding(
-              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-              child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
-                    onPressed: () => deletarCampanha(sessoes.id, context),
-                    child: Text("Apagar Campanha"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.red,
-                    ),
-                  ))),
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
             child: SizedBox(
@@ -146,7 +126,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
                 },
                 child: Icon(Icons.send),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: const Color.fromARGB(255, 169, 12, 255),
                 ),
               ),
             ),
@@ -156,10 +136,33 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
               child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
+                    onPressed: () => popUpAtualizarCampanha(
+                        context, sessoes, campanhaId, sessoes.id),
+                    child: Text("Atualizar Campanha"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 169, 12, 255),
+                    ),
+                  ))),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: ElevatedButton(
                     onPressed: () => finalizarCampanha(sessoes.id, context),
                     child: Text("Finalizar Campanha"),
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.green,
+                      backgroundColor: const Color.fromARGB(255, 169, 12, 255),
+                    ),
+                  ))),
+          Padding(
+              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
+              child: SizedBox(
+                  width: MediaQuery.of(context).size.width,
+                  child: ElevatedButton(
+                    onPressed: () => deletarCampanha(sessoes.id, context),
+                    child: Text("Apagar Campanha"),
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color.fromARGB(255, 169, 12, 255),
                     ),
                   ))),
         ],
