@@ -288,31 +288,42 @@ void popUpAtualizarCampanha(
       List<dynamic> tags = campanha['tags'].toList();
 
       return AlertDialog(
-        title: const Text('Atualizar Campanha'),
+        backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+        title: const Text(
+          'Atualizar Campanha',
+          style: TextStyle(color: Colors.white),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
+              style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Título da campanha',
+                labelStyle: TextStyle(color: Colors.white),
               ),
               onChanged: (value) => nome = value,
             ),
             TextFormField(
+              style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Descrição',
+                labelStyle: TextStyle(color: Colors.white),
               ),
               onChanged: (value) => descricao = value,
             ),
             TextFormField(
+              style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
-                labelText: 'Link Discord',
-              ),
+                  labelText: 'Link Discord',
+                  labelStyle: TextStyle(color: Colors.white)),
               onChanged: (value) => discord = value,
             ),
             TextFormField(
+              style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Número de Jogadores',
+                labelStyle: TextStyle(color: Colors.white),
               ),
               keyboardType: TextInputType.number,
               onChanged: (value) => jogadores = int.tryParse(value) ?? 0,
@@ -324,7 +335,10 @@ void popUpAtualizarCampanha(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text('Cancelar'),
+            child: const Text(
+              'Cancelar',
+              style: TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+            ),
           ),
           TextButton(
             onPressed: () {
@@ -333,7 +347,10 @@ void popUpAtualizarCampanha(
                   sessoesId, tags);
               navigationAtivas(context);
             },
-            child: const Text('Atualizar'),
+            child: const Text(
+              'Atualizar',
+              style: TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+            ),
           ),
         ],
       );

@@ -4,29 +4,26 @@ import 'package:rpg_finder/controllers/userController.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rpg_finder/app_theme.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key});
-
   @override
   State<Home> createState() => _Home();
 }
 
 class _Home extends State<Home> {
+  AppTheme _appTheme = AppTheme();
+  String avatar = auth.currentUser!.displayName.toString();
   List corIcone = [255, 255, 255, 255]; //[255, 169, 12, 255];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
         title: const Text("Perfil"),
-        backgroundColor: Color.fromARGB(255, 169, 12, 255),
       ),
       body: Column(
         children: [
-          //imagem vou colocar uma imagem aleatoria no a seats para tentar ajustar
-          // o tamanho da imagem
-
           Container(
             child: Row(
               children: [
@@ -36,13 +33,7 @@ class _Home extends State<Home> {
                   height: 120,
                   child: CircleAvatar(
                     backgroundColor: Colors.purple.shade800,
-                    backgroundImage: const AssetImage('images/dinossauro.jpg'),
-                    /*child: IconButton(
-                        onPressed: () {
-                          ///
-                        },
-                        icon: Icon(Icons.camera_alt),
-                      )*/
+                    backgroundImage: const AssetImage('images/avatar01.jpg'),
                   ),
                 ),
                 const SizedBox(
@@ -51,14 +42,13 @@ class _Home extends State<Home> {
                 Padding(
                   padding: const EdgeInsets.only(top: 16.0),
                   child: Text(
-                    auth.currentUser!.displayName.toString().toLowerCase(),
+                    auth.currentUser!.displayName.toString(), //.toLowerCase(),
                     style: TextStyle(fontSize: 25, color: Colors.white),
                   ),
                 ),
               ],
             ),
           ),
-
           Divider(
             color: const Color.fromARGB(40, 0, 0, 0),
           ),
@@ -178,7 +168,7 @@ class _Home extends State<Home> {
             ),
           ),
           GestureDetector(
-            onTap: () => null,
+            onTap: () => null, //navigationUpdateUser(context)
             child: Container(
               padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
               alignment: AlignmentDirectional.bottomStart,
@@ -298,7 +288,6 @@ class _Home extends State<Home> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 169, 12, 255),
         onPressed: () => createCampanha(context),
         child: const Icon(
           Icons.add,
@@ -307,7 +296,6 @@ class _Home extends State<Home> {
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Color.fromARGB(255, 169, 12, 255),
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(

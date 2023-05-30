@@ -19,17 +19,14 @@ class _Convites extends State<Convites> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
         title: Center(
           child: Icon(
             Icons.mail,
-            color: Color.fromARGB(255, 169, 12, 255),
           ),
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
-        backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: firestore
@@ -101,7 +98,7 @@ class _Convites extends State<Convites> {
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Color.fromARGB(255, 169, 12, 255),
+
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(

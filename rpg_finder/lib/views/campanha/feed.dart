@@ -20,9 +20,7 @@ class _FeedState extends State<Feed> {
 
 /////////////////////
     return Scaffold(
-      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 169, 12, 255),
         //inicio da pesquisa
         title: Container(
           width: 700,
@@ -166,7 +164,6 @@ class _FeedState extends State<Feed> {
       //
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Color.fromARGB(255, 169, 12, 255),
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(

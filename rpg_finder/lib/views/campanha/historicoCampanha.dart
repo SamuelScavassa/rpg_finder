@@ -51,24 +51,33 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
                                       child: Text(
                                         '${sessao['campanha-name'].toString()}',
                                         style: TextStyle(
-                                            fontSize: 40,
-                                            fontWeight: FontWeight.bold),
+                                            fontSize: 25,
+                                            fontWeight: FontWeight.bold,
+                                            color: const Color.fromARGB(
+                                                255, 251, 251, 251)),
                                       ),
                                     ),
                                     Text(
                                       'Mestre: ${sessao['mestre-name']}',
-                                      style: TextStyle(fontSize: 25),
+                                      style: TextStyle(
+                                          fontSize: 25,
+                                          color: const Color.fromARGB(
+                                              255, 251, 251, 251)),
                                     ),
                                     Text(
                                       'Participantes:',
-                                      style: TextStyle(fontSize: 25),
+                                      style: TextStyle(
+                                          fontSize: 18,
+                                          color: const Color.fromARGB(
+                                              255, 251, 251, 251)),
                                     ),
                                     SizedBox(
                                       height: 20,
                                     ),
                                     Container(
                                       width: 300,
-                                      height: 200,
+                                      height:
+                                          sessao['players-name'].length * 18,
                                       child: ListView(
                                           children: List.generate(
                                               sessao['players-name'].length,
@@ -76,7 +85,10 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
                                         return Center(
                                           child: Text(
                                             sessao['players-name'][index],
-                                            style: TextStyle(fontSize: 15),
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                color: const Color.fromARGB(
+                                                    255, 251, 251, 251)),
                                           ),
                                         );
                                       })),
@@ -100,7 +112,6 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Theme.of(context).colorScheme.primary,
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(

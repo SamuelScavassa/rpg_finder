@@ -31,7 +31,6 @@ class _CadastroState extends State<Cadastro> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       body: Form(
         key: formKey,
         child: Container(

@@ -19,10 +19,8 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
         title: const Text("Minhas Campanhas"),
-        backgroundColor: Color.fromARGB(255, 169, 12, 255),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: firestore
@@ -47,59 +45,55 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Wrap(children: [
-                            Row(
-                              children: [
-                                Container(
-                                    padding: EdgeInsets.all(5),
-                                    margin: EdgeInsets.all(10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
-                                      children: [
-                                        FittedBox(
-                                          fit: BoxFit.contain,
-                                          child: Text(
-                                            '${sessao['campanha-name'].toString()}',
-                                            style: TextStyle(
-                                                fontSize: 40,
-                                                fontWeight: FontWeight.bold,
-                                                color: Colors.white),
-                                          ),
-                                        ),
-                                        Text(
-                                          'Participantes:',
+                          Row(
+                            children: [
+                              Container(
+                                  padding: EdgeInsets.all(5),
+                                  margin: EdgeInsets.all(10),
+                                  child: Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
+                                    children: [
+                                      FittedBox(
+                                        fit: BoxFit.contain,
+                                        child: Text(
+                                          '${sessao['campanha-name'].toString()}',
                                           style: TextStyle(
                                               fontSize: 25,
+                                              fontWeight: FontWeight.bold,
                                               color: Colors.white),
                                         ),
-                                        SizedBox(
-                                          height: 20,
-                                        ),
-                                        Container(
-                                          width: 300,
-                                          height:
-                                              sessao['players-name'].length *
-                                                  18,
-                                          child: ListView(
-                                              children: List.generate(
-                                                  sessao['players-name'].length,
-                                                  (index) {
-                                            return Center(
-                                              child: Text(
-                                                sessao['players-name'][index],
-                                                style: TextStyle(
-                                                    fontSize: 15,
-                                                    color: Colors.white),
-                                              ),
-                                            );
-                                          })),
-                                        ),
-                                      ],
-                                    )),
-                              ],
-                            ),
-                          ]),
+                                      ),
+                                      Text(
+                                        'Participantes:',
+                                        style: TextStyle(
+                                            fontSize: 25, color: Colors.white),
+                                      ),
+                                      SizedBox(
+                                        height: 20,
+                                      ),
+                                      Container(
+                                        width: 300,
+                                        height:
+                                            sessao['players-name'].length * 18,
+                                        child: ListView(
+                                            children: List.generate(
+                                                sessao['players-name'].length,
+                                                (index) {
+                                          return Center(
+                                            child: Text(
+                                              sessao['players-name'][index],
+                                              style: TextStyle(
+                                                  fontSize: 15,
+                                                  color: Colors.white),
+                                            ),
+                                          );
+                                        })),
+                                      ),
+                                    ],
+                                  )),
+                            ],
+                          ),
                         ],
                       )),
                 )
@@ -109,13 +103,11 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 169, 12, 255),
         onPressed: () => createCampanha(context),
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Color.fromARGB(255, 169, 12, 255),
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(

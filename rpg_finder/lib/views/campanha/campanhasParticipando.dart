@@ -19,10 +19,8 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
         title: const Text("Campanhas que estou participando"),
-        backgroundColor: Color.fromARGB(255, 169, 12, 255),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: firestore
@@ -50,7 +48,6 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
                             Row(
                               children: [
                                 Container(
-                                    
                                     margin: EdgeInsets.all(10),
                                     child: Column(
                                       crossAxisAlignment:
@@ -112,13 +109,12 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
           }),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 169, 12, 255),
         onPressed: () => createCampanha(context),
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Color.fromARGB(255, 169, 12, 255),
+
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(

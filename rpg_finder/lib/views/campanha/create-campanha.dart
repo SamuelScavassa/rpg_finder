@@ -82,7 +82,6 @@ class _CreateCampanha extends State<CreateCampanha> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
         title: const Center(
           child: Text("Criação de campanha",
@@ -92,7 +91,6 @@ class _CreateCampanha extends State<CreateCampanha> {
         ),
         bottomOpacity: 0.0,
         elevation: 0.0,
-        backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       ),
       body: Form(
         key: formKey,
@@ -350,7 +348,6 @@ class _CreateCampanha extends State<CreateCampanha> {
       //////////////////////////////////////////////
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 169, 12, 255),
         onPressed: () => null,
         child: const Icon(
           Icons.add,
@@ -361,7 +358,6 @@ class _CreateCampanha extends State<CreateCampanha> {
       //
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Color.fromARGB(255, 169, 12, 255),
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(
