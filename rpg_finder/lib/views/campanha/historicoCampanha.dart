@@ -38,45 +38,53 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
                   (sessao) => Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Row(
-                        children: [
-                          Container(
-                              child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                '${sessao['campanha-name'].toString()}',
-                                style: TextStyle(
-                                    fontSize: 40, fontWeight: FontWeight.bold),
-                              ),
-                              Text(
-                                'Mestre: ${sessao['mestre-name']}',
-                                style: TextStyle(fontSize: 25),
-                              ),
-                              Text(
-                                'Participantes:',
-                                style: TextStyle(fontSize: 25),
-                              ),
-                              SizedBox(
-                                height: 20,
-                              ),
-                              Container(
+                      SingleChildScrollView(
+                        child: Row(
+                          children: [
+                            Container(
                                 width: 300,
-                                height: 200,
-                                child: ListView(
-                                    children: List.generate(
-                                        sessao['players-name'].length, (index) {
-                                  return Center(
-                                    child: Text(
-                                      sessao['players-name'][index],
-                                      style: TextStyle(fontSize: 15),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.center,
+                                  children: [
+                                    FittedBox(
+                                      fit: BoxFit.contain,
+                                      child: Text(
+                                        '${sessao['campanha-name'].toString()}',
+                                        style: TextStyle(
+                                            fontSize: 40,
+                                            fontWeight: FontWeight.bold),
+                                      ),
                                     ),
-                                  );
-                                })),
-                              ),
-                            ],
-                          )),
-                        ],
+                                    Text(
+                                      'Mestre: ${sessao['mestre-name']}',
+                                      style: TextStyle(fontSize: 25),
+                                    ),
+                                    Text(
+                                      'Participantes:',
+                                      style: TextStyle(fontSize: 25),
+                                    ),
+                                    SizedBox(
+                                      height: 20,
+                                    ),
+                                    Container(
+                                      width: 300,
+                                      height: 200,
+                                      child: ListView(
+                                          children: List.generate(
+                                              sessao['players-name'].length,
+                                              (index) {
+                                        return Center(
+                                          child: Text(
+                                            sessao['players-name'][index],
+                                            style: TextStyle(fontSize: 15),
+                                          ),
+                                        );
+                                      })),
+                                    ),
+                                  ],
+                                )),
+                          ],
+                        ),
                       ),
                     ],
                   ),

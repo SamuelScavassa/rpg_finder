@@ -19,8 +19,10 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
-        title: const Text('Estou participando'),
+        title: const Text("Campanhas que estou participando"),
+        backgroundColor: Color.fromARGB(255, 169, 12, 255),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: firestore
@@ -39,39 +41,50 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
               children: sessoes
                   .map(
                     (sessao) => GestureDetector(
-                        onTap: () => detalhesCampanhaPartcipando(
-                            context, sessoes, sessoes.indexOf(sessao)),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
+                      onTap: () => detalhesCampanhaPartcipando(
+                          context, sessoes, sessoes.indexOf(sessao)),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Wrap(children: [
                             Row(
                               children: [
                                 Container(
+                                    
                                     margin: EdgeInsets.all(10),
                                     child: Column(
                                       crossAxisAlignment:
                                           CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          'Campanha: ' +
-                                              sessao['campanha-name']
-                                                  .toString(),
+                                          sessao['campanha-name'].toString(),
                                           style: TextStyle(
-                                              fontSize: 20,
-                                              fontWeight: FontWeight.bold),
+                                              fontSize: 25,
+                                              fontWeight: FontWeight.bold,
+                                              color: Colors.white),
                                         ),
                                         Text(
                                           'Mestre: ' +
                                               sessao['mestre-name'].toString(),
-                                          style: TextStyle(fontSize: 20),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white),
                                         ),
                                         Text(
                                           'Seus companheiros:',
-                                          style: TextStyle(fontSize: 15),
+                                          style: TextStyle(
+                                              fontSize: 20,
+                                              color: Colors.white),
+                                        ),
+                                        SizedBox(
+                                          height: 5,
                                         ),
                                         Container(
+                                          padding: EdgeInsets.all(3),
                                           width: 300,
-                                          height: 80,
+                                          height:
+                                              sessao['players-name'].length *
+                                                  25,
                                           child: GridView.count(
                                               crossAxisCount: 2,
                                               children: List.generate(
@@ -79,8 +92,9 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
                                                   (index) {
                                                 return Text(
                                                   sessao['players-name'][index],
-                                                  style:
-                                                      TextStyle(fontSize: 20),
+                                                  style: TextStyle(
+                                                      fontSize: 20,
+                                                      color: Colors.white),
                                                 );
                                               })),
                                         )
@@ -88,20 +102,23 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
                                     )),
                               ],
                             ),
-                          ],
-                        )),
+                          ]),
+                        ],
+                      ),
+                    ),
                   )
                   .toList(),
             );
           }),
-          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 169, 12, 255),
         onPressed: () => createCampanha(context),
         child: const Icon(Icons.add),
       ),
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Theme.of(context).colorScheme.primary,
+        color: Color.fromARGB(255, 169, 12, 255),
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(

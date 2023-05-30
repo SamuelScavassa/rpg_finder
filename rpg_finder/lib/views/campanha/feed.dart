@@ -178,7 +178,7 @@ class _FeedState extends State<Feed> {
                     onPressed: () => null,
                     icon: const Icon(
                       Icons.home,
-                      color: Colors.white,
+                      color: Colors.black,
                     )),
                 const SizedBox(width: 80),
                 IconButton(

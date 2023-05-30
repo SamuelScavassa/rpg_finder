@@ -302,7 +302,7 @@ class _Home extends State<Home> {
         onPressed: () => createCampanha(context),
         child: const Icon(
           Icons.add,
-          color: Colors.black54,
+          color: Colors.white,
         ),
       ),
       bottomNavigationBar: BottomAppBar(
@@ -316,11 +316,11 @@ class _Home extends State<Home> {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 IconButton(
-                  color: Colors.black54,
+                  color: Colors.white,
                   onPressed: () => feed(context),
                   icon: const Icon(
                     Icons.home,
-                    color: Colors.black54,
+                    color: Colors.white,
                   ),
                 ),
                 const SizedBox(width: 80),
@@ -328,7 +328,7 @@ class _Home extends State<Home> {
                   onPressed: () => null,
                   icon: const Icon(
                     Icons.people,
-                    color: Colors.white,
+                    color: Colors.black,
                   ),
                 ),
               ],

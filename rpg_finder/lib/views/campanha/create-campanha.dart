@@ -354,7 +354,7 @@ class _CreateCampanha extends State<CreateCampanha> {
         onPressed: () => null,
         child: const Icon(
           Icons.add,
-          color: Colors.white,
+          color: Colors.black,
         ),
       ),
 
