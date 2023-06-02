@@ -20,7 +20,7 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Minhas Campanhas"),
+        title: Center(child: const Text("Minhas Campanhas")),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: firestore
@@ -48,48 +48,51 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
                           Row(
                             children: [
                               Container(
-                                  padding: EdgeInsets.all(5),
+                                  width: 350,
+                                  decoration: BoxDecoration(
+                                      color: Colors.black54,
+                                      border: Border.all(
+                                          color: Colors.black,
+                                          style: BorderStyle.solid),
+                                      borderRadius:
+                                          BorderRadius.all(Radius.circular(5))),
+                                  padding: EdgeInsets.all(12),
                                   margin: EdgeInsets.all(10),
-                                  child: Column(
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                  child: Row(
                                     children: [
-                                      FittedBox(
-                                        fit: BoxFit.contain,
-                                        child: Text(
-                                          '${sessao['campanha-name'].toString()}',
-                                          style: TextStyle(
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                      ),
-                                      Text(
-                                        'Participantes:',
-                                        style: TextStyle(
-                                            fontSize: 25, color: Colors.white),
-                                      ),
-                                      SizedBox(
-                                        height: 20,
-                                      ),
                                       Container(
                                         width: 300,
-                                        height:
-                                            sessao['players-name'].length * 18,
-                                        child: ListView(
-                                            children: List.generate(
-                                                sessao['players-name'].length,
-                                                (index) {
-                                          return Center(
-                                            child: Text(
-                                              sessao['players-name'][index],
+                                        child: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            FittedBox(
+                                              fit: BoxFit.contain,
+                                              child: Text(
+                                                '${sessao['campanha-name'].toString()}',
+                                                style: TextStyle(
+                                                    fontSize: 20,
+                                                    fontWeight: FontWeight.bold,
+                                                    color: Colors.white),
+                                              ),
+                                            ),
+                                            Text(
+                                              'Participantes: ${(sessao['players-name'].length)}',
                                               style: TextStyle(
-                                                  fontSize: 15,
+                                                  fontSize: 20,
                                                   color: Colors.white),
                                             ),
-                                          );
-                                        })),
+                                          ],
+                                        ),
                                       ),
+                                      Container(
+                                        alignment: Alignment.bottomLeft,
+                                        child: Icon(
+                                          Icons.arrow_forward,
+                                          color:
+                                              Color.fromARGB(255, 169, 12, 255),
+                                        ),
+                                      )
                                     ],
                                   )),
                             ],

@@ -20,7 +20,9 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Campanhas que estou participando"),
+        title: const Center(
+          child: Text("Campanhas que estou participando"),
+        ),
       ),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
           stream: firestore
@@ -48,53 +50,75 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
                             Row(
                               children: [
                                 Container(
+                                    width: 350,
+                                    decoration: BoxDecoration(
+                                        color: Colors.black54,
+                                        border: Border.all(
+                                            color: Colors.black,
+                                            style: BorderStyle.solid),
+                                        borderRadius: BorderRadius.all(
+                                            Radius.circular(5))),
+                                    padding: EdgeInsets.all(12),
                                     margin: EdgeInsets.all(10),
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.center,
+                                    child: Row(
                                       children: [
-                                        Text(
-                                          sessao['campanha-name'].toString(),
-                                          style: TextStyle(
-                                              fontSize: 25,
-                                              fontWeight: FontWeight.bold,
-                                              color: Colors.white),
-                                        ),
-                                        Text(
-                                          'Mestre: ' +
-                                              sessao['mestre-name'].toString(),
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white),
-                                        ),
-                                        Text(
-                                          'Seus companheiros:',
-                                          style: TextStyle(
-                                              fontSize: 20,
-                                              color: Colors.white),
-                                        ),
-                                        SizedBox(
-                                          height: 5,
+                                        Container(
+                                          width: 250,
+                                          child: Row(children: [
+                                            Container(
+                                              alignment: Alignment.centerRight,
+                                              child: Column(
+                                                crossAxisAlignment:
+                                                    CrossAxisAlignment.start,
+                                                children: [
+                                                  Text(
+                                                    sessao['campanha-name']
+                                                        .toString(),
+                                                    style: TextStyle(
+                                                        fontSize: 25,
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        color: Colors.white),
+                                                  ),
+                                                  Text(
+                                                    'Mestre: ' +
+                                                        sessao['mestre-name']
+                                                            .toString(),
+                                                    style: TextStyle(
+                                                        fontSize: 20,
+                                                        color: Colors.white),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ]),
                                         ),
                                         Container(
-                                          padding: EdgeInsets.all(3),
-                                          width: 300,
-                                          height:
-                                              sessao['players-name'].length *
-                                                  25,
-                                          child: GridView.count(
-                                              crossAxisCount: 2,
-                                              children: List.generate(
-                                                  sessao['players-name'].length,
-                                                  (index) {
-                                                return Text(
-                                                  sessao['players-name'][index],
-                                                  style: TextStyle(
-                                                      fontSize: 20,
-                                                      color: Colors.white),
-                                                );
-                                              })),
-                                        )
+                                          width: 50,
+                                          alignment: Alignment.centerRight,
+                                          child: Row(children: [
+                                            Icon(
+                                              Icons.people,
+                                              color: Color.fromARGB(
+                                                  255, 169, 12, 255),
+                                            ),
+                                            Text(
+                                              ' ${sessao['players-name'].length}',
+                                              style: TextStyle(
+                                                color: Colors.white,
+                                              ),
+                                            ),
+                                          ]),
+                                        ),
+                                        Container(
+                                          width: 20,
+                                          alignment: Alignment.centerRight,
+                                          child: Icon(
+                                            Icons.arrow_forward,
+                                            color: Color.fromARGB(
+                                                255, 169, 12, 255),
+                                          ),
+                                        ),
                                       ],
                                     )),
                               ],

@@ -20,7 +20,7 @@ class _Home extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Perfil"),
+        title: Center(child: Icon(Icons.person)),
       ),
       body: Column(
         children: [

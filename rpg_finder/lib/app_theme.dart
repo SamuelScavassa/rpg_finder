@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import'package:flutter/src/painting/text_style.dart';
+import 'package:flutter/src/painting/text_style.dart';
 
 class AppTheme {
   Color primary = Color.fromARGB(255, 169, 12, 255);
@@ -12,7 +12,10 @@ class AppTheme {
       //////////////////////////////
       primaryColor: primary,
       scaffoldBackgroundColor: backgroundapp,
-      appBarTheme: AppBarTheme(color: swatch),
+      appBarTheme: AppBarTheme(
+        color: backgroundapp,
+        elevation: 0.0, 
+      ),
       bottomAppBarTheme: BottomAppBarTheme(color: swatch),
       floatingActionButtonTheme:
           FloatingActionButtonThemeData(backgroundColor: swatch),
@@ -28,7 +31,7 @@ class AppTheme {
   TextStyle text1() {
     return const TextStyle(
       //fontSize: 10,
-      color:Color.fromRGBO(255, 255, 255, 1),
+      color: Color.fromRGBO(255, 255, 255, 1),
     );
   }
 
