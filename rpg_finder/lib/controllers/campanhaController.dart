@@ -378,3 +378,28 @@ void finalizarCampanha(String idSessao, BuildContext context) async {
     Navigator.of(context).pop();
   } catch (e) {}
 }
+
+
+
+// PopUp Finalizar Campanha
+/*void popUpFinalizarCampanha(BuildContext context, String idSessao) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+            backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+            title: const Text("Apagar a campanha", style: TextStyle(color: Colors.white),),
+            content: const Text("Você desejar apagar a campanha", style: TextStyle(color: Colors.white),),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () => deletarCampanha(idSessao, context),
+                  child: const Text("Ok")),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancelar', style: TextStyle(color: Color.fromARGB(255, 169, 12, 255)),),
+              ),
+            ],
+          ));
+}*/
+
