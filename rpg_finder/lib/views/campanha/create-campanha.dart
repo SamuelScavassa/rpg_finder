@@ -92,256 +92,259 @@ class _CreateCampanha extends State<CreateCampanha> {
         bottomOpacity: 0.0,
         elevation: 0.0,
       ),
-      body: Form(
-        key: formKey,
-        child: Container(
-          padding: const EdgeInsets.all(16),
-          child: Column(
-            children: [
-              ////////Nome da campanha
-              TextFormField(
-                style: TextStyle(color: Colors.white),
-                maxLines: 1,
-                maxLength: 100,
-                decoration: const InputDecoration(
-                  floatingLabelStyle:
-                      TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
-                  icon: Icon(
-                    Icons.create_sharp,
-                    color: Colors.white,
+      body: SingleChildScrollView(
+        child: Form(
+          key: formKey,
+          child: Container(
+            padding: const EdgeInsets.all(16),
+            child: Column(
+              children: [
+                ////////Nome da campanha
+                TextFormField(
+                  style: TextStyle(color: Colors.white),
+                  maxLines: 1,
+                  maxLength: 100,
+                  decoration: const InputDecoration(
+                    floatingLabelStyle:
+                        TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+                    icon: Icon(
+                      Icons.create_sharp,
+                      color: Colors.white,
+                    ),
+                    labelText: "Nome da campanha",
+                    hintText: "Digite o nome da campanha",
+                    labelStyle: TextStyle(color: Colors.white),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 169, 12, 255))),
                   ),
-                  labelText: "Nome da campanha",
-                  hintText: "Digite o nome da campanha",
-                  labelStyle: TextStyle(color: Colors.white),
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white)),
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 169, 12, 255))),
+                  onChanged: (value) => name = value,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Campo Obrigatorio.";
+                    }
+                    return null;
+                  },
                 ),
-                onChanged: (value) => name = value,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Campo Obrigatorio.";
-                  }
-                  return null;
-                },
-              ),
-              ////////Descrição da campanha
-              TextFormField(
-                style: TextStyle(color: Colors.white),
-                minLines: 1,
-                maxLines: 5,
-                maxLength: 250,
-                decoration: const InputDecoration(
-                  floatingLabelStyle:
-                      TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
-                  icon: Icon(
-                    Icons.description,
-                    color: Colors.white,
+                ////////Descrição da campanha
+                TextFormField(
+                  style: TextStyle(color: Colors.white),
+                  minLines: 1,
+                  maxLines: 5,
+                  maxLength: 250,
+                  decoration: const InputDecoration(
+                    floatingLabelStyle:
+                        TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+                    icon: Icon(
+                      Icons.description,
+                      color: Colors.white,
+                    ),
+                    labelText: "Descrição da campanha",
+                    hintText: "Descrição da campanha",
+                    labelStyle: TextStyle(color: Colors.white),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 169, 12, 255))),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
                   ),
-                  labelText: "Descrição da campanha",
-                  hintText: "Descrição da campanha",
-                  labelStyle: TextStyle(color: Colors.white),
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 169, 12, 255))),
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white)),
+                  onChanged: (value) => descricao = value,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Campo Obrigatorio.";
+                    }
+                    return null;
+                  },
                 ),
-                onChanged: (value) => descricao = value,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Campo Obrigatorio.";
-                  }
-                  return null;
-                },
-              ),
-              ////////////////
-              ////////Link Discord
-              TextFormField(
-                style: TextStyle(color: Colors.white),
-                maxLines: 1,
-                maxLength: 30,
-                decoration: const InputDecoration(
-                  icon: Icon(
-                    Icons.discord,
-                    color: Colors.white,
+                ////////////////
+                ////////Link Discord
+                TextFormField(
+                  style: TextStyle(color: Colors.white),
+                  maxLines: 1,
+                  maxLength: 30,
+                  decoration: const InputDecoration(
+                    icon: Icon(
+                      Icons.discord,
+                      color: Colors.white,
+                    ),
+                    labelText: "Link Discord",
+                    hintText: "Link Discord",
+                    labelStyle: TextStyle(color: Colors.white),
+                    floatingLabelStyle:
+                        TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 169, 12, 255))),
                   ),
-                  labelText: "Link Discord",
-                  hintText: "Link Discord",
-                  labelStyle: TextStyle(color: Colors.white),
-                  floatingLabelStyle:
-                      TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white)),
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 169, 12, 255))),
+                  onChanged: (value) => discord = value,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Campo Obrigatorio.";
+                    }
+                    return null;
+                  },
                 ),
-                onChanged: (value) => discord = value,
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Campo Obrigatorio.";
-                  }
-                  return null;
-                },
-              ),
-              ////////////////
-              ////////Numero players
-              TextFormField(
-                style: TextStyle(color: Colors.white),
-                maxLines: 1,
-                maxLength: 2,
-                keyboardType: TextInputType.number,
-                inputFormatters: <TextInputFormatter>[
-                  FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
-                  FilteringTextInputFormatter.digitsOnly
-                ],
-                decoration: const InputDecoration(
-                  icon: Icon(
-                    Icons.people,
-                    color: Colors.white,
+                ////////////////
+                ////////Numero players
+                TextFormField(
+                  style: TextStyle(color: Colors.white),
+                  maxLines: 1,
+                  maxLength: 2,
+                  keyboardType: TextInputType.number,
+                  inputFormatters: <TextInputFormatter>[
+                    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+                    FilteringTextInputFormatter.digitsOnly
+                  ],
+                  decoration: const InputDecoration(
+                    icon: Icon(
+                      Icons.people,
+                      color: Colors.white,
+                    ),
+                    labelText: "Numero de jogadores",
+                    labelStyle: TextStyle(color: Colors.white),
+                    floatingLabelStyle:
+                        TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+                    hintText: "Numero de jogadores",
+                    focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(color: Colors.white)),
+                    enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                            color: Color.fromARGB(255, 169, 12, 255))),
                   ),
-                  labelText: "Numero de jogadores",
-                  labelStyle: TextStyle(color: Colors.white),
-                  floatingLabelStyle:
-                      TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
-                  hintText: "Numero de jogadores",
-                  focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.white)),
-                  enabledBorder: UnderlineInputBorder(
-                      borderSide:
-                          BorderSide(color: Color.fromARGB(255, 169, 12, 255))),
+                  onChanged: (value) => jogadores = int.parse(value),
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return "Campo Obrigatorio.";
+                    }
+                    return null;
+                  },
                 ),
-                onChanged: (value) => jogadores = int.parse(value),
-                validator: (value) {
-                  if (value!.isEmpty) {
-                    return "Campo Obrigatorio.";
-                  }
-                  return null;
-                },
-              ),
-              ////////////////
-              ///////Campo de tags
-              TextFieldTags(
-                textfieldTagsController: _controller,
-                initialTags: Tags,
-                textSeparators: const [' ', ','],
-                letterCase: LetterCase.normal,
-                validator: (String tag) {
-                  if (tag.isEmpty) {
-                    return 'No, please just no';
-                  } else if (_controller.getTags!.contains(tag)) {
-                    return 'Tag já inserida';
-                  }
-                  return null;
-                },
-                inputfieldBuilder:
-                    (context, tec, fn, error, onChanged, onSubmitted) {
-                  return ((context, sc, tags, onTagDelete) {
-                    return Padding(
-                      padding: const EdgeInsets.all(10.0),
-                      child: TextField(
-                        style: TextStyle(color: Colors.white),
-                        controller: tec,
-                        focusNode: fn,
-                        decoration: InputDecoration(
-                          isDense: true,
-                          border: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color.fromARGB(255, 169, 12, 255),
-                              width: 3.0,
+                ////////////////
+                ///////Campo de tags
+                TextFieldTags(
+                  textfieldTagsController: _controller,
+                  initialTags: Tags,
+                  textSeparators: const [' ', ','],
+                  letterCase: LetterCase.normal,
+                  validator: (String tag) {
+                    if (tag.isEmpty) {
+                      return 'No, please just no';
+                    } else if (_controller.getTags!.contains(tag)) {
+                      return 'Tag já inserida';
+                    }
+                    return null;
+                  },
+                  inputfieldBuilder:
+                      (context, tec, fn, error, onChanged, onSubmitted) {
+                    return ((context, sc, tags, onTagDelete) {
+                      return Padding(
+                        padding: const EdgeInsets.all(10.0),
+                        child: TextField(
+                          style: TextStyle(color: Colors.white),
+                          controller: tec,
+                          focusNode: fn,
+                          decoration: InputDecoration(
+                            isDense: true,
+                            border: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 169, 12, 255),
+                                width: 3.0,
+                              ),
                             ),
-                          ),
-                          focusedBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(
-                              color: Color.fromARGB(255, 169, 12, 255),
-                              width: 3.0,
+                            focusedBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: Color.fromARGB(255, 169, 12, 255),
+                                width: 3.0,
+                              ),
                             ),
-                          ),
-                          helperText: '',
-                          helperStyle: const TextStyle(
-                            color: Color.fromARGB(255, 169, 12, 255),
-                          ),
-                          labelText: "Tags",
-                          labelStyle: TextStyle(color: Colors.white),
-                          hintStyle: TextStyle(color: Colors.white),
-                          hintText: _controller.hasTags
-                              ? ''
-                              : "Adicione Tags de busca",
-                          errorText: error,
-                          prefixIconConstraints:
-                              BoxConstraints(maxWidth: _distanceToField * 0.74),
-                          prefixIcon: tags.isNotEmpty
-                              ? SingleChildScrollView(
-                                  controller: sc,
-                                  scrollDirection: Axis.horizontal,
-                                  child: Row(
-                                      children: tags.map((String tag) {
-                                    return Container(
-                                      decoration: const BoxDecoration(
-                                        borderRadius: BorderRadius.all(
-                                          Radius.circular(20.0),
-                                        ),
-                                        color: Color.fromARGB(255, 74, 137, 92),
-                                      ),
-                                      margin: const EdgeInsets.symmetric(
-                                          horizontal: 5.0),
-                                      padding: const EdgeInsets.symmetric(
-                                          horizontal: 10.0, vertical: 5.0),
-                                      child: Row(
-                                        mainAxisAlignment:
-                                            MainAxisAlignment.spaceBetween,
-                                        children: [
-                                          InkWell(
-                                            child: Text(
-                                              '#$tag',
-                                              style: const TextStyle(
-                                                  color: Colors.white),
-                                            ),
-                                            onTap: () {
-                                              print("$tag selected");
-                                            },
+                            helperText: '',
+                            helperStyle: const TextStyle(
+                              color: Color.fromARGB(255, 169, 12, 255),
+                            ),
+                            labelText: "Tags",
+                            labelStyle: TextStyle(color: Colors.white),
+                            hintStyle: TextStyle(color: Colors.white),
+                            hintText: _controller.hasTags
+                                ? ''
+                                : "Adicione Tags de busca",
+                            errorText: error,
+                            prefixIconConstraints: BoxConstraints(
+                                maxWidth: _distanceToField * 0.74),
+                            prefixIcon: tags.isNotEmpty
+                                ? SingleChildScrollView(
+                                    controller: sc,
+                                    scrollDirection: Axis.horizontal,
+                                    child: Row(
+                                        children: tags.map((String tag) {
+                                      return Container(
+                                        decoration: const BoxDecoration(
+                                          borderRadius: BorderRadius.all(
+                                            Radius.circular(20.0),
                                           ),
-                                          const SizedBox(width: 4.0),
-                                          InkWell(
-                                            child: const Icon(
-                                              Icons.cancel,
-                                              size: 14.0,
-                                              color: Color.fromARGB(
-                                                  255, 233, 233, 233),
+                                          color:
+                                              Color.fromARGB(255, 74, 137, 92),
+                                        ),
+                                        margin: const EdgeInsets.symmetric(
+                                            horizontal: 5.0),
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 10.0, vertical: 5.0),
+                                        child: Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            InkWell(
+                                              child: Text(
+                                                '#$tag',
+                                                style: const TextStyle(
+                                                    color: Colors.white),
+                                              ),
+                                              onTap: () {
+                                                print("$tag selected");
+                                              },
                                             ),
-                                            onTap: () {
-                                              onTagDelete(tag);
-                                            },
-                                          )
-                                        ],
-                                      ),
-                                    );
-                                  }).toList()),
-                                )
-                              : null,
+                                            const SizedBox(width: 4.0),
+                                            InkWell(
+                                              child: const Icon(
+                                                Icons.cancel,
+                                                size: 14.0,
+                                                color: Color.fromARGB(
+                                                    255, 233, 233, 233),
+                                              ),
+                                              onTap: () {
+                                                onTagDelete(tag);
+                                              },
+                                            )
+                                          ],
+                                        ),
+                                      );
+                                    }).toList()),
+                                  )
+                                : null,
+                          ),
+                          onChanged: onChanged,
+                          onSubmitted: onSubmitted,
                         ),
-                        onChanged: onChanged,
-                        onSubmitted: onSubmitted,
-                      ),
-                    );
-                  });
-                },
-              ),
+                      );
+                    });
+                  },
+                ),
 
-              ////////////////
-              ///////////////
-              ElevatedButton(
-                style: const ButtonStyle(
-                    backgroundColor: MaterialStatePropertyAll(
-                        Color.fromARGB(255, 169, 12, 255))),
-                onPressed: () => save(context),
-                child: const Text("Criar campanha"),
-              ),
-              ////////////////
-            ],
+                ////////////////
+                ///////////////
+                ElevatedButton(
+                  style: const ButtonStyle(
+                      backgroundColor: MaterialStatePropertyAll(
+                          Color.fromARGB(255, 169, 12, 255))),
+                  onPressed: () => save(context),
+                  child: const Text("Criar campanha"),
+                ),
+                ////////////////
+              ],
+            ),
           ),
         ),
       ),

@@ -35,71 +35,97 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
           return ListView(
             children: sessoes
                 .map(
-                  (sessao) => Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SingleChildScrollView(
-                        child: Row(
-                          children: [
-                            Container(
-                                width: 300,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.center,
-                                  children: [
-                                    FittedBox(
-                                      fit: BoxFit.contain,
-                                      child: Text(
-                                        '${sessao['campanha-name'].toString()}',
-                                        style: TextStyle(
+                  (sessao) => (GestureDetector(
+                    onTap: () => popUpHistorico(
+                        context,
+                        sessao['campanha-name'],
+                        sessao['mestre-name'],
+                        sessao['players-name']),
+                    child: Container(
+                      width: 350,
+                      decoration: BoxDecoration(
+                          color: Colors.black54,
+                          border: Border.all(
+                              color: Colors.black, style: BorderStyle.solid),
+                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                      padding: const EdgeInsets.all(20),
+                      margin: EdgeInsets.all(15),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Container(
+                            alignment: AlignmentDirectional.centerStart,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Container(
+                                  width: 250,
+                                  child: Wrap(
+                                    children: [
+                                      Text(
+                                        sessao['campanha-name'],
+                                        style: const TextStyle(
                                             fontSize: 25,
                                             fontWeight: FontWeight.bold,
-                                            color: const Color.fromARGB(
-                                                255, 251, 251, 251)),
+                                            color: Color.fromARGB(
+                                                174, 255, 255, 255)),
                                       ),
+                                    ],
+                                  ),
+                                ),
+                                Container(
+                                  width: 250,
+                                  child: Wrap(
+                                    children: <Text>[
+                                      Text(
+                                        "Mestre: ${sessao['mestre-name']}",
+                                        style: TextStyle(
+                                          fontSize: 15,
+                                          color: Color.fromARGB(
+                                              174, 255, 255, 255),
+                                        ),
+                                        maxLines: 3,
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 60,
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Icon(
+                                      Icons.people,
+                                      color: Color.fromARGB(255, 169, 12, 255),
                                     ),
                                     Text(
-                                      'Mestre: ${sessao['mestre-name']}',
-                                      style: TextStyle(
-                                          fontSize: 25,
-                                          color: const Color.fromARGB(
-                                              255, 251, 251, 251)),
-                                    ),
-                                    Text(
-                                      'Participantes:',
-                                      style: TextStyle(
-                                          fontSize: 18,
-                                          color: const Color.fromARGB(
-                                              255, 251, 251, 251)),
-                                    ),
-                                    SizedBox(
-                                      height: 20,
-                                    ),
-                                    Container(
-                                      width: 300,
-                                      height:
-                                          sessao['players-name'].length * 18,
-                                      child: ListView(
-                                          children: List.generate(
-                                              sessao['players-name'].length,
-                                              (index) {
-                                        return Center(
-                                          child: Text(
-                                            sessao['players-name'][index],
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                color: const Color.fromARGB(
-                                                    255, 251, 251, 251)),
-                                          ),
-                                        );
-                                      })),
+                                      ' ' +
+                                          sessao['players-id']
+                                              .length
+                                              .toString(),
+                                      style: const TextStyle(
+                                          fontSize: 20, color: Colors.white),
                                     ),
                                   ],
-                                )),
-                          ],
-                        ),
+                                ),
+                                SizedBox(
+                                  height: 15,
+                                ),
+                                Icon(
+                                  Icons.arrow_forward,
+                                  color: Color.fromARGB(255, 169, 12, 255),
+                                )
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                    ],
-                  ),
+                    ),
+                  )),
                 )
                 .toList(),
           );

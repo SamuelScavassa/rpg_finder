@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "388955151320",
+    "project_id": "rpg-finder---trio-monstro",
+    "storage_bucket": "rpg-finder---trio-monstro.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:388955151320:android:9b7e231f594f26d6d5b0ad",
+        "android_client_info": {
+          "package_name": "com.example.rpg_finder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "388955151320-p6gb6gk3djqtn23r9ghendsrb7khu5t8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBAqPdOr-4TEg0oIrxTHNyf76utiDt-BDo"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "388955151320-p6gb6gk3djqtn23r9ghendsrb7khu5t8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

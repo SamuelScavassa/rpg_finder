@@ -18,7 +18,7 @@ void salvarCampanha(String descricao, String discord, String name,
   try {
     var campanha = await firestore.collection('campanha').add({
       'descricao': descricao,
-      'discord': discord,
+      'discord': 'http://' + discord,
       'nome': name,
       'players': jogadores,
       'tags': tags,
@@ -379,8 +379,6 @@ void finalizarCampanha(String idSessao, BuildContext context) async {
   } catch (e) {}
 }
 
-
-
 // PopUp Finalizar Campanha
 /*void popUpFinalizarCampanha(BuildContext context, String idSessao) {
   showDialog(
@@ -403,3 +401,47 @@ void finalizarCampanha(String idSessao, BuildContext context) async {
           ));
 }*/
 
+void popUpHistorico(
+    BuildContext context, String nome, String mestre, List<dynamic> players) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+            backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+            title: const Text(
+              "Campanha",
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Container(
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "$nome",
+                    style: TextStyle(color: Colors.white, fontSize: 25),
+                  ),
+                  Text(
+                    "Mestre: $mestre",
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                  ListView.builder(
+                      itemCount: players.length,
+                      itemBuilder: ((context, index) {
+                        return ListTile(title: Text(players.toString()));
+                      })) 
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Voltar',
+                  style: TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+                ),
+              ),
+            ],
+          ));
+}

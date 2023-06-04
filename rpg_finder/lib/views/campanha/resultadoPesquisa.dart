@@ -144,7 +144,7 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
                               ),
                             ),
                             Container(
-                              width: 55,
+                              width: 60,
                               child: Column(
                                 children: [
                                   Row(

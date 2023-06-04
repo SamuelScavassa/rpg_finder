@@ -13,6 +13,6 @@ const firebaseConfig = FirebaseOptions(
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(options: firebaseConfig);
+  await Firebase.initializeApp();
   runApp(App());
 }

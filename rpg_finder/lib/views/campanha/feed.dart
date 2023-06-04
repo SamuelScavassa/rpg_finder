@@ -22,7 +22,6 @@ class _FeedState extends State<Feed> {
     return Scaffold(
       appBar: AppBar(
         //inicio da pesquisa
-
         title: Container(
           width: 700,
           height: 40,
@@ -144,7 +143,7 @@ class _FeedState extends State<Feed> {
                               ),
                             ),
                             Container(
-                              width: 55,
+                              width: 60,
                               child: Column(
                                 children: [
                                   Row(
