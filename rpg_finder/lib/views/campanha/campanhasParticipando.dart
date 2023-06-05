@@ -71,14 +71,20 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
                                                 crossAxisAlignment:
                                                     CrossAxisAlignment.start,
                                                 children: [
-                                                  Text(
-                                                    sessao['campanha-name']
-                                                        .toString(),
-                                                    style: TextStyle(
-                                                        fontSize: 25,
-                                                        fontWeight:
-                                                            FontWeight.bold,
-                                                        color: Colors.white),
+                                                  Container(
+                                                    width: 240,
+                                                    child: Wrap(children: [
+                                                      Text(
+                                                        sessao['campanha-name']
+                                                            .toString(),
+                                                        style: TextStyle(
+                                                            fontSize: 25,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ]),
                                                   ),
                                                   Text(
                                                     'Mestre: ' +

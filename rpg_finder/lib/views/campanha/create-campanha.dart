@@ -103,7 +103,7 @@ class _CreateCampanha extends State<CreateCampanha> {
                 TextFormField(
                   style: TextStyle(color: Colors.white),
                   maxLines: 1,
-                  maxLength: 100,
+                  maxLength: 30,
                   decoration: const InputDecoration(
                     floatingLabelStyle:
                         TextStyle(color: Color.fromARGB(255, 169, 12, 255)),

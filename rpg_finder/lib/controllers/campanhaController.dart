@@ -18,7 +18,7 @@ void salvarCampanha(String descricao, String discord, String name,
   try {
     var campanha = await firestore.collection('campanha').add({
       'descricao': descricao,
-      'discord': 'http://' + discord,
+      'discord': 'https://' + discord,
       'nome': name,
       'players': jogadores,
       'tags': tags,
@@ -403,6 +403,8 @@ void finalizarCampanha(String idSessao, BuildContext context) async {
 
 void popUpHistorico(
     BuildContext context, String nome, String mestre, List<dynamic> players) {
+  final x = players.toString().replaceAll('[', ' ');
+  final nomes = x.toString().replaceAll(']', ' ');
   showDialog(
       context: context,
       builder: (BuildContext context) => AlertDialog(
@@ -418,17 +420,16 @@ void popUpHistorico(
                 children: [
                   Text(
                     "$nome",
-                    style: TextStyle(color: Colors.white, fontSize: 25),
+                    style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
                   Text(
                     "Mestre: $mestre",
                     style: TextStyle(color: Colors.white, fontSize: 18),
                   ),
-                  ListView.builder(
-                      itemCount: players.length,
-                      itemBuilder: ((context, index) {
-                        return ListTile(title: Text(players.toString()));
-                      })) 
+                  Text(
+                    'Players: ${nomes}',
+                    style: TextStyle(color: Colors.white),
+                  ),
                 ],
               ),
             ),

@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.rpg_finder">
    <application
-        android:label="rpg_finder"
+        android:label="RPG Finder"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
