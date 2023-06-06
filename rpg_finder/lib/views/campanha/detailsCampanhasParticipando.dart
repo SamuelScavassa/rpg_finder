@@ -92,7 +92,7 @@ class _DetalhesCampanhaParticipandoState
             child: SizedBox(
               width: MediaQuery.of(context).size.width,
               child: ElevatedButton(
-                onPressed: () => sairCampanha(
+                onPressed: () => popUpSairCampanha(
                     sessoes.id,
                     auth.currentUser!.uid.toString(),
                     auth.currentUser!.displayName!,
