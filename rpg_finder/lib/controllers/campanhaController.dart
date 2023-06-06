@@ -401,6 +401,113 @@ void finalizarCampanha(String idSessao, BuildContext context) async {
           ));
 }*/
 
+//
+
+// PopUpDeletarCampanha
+void popUpDeletarCampanha(BuildContext context, String idSessao) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+            backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+            title: const Text(
+              "Apagar a campanha",
+              style: TextStyle(color: Colors.white),
+            ),
+            content: const Text(
+              "Você desejar apagar a campanha",
+              style: TextStyle(color: Colors.white),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => deletarCampanha(idSessao, context),
+                child: const Text(
+                  'Apagar',
+                  style: TextStyle(color: Color.fromARGB(255, 184, 95, 231)),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Cancelar',
+                  style: TextStyle(color: Colors.white54),
+                ),
+              ),
+            ],
+          ));
+}
+
+// popUpFinalizarCampanha
+void popUpFinalizarCampanha(String idSessao, BuildContext context) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+            backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+            title: const Text(
+              "Finalizar a campanha",
+              style: TextStyle(color: Colors.white),
+            ),
+            content: const Text(
+              "Você desejar finalizar a campanha",
+              style: TextStyle(color: Colors.white),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => finalizarCampanha(idSessao, context),
+                child: const Text(
+                  'Finalizar',
+                  style: TextStyle(color: Color.fromARGB(255, 184, 95, 231)),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Cancelar',
+                  style: TextStyle(color: Colors.white54),
+                ),
+              ),
+            ],
+          ));
+}
+//popUpSairCampanha
+void popUpSairCampanha(
+    String idSessao, String idUser, String nome, BuildContext context) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+            backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+            title: const Text(
+              "Sair da campanha",
+              style: TextStyle(color: Colors.white),
+            ),
+            content: const Text(
+              "Você desejar sair da campanha",
+              style: TextStyle(color: Colors.white),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () => sairCampanha(idSessao, idUser, nome, context),
+                child: const Text(
+                  'Sair',
+                  style: TextStyle(color: Color.fromARGB(255, 184, 95, 231)),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Cancelar',
+                  style: TextStyle(color: Colors.white54),
+                ),
+              ),
+            ],
+          ));
+}
+
 void popUpHistorico(
     BuildContext context, String nome, String mestre, List<dynamic> players) {
   final x = players.toString().replaceAll('[', ' ');
