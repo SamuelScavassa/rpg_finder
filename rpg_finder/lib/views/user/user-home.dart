@@ -254,10 +254,7 @@ class _Home extends State<Home> {
             ),
           ),
           GestureDetector(
-            onTap: () {
-              auth.signOut();
-              Navigator.of(context).popAndPushNamed('/login');
-            },
+            onTap: () => popUpSairConta(context),
             child: Container(
               padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
               alignment: AlignmentDirectional.bottomStart,

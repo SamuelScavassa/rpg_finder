@@ -82,3 +82,40 @@ Future esqueceuSenha(BuildContext context, String email) async {
     return false;
   }
 }
+
+void popUpSairConta(BuildContext context) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+            backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+            title: const Text(
+              "Sair da Conta",
+              style: TextStyle(color: Colors.white),
+            ),
+            content: const Text(
+              "Você desejar sair da campanha",
+              style: TextStyle(color: Colors.white),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  auth.signOut();
+                  Navigator.of(context).popAndPushNamed('/login');
+                },
+                child: const Text(
+                  'Sair',
+                  style: TextStyle(color: Color.fromARGB(255, 184, 95, 231)),
+                ),
+              ),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Cancelar',
+                  style: TextStyle(color: Colors.white54),
+                ),
+              ),
+            ],
+          ));
+}
