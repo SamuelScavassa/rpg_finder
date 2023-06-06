@@ -19,7 +19,6 @@ Future<void> createUser(
     print(e);
   }
 }
-
 Future<bool> checkUserEmail(String email) async {
   var verificarUsuario = await FirebaseFirestore.instance
       .collection("user")
@@ -73,7 +72,6 @@ Future esqueceuSenha(BuildContext context, String email) async {
                             fontSize: 15)))
               ],
             ));
-
     // ignore: use_build_context_synchronously
   } catch (e) {
     showDialog(
@@ -101,7 +99,6 @@ Future esqueceuSenha(BuildContext context, String email) async {
     return false;
   }
 }
-
 void popUpSairConta(BuildContext context) {
   showDialog(
       context: context,
