@@ -146,7 +146,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
               child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
-                    onPressed: () => finalizarCampanha(sessoes.id, context),
+                    onPressed: () => popUpFinalizarCampanha(sessoes.id, context),
                     child: Text("Finalizar Campanha"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 169, 12, 255),
@@ -157,7 +157,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
               child: SizedBox(
                   width: MediaQuery.of(context).size.width,
                   child: ElevatedButton(
-                    onPressed: () => deletarCampanha(sessoes.id, context),
+                    onPressed: () => popUpDeletarCampanha(context, sessoes.id),
                     child: Text("Apagar Campanha"),
                     style: ElevatedButton.styleFrom(
                       backgroundColor: const Color.fromARGB(255, 169, 12, 255),
