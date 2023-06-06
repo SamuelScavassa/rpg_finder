@@ -18,7 +18,6 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color.fromRGBO(30, 32, 33, 1),
         appBar: AppBar(
           title: const Text("Voltar",
               style: TextStyle(
@@ -43,6 +42,7 @@ class _EsqueceuSenhaState extends State<EsqueceuSenha> {
                 height: 20,
               ),
               TextFormField(
+                style: TextStyle(color: Colors.white),
                 maxLines: 1,
                 maxLength: 100,
                 decoration: InputDecoration(

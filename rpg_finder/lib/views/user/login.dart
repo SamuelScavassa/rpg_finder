@@ -35,7 +35,6 @@ class _Login extends State<Login> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       body: Form(
         //padding: const EdgeInsets.all(16.0),
         key: formKey,
@@ -58,7 +57,6 @@ class _Login extends State<Login> {
                   padding: const EdgeInsets.all(1.0),
                   child: TextFormField(
                     style: TextStyle(color: Colors.white),
-                    
                     maxLines: 1,
                     maxLength: 100,
                     decoration: InputDecoration(

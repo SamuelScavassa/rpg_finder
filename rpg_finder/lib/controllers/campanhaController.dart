@@ -18,7 +18,7 @@ void salvarCampanha(String descricao, String discord, String name,
   try {
     var campanha = await firestore.collection('campanha').add({
       'descricao': descricao,
-      'discord': discord,
+      'discord': 'https://' + discord,
       'nome': name,
       'players': jogadores,
       'tags': tags,
@@ -288,31 +288,42 @@ void popUpAtualizarCampanha(
       List<dynamic> tags = campanha['tags'].toList();
 
       return AlertDialog(
-        title: const Text('Atualizar Campanha'),
+        backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+        title: const Text(
+          'Atualizar Campanha',
+          style: TextStyle(color: Colors.white),
+        ),
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             TextFormField(
+              style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Título da campanha',
+                labelStyle: TextStyle(color: Colors.white),
               ),
               onChanged: (value) => nome = value,
             ),
             TextFormField(
+              style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Descrição',
+                labelStyle: TextStyle(color: Colors.white),
               ),
               onChanged: (value) => descricao = value,
             ),
             TextFormField(
+              style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
-                labelText: 'Link Discord',
-              ),
+                  labelText: 'Link Discord',
+                  labelStyle: TextStyle(color: Colors.white)),
               onChanged: (value) => discord = value,
             ),
             TextFormField(
+              style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Número de Jogadores',
+                labelStyle: TextStyle(color: Colors.white),
               ),
               keyboardType: TextInputType.number,
               onChanged: (value) => jogadores = int.tryParse(value) ?? 0,
@@ -324,7 +335,10 @@ void popUpAtualizarCampanha(
             onPressed: () {
               Navigator.of(context).pop();
             },
-            child: const Text('Cancelar'),
+            child: const Text(
+              'Cancelar',
+              style: TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+            ),
           ),
           TextButton(
             onPressed: () {
@@ -333,7 +347,10 @@ void popUpAtualizarCampanha(
                   sessoesId, tags);
               navigationAtivas(context);
             },
-            child: const Text('Atualizar'),
+            child: const Text(
+              'Atualizar',
+              style: TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+            ),
           ),
         ],
       );
@@ -360,4 +377,72 @@ void finalizarCampanha(String idSessao, BuildContext context) async {
     await firestore.collection('sessoes').doc(sess.id).delete();
     Navigator.of(context).pop();
   } catch (e) {}
+}
+
+// PopUp Finalizar Campanha
+/*void popUpFinalizarCampanha(BuildContext context, String idSessao) {
+  showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+            backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+            title: const Text("Apagar a campanha", style: TextStyle(color: Colors.white),),
+            content: const Text("Você desejar apagar a campanha", style: TextStyle(color: Colors.white),),
+            actions: <Widget>[
+              TextButton(
+                  onPressed: () => deletarCampanha(idSessao, context),
+                  child: const Text("Ok")),
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text('Cancelar', style: TextStyle(color: Color.fromARGB(255, 169, 12, 255)),),
+              ),
+            ],
+          ));
+}*/
+
+void popUpHistorico(
+    BuildContext context, String nome, String mestre, List<dynamic> players) {
+  final x = players.toString().replaceAll('[', ' ');
+  final nomes = x.toString().replaceAll(']', ' ');
+  showDialog(
+      context: context,
+      builder: (BuildContext context) => AlertDialog(
+            backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+            title: const Text(
+              "Campanha",
+              style: TextStyle(color: Colors.white),
+            ),
+            content: Container(
+              height: 200,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                children: [
+                  Text(
+                    "$nome",
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                  Text(
+                    "Mestre: $mestre",
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                  Text(
+                    'Players: ${nomes}',
+                    style: TextStyle(color: Colors.white),
+                  ),
+                ],
+              ),
+            ),
+            actions: <Widget>[
+              TextButton(
+                onPressed: () {
+                  Navigator.of(context).pop();
+                },
+                child: const Text(
+                  'Voltar',
+                  style: TextStyle(color: Color.fromARGB(255, 169, 12, 255)),
+                ),
+              ),
+            ],
+          ));
 }

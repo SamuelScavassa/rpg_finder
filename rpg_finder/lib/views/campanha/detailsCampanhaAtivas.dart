@@ -48,9 +48,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 169, 12, 255),
         title: Text(
           'Detalhes da campanha ${sessoes['campanha-name'].toString().toLowerCase()}',
         ),

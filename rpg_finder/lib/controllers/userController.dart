@@ -54,13 +54,23 @@ Future esqueceuSenha(BuildContext context, String email) async {
     showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-              title: Text("Enviado o email"),
-              content: Text("Cheque o seu e-mail ou caixa de spam"),
+              backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+              title: const Text(
+                "Enviado o email",
+                style: TextStyle(color: Colors.white),
+              ),
+              content: const Text(
+                "Cheque o seu e-mail ou caixa de spam",
+                style: TextStyle(color: Colors.white),
+              ),
               actions: <Widget>[
                 TextButton(
                     onPressed: () =>
                         Navigator.of(context).popAndPushNamed('/login'),
-                    child: Text("Ok"))
+                    child: const Text("Ok",
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 169, 12, 255),
+                            fontSize: 15)))
               ],
             ));
 
@@ -69,13 +79,22 @@ Future esqueceuSenha(BuildContext context, String email) async {
     showDialog(
         context: context,
         builder: (BuildContext context) => AlertDialog(
-              title: Text("Erro no email"),
-              content:
-                  Text("Cheque se seu email está correto e verique a sua rede"),
+              backgroundColor: Color.fromRGBO(30, 32, 33, 1),
+              title: const Text(
+                "Erro no email",
+                style: TextStyle(color: Colors.white),
+              ),
+              content: const Text(
+                "Cheque se seu email está correto e verique a sua rede",
+                style: TextStyle(color: Colors.white),
+              ),
               actions: <Widget>[
                 TextButton(
                     onPressed: () => Navigator.of(context).pop(),
-                    child: Text("Ok"))
+                    child: Text("OK",
+                        style: TextStyle(
+                            color: Color.fromARGB(255, 169, 12, 255),
+                            fontSize: 15)))
               ],
             ));
 

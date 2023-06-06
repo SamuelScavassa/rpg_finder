@@ -24,9 +24,7 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
 
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
-        backgroundColor: Color.fromARGB(255, 169, 12, 255),
         //inicio da pesquisa
         title: Container(
           width: 700,
@@ -95,7 +93,14 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
                       onTap: () => detalhesCampanha(
                           context, campanhas, campanhas.indexOf(campanha)),
                       child: Container(
-                        padding: const EdgeInsets.all(40),
+                        width: 350,
+                        decoration: BoxDecoration(
+                            color: Colors.black54,
+                            border: Border.all(
+                                color: Colors.black, style: BorderStyle.solid),
+                            borderRadius: BorderRadius.all(Radius.circular(5))),
+                        padding: const EdgeInsets.all(20),
+                        margin: EdgeInsets.all(15),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
@@ -105,7 +110,7 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    width: 200,
+                                    width: 250,
                                     child: Wrap(
                                       children: [
                                         Text(
@@ -120,7 +125,7 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
                                     ),
                                   ),
                                   Container(
-                                    width: 200,
+                                    width: 250,
                                     child: Wrap(
                                       children: <Text>[
                                         Text(
@@ -132,21 +137,39 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
                                           ),
                                           maxLines: 3,
                                         ),
-                                        Text(
-                                          " ...",
-                                          style: TextStyle(fontSize: 15),
-                                        ),
                                       ],
                                     ),
                                   ),
                                 ],
                               ),
                             ),
-                            Icon(Icons.people),
-                            Text(
-                              campanha['players'].toString(),
-                              style: const TextStyle(
-                                  fontSize: 30, color: Colors.white),
+                            Container(
+                              width: 60,
+                              child: Column(
+                                children: [
+                                  Row(
+                                    children: [
+                                      Icon(
+                                        Icons.people,
+                                        color:
+                                            Color.fromARGB(255, 169, 12, 255),
+                                      ),
+                                      Text(
+                                        ' ' + campanha['players'].toString(),
+                                        style: const TextStyle(
+                                            fontSize: 20, color: Colors.white),
+                                      ),
+                                    ],
+                                  ),
+                                  SizedBox(
+                                    height: 15,
+                                  ),
+                                  Icon(
+                                    Icons.arrow_forward,
+                                    color: Color.fromARGB(255, 169, 12, 255),
+                                  )
+                                ],
+                              ),
                             )
                           ],
                         ),
@@ -159,7 +182,6 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
 
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 169, 12, 255),
         onPressed: () => createCampanha(context),
         child: const Icon(Icons.add),
       ),
@@ -167,7 +189,6 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
       //
       bottomNavigationBar: BottomAppBar(
         shape: const CircularNotchedRectangle(),
-        color: Color.fromARGB(255, 169, 12, 255),
         child: IconTheme(
           data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
           child: Padding(
@@ -189,34 +210,6 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
             ),
           ),
         ),
-        //Legado
-        /*
-        backgroundColor: Colors.blue,
-        currentIndex: 0,
-        unselectedItemColor: Colors.white,
-        selectedItemColor: Colors.white,
-        showUnselectedLabels: true,
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-          ),
-          /*BottomNavigationBarItem(
-              icon: Icon(
-                Icons.search,
-              ),
-              label: "Pesquisa"),*/
-          BottomNavigationBarItem(
-            icon: Icon(Icons.add),
-            label: 'Adicionar',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: 'Usuário',
-          ),
-        ],
-        onTap: (pagina) {},
-      */
       ),
     );
   }

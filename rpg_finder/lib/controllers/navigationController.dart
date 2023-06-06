@@ -32,3 +32,6 @@ void navigationParticipando(BuildContext context) {
   Navigator.of(context).popAndPushNamed('/participando');
 }
 
+void navigationUpdateUser(BuildContext context) {
+  Navigator.of(context).popAndPushNamed('/user-update');
+}

@@ -64,17 +64,17 @@ class _DetalhesCampanhaParticipandoState
             child: Center(
               child: Text(
                 '${sessoes['campanha-name']}',
-                style: const TextStyle(fontSize: 20),
+                style: const TextStyle(fontSize: 20, color: const Color.fromARGB(255, 251, 251, 251)),
               ),
             ),
           ),
           Padding(
             padding: const EdgeInsets.fromLTRB(10, 1, 10, 1),
-            child: Text('Nome do mestre: ${sessoes['mestre-name']}'),
+            child: Text('Nome do mestre: ${sessoes['mestre-name']}', style: TextStyle(color: const Color.fromARGB(255, 251, 251, 251)),),
           ),
           Padding(
             padding: const EdgeInsets.all(10.0),
-            child: Text('Participantes: ${sessoes['players-name'].join(",")}'),
+            child: Text('Participantes: ${sessoes['players-name'].join(",")}', style: TextStyle(color: const Color.fromARGB(255, 251, 251, 251)),),
           ),
           const SizedBox(height: 5),
           Padding(
@@ -99,7 +99,7 @@ class _DetalhesCampanhaParticipandoState
                     context),
                 child: Text("Sair"),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.red,
+                  backgroundColor: const Color.fromARGB(255, 169, 12, 255),
                 ),
               ),
             ),
@@ -120,7 +120,7 @@ class _DetalhesCampanhaParticipandoState
                 },
                 child: Icon(Icons.send),
                 style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue,
+                  backgroundColor: const Color.fromARGB(255, 169, 12, 255),
                 ),
               ),
             ),
