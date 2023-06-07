@@ -9,6 +9,7 @@ class Cadastro extends StatefulWidget {
 }
 
 class _CadastroState extends State<Cadastro> {
+  bool visiPassword = true;
   String? name = '';
   String? email = '';
   String? senha = '';
@@ -117,9 +118,22 @@ class _CadastroState extends State<Cadastro> {
                   style: TextStyle(color: Colors.white),
                   onChanged: (value) => senha = value,
                   autofocus: true,
-                  obscureText: true,
                   maxLines: 1,
                   decoration: InputDecoration(
+                      suffixIcon: GestureDetector(
+                        child: Icon(
+                          visiPassword == true
+                              ? Icons.visibility_off
+                              : Icons.visibility,
+                          color: Color.fromARGB(255, 169, 12, 255),
+                        ),
+                        onTap: () {
+                          setState(() {
+                            visiPassword = !visiPassword;
+                          });
+                        },
+                      ),
+                      filled: true,
                       prefixIcon: const Icon(
                         Icons.lock,
                       ),
@@ -135,6 +149,7 @@ class _CadastroState extends State<Cadastro> {
                       focusedBorder: OutlineInputBorder(
                         borderSide: BorderSide(color: Colors.grey.shade400),
                       )),
+                  obscureText: visiPassword,
                   onSaved: (value) => senha = value,
                   validator: (value) {
                     if (value!.isEmpty) {
@@ -155,6 +170,7 @@ class _CadastroState extends State<Cadastro> {
                   obscureText: true,
                   maxLines: 1,
                   decoration: InputDecoration(
+                    
                       prefixIcon: const Icon(
                         Icons.lock,
                       ),
