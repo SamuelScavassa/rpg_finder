@@ -107,7 +107,7 @@ class _DetalhesCampanha extends State<DetalhesCampanha> {
                       style: const TextStyle(color: Colors.white)),
             ),
             SizedBox(
-              height: deviceInfo.size.width * 0.3,
+              height: deviceInfo.size.width * 0.2,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -143,6 +143,9 @@ class _DetalhesCampanha extends State<DetalhesCampanha> {
                             )),
                       )),
                 ),
+                SizedBox(
+                  height: deviceInfo.size.height * 0.2,
+                )
               ],
             ),
           ],

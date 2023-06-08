@@ -53,117 +53,139 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
           'Detalhes da campanha ${sessoes['campanha-name'].toString().toLowerCase()}',
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
-            child: Center(
-              child: Text(
-                '${sessoes['campanha-name']}',
-                style: const TextStyle(fontSize: 20, color: Colors.white),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
+              child: Center(
+                child: Text(
+                  '${sessoes['campanha-name']}',
+                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Participantes:',
-                  style: const TextStyle(fontSize: 16, color: Colors.white),
-                ),
-                SizedBox(height: 2),
-                ListView.separated(
-                  shrinkWrap: true,
-                  physics: NeverScrollableScrollPhysics(),
-                  itemCount: sessoes['players-name'].length,
-                  separatorBuilder: (BuildContext context, int index) {
-                    return SizedBox(height: 0);
-                  },
-                  itemBuilder: (BuildContext context, int index) {
-                    final playerName = sessoes['players-name'][index];
-                    return ListTile(
-                        title: Text(
-                          playerName,
-                          style: const TextStyle(
-                              fontSize: 16, color: Colors.white),
-                        ),
-                        trailing: GestureDetector(
-                          onTap: () => retirarUserCampanha(
-                              sessoes.id,
-                              sessoes['players-id'][index],
-                              sessoes['players-name'][index],
-                              context),
-                          child: Icon(
-                            Icons.highlight_remove_sharp,
-                            color: Colors.purple.shade700,
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    'Participantes:',
+                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                  ),
+                  SizedBox(height: 2),
+                  ListView.separated(
+                    shrinkWrap: true,
+                    physics: NeverScrollableScrollPhysics(),
+                    itemCount: sessoes['players-name'].length,
+                    separatorBuilder: (BuildContext context, int index) {
+                      return SizedBox(height: 0);
+                    },
+                    itemBuilder: (BuildContext context, int index) {
+                      final playerName = sessoes['players-name'][index];
+                      return ListTile(
+                          title: Text(
+                            playerName,
+                            style: const TextStyle(
+                                fontSize: 16, color: Colors.white),
                           ),
-                        ));
-                  },
+                          trailing: GestureDetector(
+                            onTap: () => retirarUserCampanha(
+                                sessoes.id,
+                                sessoes['players-id'][index],
+                                sessoes['players-name'][index],
+                                context),
+                            child: Icon(
+                              Icons.highlight_remove_sharp,
+                              color: Colors.purple.shade700,
+                            ),
+                          ));
+                    },
+                  ),
+                  Text("Vagas restantes: $vagasDisponiveis",
+                      style:
+                          const TextStyle(fontSize: 16, color: Colors.white)),
+                ],
+              ),
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () => popUpDeletarCampanha(context, sessoes.id),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.red,
+                    ),
+                    child: Icon(
+                      Icons.delete_outlined,
+                      color: Colors.white,
+                    ),
+                    padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(10),
+                  ),
                 ),
-                Text("Vagas restantes: $vagasDisponiveis",
-                    style: const TextStyle(fontSize: 16, color: Colors.white)),
+                GestureDetector(
+                  onTap: () => popUpAtualizarCampanha(
+                      context, sessoes, campanhaId, sessoes.id),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.deepPurpleAccent,
+                    ),
+                    child: Icon(
+                      Icons.upload_sharp,
+                      color: Colors.white,
+                    ),
+                    padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(10),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => popUpFinalizarCampanha(sessoes.id, context),
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.purple,
+                    ),
+                    child: Icon(
+                      Icons.archive,
+                      color: Colors.white,
+                    ),
+                    padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(10),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () => {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ChatView(campanha: sessoes['campanha'].toString()),
+                      ),
+                    )
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Colors.blue,
+                    ),
+                    child: Icon(
+                      Icons.message_outlined,
+                      color: Colors.white,
+                    ),
+                    padding: EdgeInsets.all(10),
+                    margin: EdgeInsets.all(10),
+                  ),
+                ),
               ],
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: ElevatedButton(
-                onPressed: () => {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          ChatView(campanha: sessoes['campanha'].toString()),
-                    ),
-                  )
-                },
-                child: Icon(Icons.send),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 169, 12, 255),
-                ),
-              ),
-            ),
-          ),
-          Padding(
-              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-              child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
-                    onPressed: () => popUpAtualizarCampanha(
-                        context, sessoes, campanhaId, sessoes.id),
-                    child: Text("Atualizar Campanha"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 169, 12, 255),
-                    ),
-                  ))),
-          Padding(
-              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-              child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
-                    onPressed: () => popUpFinalizarCampanha(sessoes.id, context),
-                    child: Text("Finalizar Campanha"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 169, 12, 255),
-                    ),
-                  ))),
-          Padding(
-              padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-              child: SizedBox(
-                  width: MediaQuery.of(context).size.width,
-                  child: ElevatedButton(
-                    onPressed: () => popUpDeletarCampanha(context, sessoes.id),
-                    child: Text("Apagar Campanha"),
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color.fromARGB(255, 169, 12, 255),
-                    ),
-                  ))),
-        ],
+          ],
+        ),
       ),
     );
   }
