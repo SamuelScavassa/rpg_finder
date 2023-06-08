@@ -18,6 +18,7 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData deviceInfo = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
         title: const Center(
@@ -50,7 +51,7 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
                             Row(
                               children: [
                                 Container(
-                                    width: 350,
+                                    width: deviceInfo.size.width * 0.9,
                                     decoration: BoxDecoration(
                                         color: Colors.black54,
                                         border: Border.all(
@@ -63,7 +64,7 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
                                     child: Row(
                                       children: [
                                         Container(
-                                          width: 250,
+                                          width: deviceInfo.size.width * 0.6,
                                           child: Row(children: [
                                             Container(
                                               alignment: Alignment.centerRight,
@@ -72,7 +73,9 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
                                                     CrossAxisAlignment.start,
                                                 children: [
                                                   Container(
-                                                    width: 240,
+                                                    width:
+                                                        deviceInfo.size.width *
+                                                            0.6,
                                                     child: Wrap(children: [
                                                       Text(
                                                         sessao['campanha-name']
@@ -100,7 +103,7 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
                                           ]),
                                         ),
                                         Container(
-                                          width: 50,
+                                          width: deviceInfo.size.width * 0.1,
                                           alignment: Alignment.centerRight,
                                           child: Row(children: [
                                             Icon(

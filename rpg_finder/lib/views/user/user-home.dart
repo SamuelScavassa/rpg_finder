@@ -22,266 +22,269 @@ class _Home extends State<Home> {
       appBar: AppBar(
         title: Center(child: Icon(Icons.person)),
       ),
-      body: Column(
-        children: [
-          Container(
-            child: Row(
-              children: [
-                Container(
-                  padding: EdgeInsets.fromLTRB(14, 20, 7, 7),
-                  width: 120,
-                  height: 120,
-                  child: CircleAvatar(
-                    backgroundColor: Colors.purple.shade800,
-                    backgroundImage: const AssetImage('images/avatar01.jpg'),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              child: Row(
+                children: [
+                  Container(
+                    padding: EdgeInsets.fromLTRB(14, 20, 7, 7),
+                    width: 120,
+                    height: 120,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.purple.shade800,
+                      backgroundImage: const AssetImage('images/avatar01.jpg'),
+                    ),
                   ),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.only(top: 16.0),
+                    child: Text(
+                      auth.currentUser!.displayName
+                          .toString(), //.toLowerCase(),
+                      style: TextStyle(fontSize: 25, color: Colors.white),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            Divider(
+              color: const Color.fromARGB(40, 0, 0, 0),
+            ),
+            GestureDetector(
+              onTap: () => navigationConvites(context),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
+                alignment: AlignmentDirectional.bottomStart,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                      child: Icon(
+                        Icons.messenger_sharp,
+                        color: Color.fromARGB(
+                            corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Convites",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          "Aqui mostra quem enviou convite para \nacessar a sua campanha",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                const SizedBox(
-                  height: 10,
+              ),
+            ),
+            /*Aquie é a onde vai ficar todas as opções do usuario */
+            GestureDetector(
+              onTap: () => navigationAtivas(context),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
+                alignment: AlignmentDirectional.bottomStart,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                      child: Icon(
+                        Icons.history_edu,
+                        color: Color.fromARGB(
+                            corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Minhas campanhas",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          "Aqui mostra as campanhas que você criou",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 16.0),
-                  child: Text(
-                    auth.currentUser!.displayName.toString(), //.toLowerCase(),
-                    style: TextStyle(fontSize: 25, color: Colors.white),
-                  ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () => navigationParticipando(context),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
+                alignment: AlignmentDirectional.bottomStart,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                      child: Icon(
+                        Icons.campaign,
+                        color: Color.fromARGB(
+                            corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
+                      ),
+                    ),
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Estou participando",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
+                        ),
+                        Text(
+                          "Aqui mostrara a campanhas que você \nestá participando",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-          Divider(
-            color: const Color.fromARGB(40, 0, 0, 0),
-          ),
-          GestureDetector(
-            onTap: () => navigationConvites(context),
-            child: Container(
-              padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
-              alignment: AlignmentDirectional.bottomStart,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                    child: Icon(
-                      Icons.messenger_sharp,
-                      color: Color.fromARGB(
-                          corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Convites",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
-                      Text(
-                        "Aqui mostra quem enviou convite para \nacessar a sua campanha",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
               ),
             ),
-          ),
-          /*Aquie é a onde vai ficar todas as opções do usuario */
-          GestureDetector(
-            onTap: () => navigationAtivas(context),
-            child: Container(
-              padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
-              alignment: AlignmentDirectional.bottomStart,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                    child: Icon(
-                      Icons.history_edu,
-                      color: Color.fromARGB(
-                          corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
+            GestureDetector(
+              onTap: () => null, //navigationUpdateUser(context)
+              child: Container(
+                padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
+                alignment: AlignmentDirectional.bottomStart,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                      child: Icon(
+                        Icons.update_sharp,
+                        color: Color.fromARGB(
+                            corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
+                      ),
                     ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Minhas campanhas",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Atualizar o seus Dados",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Aqui mostra as campanhas que você criou",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
+                        Text(
+                          "Aqui você pode alterar o seu nome e foto",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          GestureDetector(
-            onTap: () => navigationParticipando(context),
-            child: Container(
-              padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
-              alignment: AlignmentDirectional.bottomStart,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                    child: Icon(
-                      Icons.campaign,
-                      color: Color.fromARGB(
-                          corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
+            GestureDetector(
+              onTap: () => Navigator.of(context).popAndPushNamed('/historico'),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
+                alignment: AlignmentDirectional.bottomStart,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                      child: Icon(
+                        Icons.collections_bookmark,
+                        color: Color.fromARGB(
+                            corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
+                      ),
                     ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Estou participando",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Histórico",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Aqui mostrara a campanhas que você \nestá participando",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
+                        Text(
+                          "Aqui você pode ver a campanhas que\n você já participou",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          GestureDetector(
-            onTap: () => null, //navigationUpdateUser(context)
-            child: Container(
-              padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
-              alignment: AlignmentDirectional.bottomStart,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                    child: Icon(
-                      Icons.update_sharp,
-                      color: Color.fromARGB(
-                          corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
+            GestureDetector(
+              onTap: () => popUpSairConta(context),
+              child: Container(
+                padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
+                alignment: AlignmentDirectional.bottomStart,
+                child: Row(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
+                      child: Icon(
+                        Icons.exit_to_app,
+                        color: Color.fromARGB(
+                            corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
+                      ),
                     ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Atualizar o seus Dados",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          "Sair",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15,
+                          ),
                         ),
-                      ),
-                      Text(
-                        "Aqui você pode alterar o seu nome e foto",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
+                        Text(
+                          "Sair da sua conta?",
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 11,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
+                      ],
+                    ),
+                  ],
+                ),
               ),
             ),
-          ),
-          GestureDetector(
-            onTap: () => Navigator.of(context).popAndPushNamed('/historico'),
-            child: Container(
-              padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
-              alignment: AlignmentDirectional.bottomStart,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                    child: Icon(
-                      Icons.collections_bookmark,
-                      color: Color.fromARGB(
-                          corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Histórico",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
-                      Text(
-                        "Aqui você pode ver a campanhas que\n você já participou",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-          GestureDetector(
-            onTap: () => popUpSairConta(context),
-            child: Container(
-              padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
-              alignment: AlignmentDirectional.bottomStart,
-              child: Row(
-                children: [
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(7, 0, 7, 0),
-                    child: Icon(
-                      Icons.exit_to_app,
-                      color: Color.fromARGB(
-                          corIcone[0], corIcone[1], corIcone[2], corIcone[3]),
-                    ),
-                  ),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        "Sair",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 15,
-                        ),
-                      ),
-                      Text(
-                        "Sair da sua conta?",
-                        style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 11,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(

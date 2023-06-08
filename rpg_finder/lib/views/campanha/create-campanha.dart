@@ -131,7 +131,7 @@ class _CreateCampanha extends State<CreateCampanha> {
                 ////////Descrição da campanha
                 TextFormField(
                   style: TextStyle(color: Colors.white),
-                  minLines: 1,
+                  minLines: 3,
                   maxLines: 5,
                   maxLength: 250,
                   decoration: const InputDecoration(

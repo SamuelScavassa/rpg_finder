@@ -16,6 +16,8 @@ class HistoricoCampanha extends StatefulWidget {
 class _HistoricoCampanhaState extends State<HistoricoCampanha> {
   @override
   Widget build(BuildContext context) {
+    MediaQueryData deviceInfo = MediaQuery.of(context); //////////
+
     return Scaffold(
       appBar: AppBar(title: const Text('Histórico')),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
@@ -42,7 +44,7 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
                         sessao['mestre-name'],
                         sessao['players-name']),
                     child: Container(
-                      width: 350,
+                      width: deviceInfo.size.width * 0.8,
                       decoration: BoxDecoration(
                           color: Colors.black54,
                           border: Border.all(
@@ -59,7 +61,7 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Container(
-                                  width: 250,
+                                  width: deviceInfo.size.width * 0.6,
                                   child: Wrap(
                                     children: [
                                       Text(
@@ -74,7 +76,7 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
                                   ),
                                 ),
                                 Container(
-                                  width: 250,
+                                  width: deviceInfo.size.width * 0.6,
                                   child: Wrap(
                                     children: <Text>[
                                       Text(
@@ -93,7 +95,7 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
                             ),
                           ),
                           Container(
-                            width: 60,
+                            width: deviceInfo.size.width * 0.15,
                             child: Column(
                               children: [
                                 Row(

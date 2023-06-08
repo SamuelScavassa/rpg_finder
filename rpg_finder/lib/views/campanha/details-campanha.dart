@@ -4,6 +4,8 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:rpg_finder/controllers/campanhaController.dart';
 
+import '../../controllers/navigationController.dart';
+
 //o operador ternario
 
 class DetalhesCampanha extends StatefulWidget {
@@ -36,62 +38,148 @@ class _DetalhesCampanha extends State<DetalhesCampanha> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData deviceInfo = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: const Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
-        backgroundColor: const Color.fromARGB(255, 169, 12, 255),
-        title: Text(
-            'Detalhes da campanha ${campanha['nome'].toString().toLowerCase()}'),
+        bottomOpacity: 0.0,
+        elevation: 0.0,
+        title: Text('Detalhes da campanha'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Center(
-                child: Text('${campanha['nome']}',
-                    style: const TextStyle(fontSize: 20, color: Colors.white))),
-          ),
-          const SizedBox(height: 5),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 3, 12, 3),
-            child: Text(
-              'Descrição: ${campanha['descricao']}',
-              style: const TextStyle(color: Colors.white),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20),
+              child: Center(
+                  child: Text('${campanha['nome']}',
+                      style:
+                          const TextStyle(fontSize: 25, color: Colors.white))),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 3, 12, 3),
-            child: Text(
-              'Vagas disponiveis: ${campanha['players']}',
-              style: const TextStyle(color: Colors.white),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(12, 3, 12, 3),
-            child: campanha['tags'] != null && campanha['tags'].isNotEmpty
-                ? Text(
-                    "Tags: ${campanha['tags'].join(",")} ",
-                    style: const TextStyle(color: Colors.white),
-                  )
-                : const Text("Não tem tags essa campanha",
-                    style: const TextStyle(color: Colors.white)),
-          ),
-          const SizedBox(height: 5),
-          Padding(
-            padding: const EdgeInsets.all(5.0),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width + 10,
-              child: ElevatedButton(
-                onPressed: enviar,
-                child: const Text("Juntar-se"),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 169, 12, 255),
-                ),
+            const SizedBox(height: 5),
+            Center(
+              child: Container(
+                margin: EdgeInsets.all(20),
+                width: deviceInfo.size.width * 0.8,
+                padding: EdgeInsets.all(20),
+                child: Wrap(children: [
+                  Text(
+                    '${campanha['descricao']}',
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 20,
+                    ),
+                  ),
+                ]),
               ),
             ),
+            Container(
+              height: 55,
+              width: double.infinity,
+              child: campanha['tags'] != null && campanha['tags'].isNotEmpty
+                  ? ListView.separated(
+                      scrollDirection: Axis.horizontal,
+                      padding: EdgeInsets.all(12),
+                      itemCount: campanha['tags'].length,
+                      separatorBuilder: (context, index) {
+                        return SizedBox(
+                          width: 15,
+                        );
+                      },
+                      itemBuilder: (context, index) {
+                        return Container(
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(50),
+                              color: Color.fromARGB(255, 169, 12, 255),
+                            ),
+                            padding:
+                                EdgeInsetsDirectional.fromSTEB(15, 5, 15, 5),
+                            child: Text(
+                              campanha['tags'][index].toString(),
+                              style:
+                                  TextStyle(color: Colors.white, fontSize: 16),
+                            ));
+                      },
+                    )
+                  : const Text("Não tem tags essa campanha",
+                      style: const TextStyle(color: Colors.white)),
+            ),
+            SizedBox(
+              height: deviceInfo.size.width * 0.3,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(20, 3, 20, 3),
+                  child: Text(
+                    'Vagas disponiveis: ${campanha['players']}',
+                    style: const TextStyle(color: Colors.white),
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.4,
+                      child: GestureDetector(
+                        onTap: enviar,
+                        child: Container(
+                            padding: EdgeInsets.all(5),
+                            decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(50),
+                                border: Border.all(
+                                    color: Colors.white,
+                                    style: BorderStyle.solid)),
+                            child: Text(
+                              "Juntar-se",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: Colors.white,
+                              ),
+                              textAlign: TextAlign.center,
+                            )),
+                      )),
+                ),
+              ],
+            ),
+          ],
+        ),
+      ),
+
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
+      floatingActionButton: FloatingActionButton(
+        backgroundColor: Color.fromARGB(255, 169, 12, 255),
+        onPressed: () => createCampanha(context),
+        child: const Icon(Icons.add),
+      ),
+
+      //
+      bottomNavigationBar: BottomAppBar(
+        shape: const CircularNotchedRectangle(),
+        child: IconTheme(
+          data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
+          child: Padding(
+            padding: const EdgeInsets.all(4.0),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                IconButton(
+                    onPressed: () => null,
+                    icon: const Icon(
+                      Icons.home,
+                      color: Colors.black,
+                    )),
+                const SizedBox(width: 80),
+                IconButton(
+                    onPressed: () => user(context),
+                    icon: const Icon(Icons.people))
+              ],
+            ),
           ),
-        ],
+        ),
       ),
     );
   }

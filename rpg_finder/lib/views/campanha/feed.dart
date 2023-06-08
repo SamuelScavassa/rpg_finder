@@ -16,7 +16,7 @@ class _FeedState extends State<Feed> {
 
   @override
   Widget build(BuildContext context) {
-    /////////////
+    MediaQueryData deviceInfo = MediaQuery.of(context); //////////
 
 /////////////////////
     return Scaffold(
@@ -92,7 +92,7 @@ class _FeedState extends State<Feed> {
                       onTap: () => detalhesCampanha(
                           context, campanhas, campanhas.indexOf(campanha)),
                       child: Container(
-                        width: 350,
+                        width: deviceInfo.size.width * 0.8,
                         decoration: BoxDecoration(
                             color: Colors.black54,
                             border: Border.all(
@@ -109,7 +109,7 @@ class _FeedState extends State<Feed> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Container(
-                                    width: 250,
+                                    width: deviceInfo.size.width * 0.6,
                                     child: Wrap(
                                       children: [
                                         Text(
@@ -124,7 +124,7 @@ class _FeedState extends State<Feed> {
                                     ),
                                   ),
                                   Container(
-                                    width: 250,
+                                    width: deviceInfo.size.width * 0.6,
                                     child: Wrap(
                                       children: <Text>[
                                         Text(
@@ -143,7 +143,7 @@ class _FeedState extends State<Feed> {
                               ),
                             ),
                             Container(
-                              width: 60,
+                              width: deviceInfo.size.width * 0.15,
                               child: Column(
                                 children: [
                                   Row(

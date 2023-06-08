@@ -18,6 +18,7 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
 
   @override
   Widget build(BuildContext context) {
+    MediaQueryData deviceInfo = MediaQuery.of(context);
     return Scaffold(
       appBar: AppBar(
         title: Center(child: const Text("Minhas Campanhas")),
@@ -48,7 +49,7 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
                           Row(
                             children: [
                               Container(
-                                  width: 350,
+                                  width: deviceInfo.size.width * 0.9,
                                   decoration: BoxDecoration(
                                       color: Colors.black54,
                                       border: Border.all(
@@ -61,7 +62,7 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
                                   child: Row(
                                     children: [
                                       Container(
-                                        width: 300,
+                                        width: deviceInfo.size.width * 0.75,
                                         child: Column(
                                           crossAxisAlignment:
                                               CrossAxisAlignment.start,
