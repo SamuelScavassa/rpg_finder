@@ -50,7 +50,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Detalhes da campanha ${sessoes['campanha-name'].toString().toLowerCase()}',
+          'Detalhes da campanha',
         ),
       ),
       body: SingleChildScrollView(
@@ -62,7 +62,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
               child: Center(
                 child: Text(
                   '${sessoes['campanha-name']}',
-                  style: const TextStyle(fontSize: 20, color: Colors.white),
+                  style: const TextStyle(fontSize: 25, color: Colors.white),
                 ),
               ),
             ),
@@ -73,7 +73,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
                 children: [
                   Text(
                     'Participantes:',
-                    style: const TextStyle(fontSize: 16, color: Colors.white),
+                    style: const TextStyle(fontSize: 18, color: Colors.white),
                   ),
                   SizedBox(height: 2),
                   ListView.separated(
@@ -89,7 +89,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
                           title: Text(
                             playerName,
                             style: const TextStyle(
-                                fontSize: 16, color: Colors.white),
+                                fontSize: 18, color: Colors.white),
                           ),
                           trailing: GestureDetector(
                             onTap: () => retirarUserCampanha(
@@ -106,86 +106,91 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
                   ),
                   Text("Vagas restantes: $vagasDisponiveis",
                       style:
-                          const TextStyle(fontSize: 16, color: Colors.white)),
+                          const TextStyle(fontSize: 18, color: Colors.white)),
                 ],
               ),
             ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                GestureDetector(
-                  onTap: () => popUpDeletarCampanha(context, sessoes.id),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.red,
-                    ),
-                    child: Icon(
-                      Icons.delete_outlined,
-                      color: Colors.white,
-                    ),
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.all(10),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => popUpAtualizarCampanha(
-                      context, sessoes, campanhaId, sessoes.id),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.deepPurpleAccent,
-                    ),
-                    child: Icon(
-                      Icons.upload_sharp,
-                      color: Colors.white,
-                    ),
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.all(10),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => popUpFinalizarCampanha(sessoes.id, context),
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.purple,
-                    ),
-                    child: Icon(
-                      Icons.archive,
-                      color: Colors.white,
-                    ),
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.all(10),
-                  ),
-                ),
-                GestureDetector(
-                  onTap: () => {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) =>
-                            ChatView(campanha: sessoes['campanha'].toString()),
-                      ),
-                    )
-                  },
-                  child: Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50),
-                      color: Colors.blue,
-                    ),
-                    child: Icon(
-                      Icons.message_outlined,
-                      color: Colors.white,
-                    ),
-                    padding: EdgeInsets.all(10),
-                    margin: EdgeInsets.all(10),
-                  ),
-                ),
-              ],
-            ),
           ],
         ),
+      ),
+      bottomNavigationBar: ButtonBar(
+        alignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () => popUpDeletarCampanha(context, sessoes.id),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.red,
+                  ),
+                  child: Icon(
+                    Icons.delete_outlined,
+                    color: Colors.white,
+                  ),
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.all(10),
+                ),
+              ),
+              GestureDetector(
+                onTap: () => popUpAtualizarCampanha(
+                    context, sessoes, campanhaId, sessoes.id),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  child: Icon(
+                    Icons.upload_sharp,
+                    color: Colors.white,
+                  ),
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.all(10),
+                ),
+              ),
+              GestureDetector(
+                onTap: () => popUpFinalizarCampanha(sessoes.id, context),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.purple,
+                  ),
+                  child: Icon(
+                    Icons.archive,
+                    color: Colors.white,
+                  ),
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.all(10),
+                ),
+              ),
+              GestureDetector(
+                onTap: () => {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ChatView(campanha: sessoes['campanha'].toString()),
+                    ),
+                  )
+                },
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.blue,
+                  ),
+                  child: Icon(
+                    Icons.message_outlined,
+                    color: Colors.white,
+                  ),
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.all(10),
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }

@@ -53,63 +53,114 @@ class _DetalhesCampanhaParticipandoState
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          'Detalhes da campanha ${sessoes['campanha-name'].toString().toLowerCase()}',
+          'Detalhes da campanha',
         ),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
-            child: Center(
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 3, 10, 3),
+              child: Center(
+                child: Text(
+                  '${sessoes['campanha-name']}',
+                  style: const TextStyle(
+                      fontSize: 25,
+                      color: const Color.fromARGB(255, 251, 251, 251)),
+                ),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.fromLTRB(10, 10, 10, 10),
               child: Text(
-                '${sessoes['campanha-name']}',
-                style: const TextStyle(fontSize: 20, color: const Color.fromARGB(255, 251, 251, 251)),
+                'Nome do mestre: ${sessoes['mestre-name']}',
+                style: TextStyle(
+                    color: const Color.fromARGB(255, 251, 251, 251),
+                    fontSize: 18),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 1, 10, 1),
-            child: Text('Nome do mestre: ${sessoes['mestre-name']}', style: TextStyle(color: const Color.fromARGB(255, 251, 251, 251)),),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Text('Participantes: ${sessoes['players-name'].join(",")}', style: TextStyle(color: const Color.fromARGB(255, 251, 251, 251)),),
-          ),
-          const SizedBox(height: 5),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: ElevatedButton(
-                onPressed: () => navigationDiscord(Uri.parse(discordLink!)),
-                child: const Text("Discord"),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Text(
+                'Participantes:',
+                style: TextStyle(
+                    color: const Color.fromARGB(255, 251, 251, 251),
+                    fontSize: 18),
               ),
             ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: ElevatedButton(
-                onPressed: () => popUpSairCampanha(
+            const SizedBox(height: 5),
+            ListView.separated(
+              shrinkWrap: true,
+              physics: NeverScrollableScrollPhysics(),
+              itemCount: sessoes['players-name'].length,
+              separatorBuilder: (BuildContext context, int index) {
+                return SizedBox(height: 0);
+              },
+              itemBuilder: (BuildContext context, int index) {
+                final playerName = sessoes['players-name'][index];
+                return ListTile(
+                  title: Container(
+                    margin: EdgeInsets.all(10),
+                    alignment: Alignment.center,
+                    padding: EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(50),
+                      color: Color.fromARGB(255, 169, 12, 255),
+                    ),
+                    child: Text(
+                      playerName,
+                      style: const TextStyle(fontSize: 16, color: Colors.white),
+                    ),
+                  ),
+                );
+              },
+            ),
+          ],
+        ),
+      ),
+      bottomNavigationBar: ButtonBar(
+        alignment: MainAxisAlignment.center,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              GestureDetector(
+                onTap: () => popUpSairCampanha(
                     sessoes.id,
                     auth.currentUser!.uid.toString(),
                     auth.currentUser!.displayName!,
                     context),
-                child: Text("Sair"),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 169, 12, 255),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.red,
+                  ),
+                  child: Icon(
+                    Icons.exit_to_app_rounded,
+                    color: Colors.white,
+                  ),
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.all(10),
                 ),
               ),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.fromLTRB(10, 5, 10, 5),
-            child: SizedBox(
-              width: MediaQuery.of(context).size.width,
-              child: ElevatedButton(
-                onPressed: () => {
+              GestureDetector(
+                onTap: () => navigationDiscord(Uri.parse(discordLink!)),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.deepPurpleAccent,
+                  ),
+                  child: Icon(
+                    Icons.discord,
+                    color: Colors.white,
+                  ),
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.all(10),
+                ),
+              ),
+              GestureDetector(
+                onTap: () => {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
@@ -118,12 +169,20 @@ class _DetalhesCampanhaParticipandoState
                     ),
                   )
                 },
-                child: Icon(Icons.send),
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: const Color.fromARGB(255, 169, 12, 255),
+                child: Container(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(50),
+                    color: Colors.blue,
+                  ),
+                  child: Icon(
+                    Icons.message_outlined,
+                    color: Colors.white,
+                  ),
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.all(10),
                 ),
               ),
-            ),
+            ],
           ),
         ],
       ),
