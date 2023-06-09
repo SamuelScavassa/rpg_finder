@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import '../../controllers/userController.dart';
-import '../../model/user.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
 
 class Login extends StatefulWidget {

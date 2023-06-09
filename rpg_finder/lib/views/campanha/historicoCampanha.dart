@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rpg_finder/controllers/campanhaController.dart';
 import '../../controllers/navigationController.dart';
+import '../../controllers/popUpsController.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HistoricoCampanha extends StatefulWidget {
   const HistoricoCampanha({Key? key}) : super(key: key);
@@ -17,7 +15,8 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
   @override
   Widget build(BuildContext context) {
     MediaQueryData deviceInfo = MediaQuery.of(context); //////////
-
+    FirebaseFirestore firestore = FirebaseFirestore.instance;
+    FirebaseAuth auth = FirebaseAuth.instance;
     return Scaffold(
       appBar: AppBar(title: const Text('Histórico')),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(

@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
 import 'package:rpg_finder/controllers/userController.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class UpdateUser extends StatefulWidget {
   const UpdateUser({Key? key});

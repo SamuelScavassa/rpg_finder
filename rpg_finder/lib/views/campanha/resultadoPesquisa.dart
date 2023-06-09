@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
 import '../../controllers/campanhaController.dart';
+import '../../controllers/pesquisaController.dart';
 
 class ResultadoPesquisa extends StatefulWidget {
   final Stream<QuerySnapshot<Map<String, dynamic>>> campanha;
@@ -71,7 +71,8 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
                     color: Colors.white,
                     size: 20,
                   ),
-                  onPressed: () => procurar(pesquisa.text, context),
+                  onPressed: () =>
+                      procurar(pesquisa.text.toLowerCase() , context),
                 ),
               ),
             ],

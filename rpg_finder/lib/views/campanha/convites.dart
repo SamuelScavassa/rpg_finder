@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:rpg_finder/controllers/campanhaController.dart';
+import 'package:rpg_finder/controllers/conviteController.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class Convites extends StatefulWidget {
   @override
@@ -18,6 +18,7 @@ class _Convites extends State<Convites> {
 
   @override
   Widget build(BuildContext context) {
+    FirebaseAuth auth = FirebaseAuth.instance;
     return Scaffold(
       appBar: AppBar(
         title: Center(
@@ -46,7 +47,6 @@ class _Convites extends State<Convites> {
                       children: [
                         Container(
                           width: 250,
-                          
                           child: FittedBox(
                             fit: BoxFit.contain,
                             child: Column(

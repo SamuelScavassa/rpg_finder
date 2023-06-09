@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
 import '../../controllers/campanhaController.dart';
+import '../../controllers/pesquisaController.dart';
 
 class Feed extends StatefulWidget {
   const Feed({Key? key}) : super(key: key);
@@ -67,7 +68,8 @@ class _FeedState extends State<Feed> {
                     color: Colors.white,
                     size: 20,
                   ),
-                  onPressed: () => procurar(pesquisa.text, context),
+                  onPressed: () =>
+                      procurar(pesquisa.text.toLowerCase(), context),
                 ),
               ),
             ],
@@ -85,7 +87,7 @@ class _FeedState extends State<Feed> {
             }
 
             var campanhas = snapshot.data!.docs;
-            
+
             return ListView(
               children: campanhas
                   .map(

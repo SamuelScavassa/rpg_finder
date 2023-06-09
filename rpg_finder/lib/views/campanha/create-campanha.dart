@@ -1,8 +1,6 @@
-import 'dart:collection';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:rpg_finder/controllers/campanhaController.dart';
-import 'package:rpg_finder/controllers/navigationController.dart';
 import 'package:textfield_tags/textfield_tags.dart';
 
 class CreateCampanha extends StatefulWidget {

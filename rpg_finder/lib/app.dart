@@ -25,10 +25,8 @@ class App extends StatelessWidget {
       route = '/login';
     }
     return MaterialApp(
-      /////////////////////////
       title: 'RPG Finder',
       theme: _appTheme.theme(),
-      /////////////////////////
       debugShowCheckedModeBanner: false,
       routes: {
         '/cadastro': (context) => Cadastro(),

@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
 import 'package:rpg_finder/controllers/userController.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:rpg_finder/app_theme.dart';
+
 
 class Home extends StatefulWidget {
   const Home({Key? key});
@@ -13,7 +10,7 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
-  AppTheme _appTheme = AppTheme();
+  
   String avatar = auth.currentUser!.displayName.toString();
   List corIcone = [255, 255, 255, 255]; //[255, 169, 12, 255];
   @override

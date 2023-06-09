@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:rpg_finder/controllers/campanhaController.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:rpg_finder/controllers/popUpsController.dart';
 import 'package:rpg_finder/views/chat/chatView.dart';
 import 'package:url_launcher/url_launcher.dart';
 
@@ -22,6 +23,8 @@ class _DetalhesCampanhaParticipandoState
   late final QueryDocumentSnapshot<Map<String, dynamic>> sessoes;
   late final FirebaseFirestore firestore;
   String? discordLink;
+
+  FirebaseAuth auth = FirebaseAuth.instance;
 
   void navigationDiscord(Uri discord) async {
     if (await canLaunchUrl(discord)) {

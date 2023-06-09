@@ -1,12 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:rpg_finder/controllers/campanhaController.dart';
-
+import '../../controllers/conviteController.dart';
 import '../../controllers/navigationController.dart';
-
-//o operador ternario
 
 class DetalhesCampanha extends StatefulWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> campanha;

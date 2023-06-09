@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:rpg_finder/controllers/campanhaController.dart';
 import 'package:rpg_finder/views/chat/chatView.dart';
+import '../../controllers/popUpsController.dart';
 
 class DetalhesCampanhaAtivas extends StatefulWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> sessoes;
