@@ -85,6 +85,7 @@ class _FeedState extends State<Feed> {
             }
 
             var campanhas = snapshot.data!.docs;
+            
             return ListView(
               children: campanhas
                   .map(

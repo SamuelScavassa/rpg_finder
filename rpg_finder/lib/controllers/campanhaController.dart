@@ -16,9 +16,10 @@ FirebaseAuth auth = FirebaseAuth.instance;
 void salvarCampanha(String descricao, String discord, String name,
     int jogadores, List<String>? tags) async {
   try {
+    
     var campanha = await firestore.collection('campanha').add({
       'descricao': descricao,
-      'discord': 'https://' + discord,
+      'discord': 'https://$discord',
       'nome': name,
       'players': jogadores,
       'tags': tags,
@@ -472,6 +473,7 @@ void popUpFinalizarCampanha(String idSessao, BuildContext context) {
             ],
           ));
 }
+
 //popUpSairCampanha
 void popUpSairCampanha(
     String idSessao, String idUser, String nome, BuildContext context) {
