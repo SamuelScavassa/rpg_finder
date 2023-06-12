@@ -24,6 +24,7 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
 
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         //inicio da pesquisa
         title: Container(
