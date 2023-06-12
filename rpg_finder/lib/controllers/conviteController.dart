@@ -10,8 +10,10 @@ void enviarConvite(String idCampanha, BuildContext context) async {
     var campanha = await firestore.collection('campanha').doc(idCampanha).get();
     if (campanha['user'] == auth.currentUser!.uid) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(behavior: SnackBarBehavior.floating,
-            elevation: 150.0,content: Text('Essa campanha é sua :-)')),
+        const SnackBar(
+            behavior: SnackBarBehavior.floating,
+            elevation: 150.0,
+            content: Text('Essa campanha é sua :-)')),
       );
     } else {
       if (campanha['players'] > 0) {
@@ -24,14 +26,25 @@ void enviarConvite(String idCampanha, BuildContext context) async {
           'disable': false
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(behavior: SnackBarBehavior.floating,
-              elevation: 150.0,content: Text('Convite envido!')),
+          SnackBar(
+              behavior: SnackBarBehavior.floating,
+              elevation: 150.0,
+              content: Text('Convite envido!')),
         );
       }
     }
   } catch (e) {
     print(e);
   }
+}
+
+Future<bool> verificar(String user, String sessao) async {
+  var result = await firestore.collection('sessoes').doc(sessao).get();
+  List aux = result['players-id'];
+  if (aux.contains(user)) {
+    return false;
+  }
+  return true;
 }
 
 void aceitarConvite(String idConvite) async {
@@ -44,40 +57,42 @@ void aceitarConvite(String idConvite) async {
         .collection('sessoes')
         .where('campanha', isEqualTo: convite['campanha'])
         .get();
+    if (await verificar(
+        convite['remetente'].toString(), sessao.docs.first.id.toString())) {
+      listaPlayers = sessao.docs.first['players-id'];
+      playersName = sessao.docs.first['players-name'];
 
-    listaPlayers = sessao.docs.first['players-id'];
-    playersName = sessao.docs.first['players-name'];
+      var campanha =
+          await firestore.collection('campanha').doc(convite['campanha']).get();
+      var x = campanha['players'].toString();
+      if (int.parse(x) > 0) {
+        int atual = campanha['players'] - 1;
+        if (atual == 0) {
+          await firestore
+              .collection('campanha')
+              .doc(campanha.id)
+              .update({'disable': false});
+        } else {
+          await firestore
+              .collection('campanha')
+              .doc(campanha.id)
+              .update({'players': atual});
+        }
 
-    var campanha =
-        await firestore.collection('campanha').doc(convite['campanha']).get();
-    var x = campanha['players'].toString();
-    if (int.parse(x) > 0) {
-      int atual = campanha['players'] - 1;
-      if (atual == 0) {
+        listaPlayers.add(convite['remetente']);
+        playersName.add(convite['nome-user']);
+
         await firestore
-            .collection('campanha')
-            .doc(campanha.id)
-            .update({'disable': false});
-      } else {
+            .collection('sessoes')
+            .doc(sessao.docs.first.id)
+            .update({'players-id': listaPlayers});
         await firestore
-            .collection('campanha')
-            .doc(campanha.id)
-            .update({'players': atual});
+            .collection('sessoes')
+            .doc(sessao.docs.first.id)
+            .update({'players-name': playersName});
+
+        await firestore.collection('invites').doc(idConvite).delete();
       }
-
-      listaPlayers.add(convite['remetente']);
-      playersName.add(convite['nome-user']);
-
-      await firestore
-          .collection('sessoes')
-          .doc(sessao.docs.first.id)
-          .update({'players-id': listaPlayers});
-      await firestore
-          .collection('sessoes')
-          .doc(sessao.docs.first.id)
-          .update({'players-name': playersName});
-
-      await firestore.collection('invites').doc(idConvite).delete();
     }
   } catch (e) {
     print(e);
