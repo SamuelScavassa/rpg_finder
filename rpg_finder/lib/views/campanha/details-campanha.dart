@@ -27,7 +27,8 @@ class _DetalhesCampanha extends State<DetalhesCampanha> {
       enviarConvite(campanha.id, context);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Erro ao enviar o convite $e')),
+        SnackBar(behavior: SnackBarBehavior.floating,
+            elevation: 150.0,content: Text('Erro ao enviar o convite $e')),
       );
     }
   }
@@ -36,6 +37,7 @@ class _DetalhesCampanha extends State<DetalhesCampanha> {
   Widget build(BuildContext context) {
     MediaQueryData deviceInfo = MediaQuery.of(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       backgroundColor: const Color.fromRGBO(30, 32, 33, 1),
       appBar: AppBar(
         bottomOpacity: 0.0,
