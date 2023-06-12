@@ -69,7 +69,8 @@ class _CreateCampanha extends State<CreateCampanha> {
       tagss.addAll(_controller.getTags!);
       salvarCampanha(descricao, discord, name, jogadores, tagss);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Campanha criada com sucesso')),
+        const SnackBar(behavior: SnackBarBehavior.floating,
+            elevation: 150.0,content: Text('Campanha criada com sucesso')),
       );
       Navigator.of(context).popAndPushNamed("/feed");
     } else {
@@ -86,6 +87,7 @@ class _CreateCampanha extends State<CreateCampanha> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Center(
           child: Text("Criação de campanha",
