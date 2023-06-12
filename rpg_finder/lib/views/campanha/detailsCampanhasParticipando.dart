@@ -26,11 +26,20 @@ class _DetalhesCampanhaParticipandoState
 
   FirebaseAuth auth = FirebaseAuth.instance;
 
+ bool validarDiscordUrl(String discord) {
+    final regex =  RegExp(
+      r'^https?:\/\/(?:www\.)?discord(?:\.gg|app\.com|\.com(?:\/invite)?)\/\S+$',
+      caseSensitive: false,
+      multiLine: false,
+    );
+    return regex.hasMatch(discord);
+  }
+
   void navigationDiscord(Uri discord) async {
-    if (await canLaunchUrl(discord)) {
-      await launchUrl(discord);
+    if (await validarDiscordUrl(discord.toString())) {
+      await launchUrl(discord, mode: LaunchMode.externalNonBrowserApplication);
     } else {
-      throw 'Não foi possível abrir o link $discord';
+      print('Não foi possível abrir o link do $discord pois esse link não é valido, mande uma mesagem para o mestre') ;
     }
   }
 
@@ -54,6 +63,7 @@ class _DetalhesCampanhaParticipandoState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           'Detalhes da campanha',
