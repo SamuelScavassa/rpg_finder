@@ -19,6 +19,7 @@ class _CampanhasAtivasState extends State<CampanhasAtivas> {
   Widget build(BuildContext context) {
     MediaQueryData deviceInfo = MediaQuery.of(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Center(child: const Text("Minhas Campanhas")),
       ),
