@@ -19,6 +19,7 @@ class _CampanhasParticipandoState extends State<CampanhasParticipando> {
   Widget build(BuildContext context) {
     MediaQueryData deviceInfo = MediaQuery.of(context);
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: const Center(
           child: Text("Campanhas que estou participando"),
