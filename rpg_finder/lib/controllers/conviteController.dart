@@ -10,7 +10,8 @@ void enviarConvite(String idCampanha, BuildContext context) async {
     var campanha = await firestore.collection('campanha').doc(idCampanha).get();
     if (campanha['user'] == auth.currentUser!.uid) {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Essa campanha é sua :-)')),
+        const SnackBar(behavior: SnackBarBehavior.floating,
+            elevation: 150.0,content: Text('Essa campanha é sua :-)')),
       );
     } else {
       if (campanha['players'] > 0) {
@@ -23,7 +24,8 @@ void enviarConvite(String idCampanha, BuildContext context) async {
           'disable': false
         });
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Convite envido!')),
+          SnackBar(behavior: SnackBarBehavior.floating,
+              elevation: 150.0,content: Text('Convite envido!')),
         );
       }
     }
