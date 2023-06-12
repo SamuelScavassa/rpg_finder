@@ -93,6 +93,8 @@ void aceitarConvite(String idConvite) async {
 
         await firestore.collection('invites').doc(idConvite).delete();
       }
+    } else {
+      await firestore.collection('invites').doc(idConvite).delete();
     }
   } catch (e) {
     print(e);
