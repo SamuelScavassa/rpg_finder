@@ -21,6 +21,7 @@ class _FeedState extends State<Feed> {
 
 /////////////////////
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         //inicio da pesquisa
         title: Container(
