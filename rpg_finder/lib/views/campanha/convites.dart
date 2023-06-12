@@ -20,6 +20,8 @@ class _Convites extends State<Convites> {
   Widget build(BuildContext context) {
     FirebaseAuth auth = FirebaseAuth.instance;
     return Scaffold(
+      //esconde o botão
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Center(
           child: Icon(
