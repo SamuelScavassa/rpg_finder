@@ -18,6 +18,7 @@ class _HistoricoCampanhaState extends State<HistoricoCampanha> {
     FirebaseFirestore firestore = FirebaseFirestore.instance;
     FirebaseAuth auth = FirebaseAuth.instance;
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(title: const Text('Histórico')),
       body: StreamBuilder<QuerySnapshot<Map<String, dynamic>>>(
         stream: firestore
