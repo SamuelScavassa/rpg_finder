@@ -163,7 +163,6 @@ void popUpFinalizarCampanha(String idSessao, BuildContext context) {
           ));
 }
 
-//popUpSairCampanha
 void popUpSairCampanha(
     String idSessao, String idUser, String nome, BuildContext context) {
   showDialog(
