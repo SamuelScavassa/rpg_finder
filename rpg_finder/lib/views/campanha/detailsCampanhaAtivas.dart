@@ -49,6 +49,7 @@ class _DetalhesCampanhaAtivasState extends State<DetalhesCampanhaAtivas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         title: Text(
           'Detalhes da campanha',
