@@ -4,8 +4,7 @@ import '../views/campanha/resultadoPesquisa.dart';
 import 'campanhaController.dart';
 
 Future<void> procurar(String pesquisa, BuildContext context) async {
-
-  
+  pesquisa = pesquisa.toLowerCase();
   var x = pesquisa.split(' ');
 
   final query1 = await firestore
@@ -13,7 +12,7 @@ Future<void> procurar(String pesquisa, BuildContext context) async {
       .where('tags'.toLowerCase(), arrayContainsAny: x)
       .snapshots();
 
-  Navigator.pushReplacement(
+  await Navigator.pushReplacement(
     context,
     MaterialPageRoute(
       builder: (context) => ResultadoPesquisa(campanha: query1),

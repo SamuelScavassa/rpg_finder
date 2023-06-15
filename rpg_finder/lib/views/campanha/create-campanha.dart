@@ -62,15 +62,17 @@ class _CreateCampanha extends State<CreateCampanha> {
     if (formKey.currentState!.validate()) {
       formKey.currentState!.save();
       List<String> nomee = [];
-      nomee.addAll(name.split(' '));
+      nomee.addAll(name.toLowerCase().split(' '));
       List<String> tagss = [];
-      tagss.add(name);
+      tagss.add(name.toLowerCase());
       tagss.addAll(nomee);
       tagss.addAll(_controller.getTags!);
       salvarCampanha(descricao, discord, name, jogadores, tagss);
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(behavior: SnackBarBehavior.floating,
-            elevation: 150.0,content: Text('Campanha criada com sucesso')),
+        const SnackBar(
+            behavior: SnackBarBehavior.floating,
+            elevation: 150.0,
+            content: Text('Campanha criada com sucesso')),
       );
       Navigator.of(context).popAndPushNamed("/feed");
     } else {
