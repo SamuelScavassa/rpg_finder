@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:rpg_finder/controllers/navigationController.dart';
 import 'package:rpg_finder/controllers/userController.dart';
-
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Home extends StatefulWidget {
   const Home({Key? key});
@@ -10,8 +10,36 @@ class Home extends StatefulWidget {
 }
 
 class _Home extends State<Home> {
-  
-  String avatar = auth.currentUser!.displayName.toString();
+  @override
+  void initState() {
+    super.initState();
+    getAvatarData();
+  }
+
+  /////////////////////////////////////
+  String avatar = '';
+
+  ///
+  Future<void> getAvatarData() async {
+    String userId = auth.currentUser!.uid;
+    DocumentSnapshot docSnapshot = await FirebaseFirestore.instance
+        .collection('usuario')
+        .doc(userId)
+        .get();
+
+    if (docSnapshot.exists) {
+      setState(() {
+        avatar = docSnapshot.get('avatar');
+      });
+    } else {
+      setState(() {
+        avatar = 'images/avatar01.jpg';
+      });
+    }
+  }
+
+/////////////////////////////////////
+
   List corIcone = [255, 255, 255, 255]; //[255, 169, 12, 255];
   @override
   Widget build(BuildContext context) {
@@ -31,7 +59,7 @@ class _Home extends State<Home> {
                     height: 120,
                     child: CircleAvatar(
                       backgroundColor: Colors.purple.shade800,
-                      backgroundImage: const AssetImage('images/avatar01.jpg'),
+                      backgroundImage: AssetImage('$avatar'),
                     ),
                   ),
                   const SizedBox(
@@ -167,7 +195,7 @@ class _Home extends State<Home> {
               ),
             ),
             GestureDetector(
-              onTap: () => null, //navigationUpdateUser(context)
+              onTap: () => navigationUpdateUser(context),
               child: Container(
                 padding: EdgeInsets.fromLTRB(35, 20, 2, 7),
                 alignment: AlignmentDirectional.bottomStart,

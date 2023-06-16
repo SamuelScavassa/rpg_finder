@@ -12,11 +12,27 @@ Future<void> createUser(
     await user.createUserWithEmailAndPassword(email: email, password: senha);
     await userLogin(email, senha);
     addNome(name);
+    ///////////////////////////////////////////
+
+    /////////////////////////////////////////////
+    CollectionReference usersCollection =
+        FirebaseFirestore.instance.collection('usuario');
+
+    // Crie um novo documento sem especificar o ID
+    DocumentReference newDocumentRef = usersCollection.doc();
+
+    // Defina o ID do documento com o ID do usuário
+    newDocumentRef = usersCollection.doc(auth.currentUser!.uid);
+
+    // Crie os dados do usuário
+    await newDocumentRef.set({'avatar': 'images/avatar01.jpg'});
+    //////////////////////////////////////////
     Navigator.of(context).popAndPushNamed("/feed");
   } catch (e) {
     print(e);
   }
 }
+
 Future<bool> checkUserEmail(String email) async {
   var verificarUsuario = await FirebaseFirestore.instance
       .collection("user")
@@ -27,6 +43,39 @@ Future<bool> checkUserEmail(String email) async {
   }
   return true;
 }
+
+////////////////////////
+
+Future<void> updateUser(String name, String email, String selectedImage,
+    BuildContext context) async {
+  try {
+    User user = FirebaseAuth.instance.currentUser!;
+
+    /////////////////////////////////////
+    final usuario = firestore.collection('usuario').doc(auth.currentUser!.uid);
+    // Atualizar o nome do usuário
+    await user.updateDisplayName(name);
+
+    // Verificar se o email foi alterado
+    if (email != user.email) {
+      // Atualizar o email do usuário
+      await user.updateEmail(email);
+    }
+
+    usuario.update({
+      'avatar': selectedImage,
+    }).then((_) {
+      print('Usuario atualizada com sucesso!');
+    }).catchError((error) {
+      print('Erro ao atualizar a campanha: $error');
+    });
+
+    Navigator.of(context).popAndPushNamed("/user-home");
+  } catch (e) {
+    print(e);
+  }
+}
+////////////////////////
 
 Future<bool> userLogin(String email, String senha) async {
   try {
@@ -97,6 +146,7 @@ Future esqueceuSenha(BuildContext context, String email) async {
     return false;
   }
 }
+
 void popUpSairConta(BuildContext context) {
   showDialog(
       context: context,

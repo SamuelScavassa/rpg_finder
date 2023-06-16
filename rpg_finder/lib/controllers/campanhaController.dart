@@ -189,7 +189,6 @@ void finalizarCampanha(String idSessao, BuildContext context) async {
       'mestre-name': sessao['mestre-name'],
       'players-id': ids,
       'players-name': sessao['players-name']
-      
     });
     await firestore.collection('sessoes').doc(sess.id).delete();
     var query = await firestore

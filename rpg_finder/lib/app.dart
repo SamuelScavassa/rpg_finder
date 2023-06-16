@@ -20,7 +20,6 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     String route = '/feed';
     if (auth.currentUser == null) {
       route = '/login';
