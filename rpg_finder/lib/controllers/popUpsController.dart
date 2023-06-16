@@ -33,34 +33,47 @@ void popUpAtualizarCampanha(
         content: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            TextFormField(
+                       TextFormField(
+              maxLines: 1,
+              maxLength: 30,
               style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Título da campanha',
                 labelStyle: TextStyle(color: Colors.white),
+                counter: Offstage(),
               ),
               onChanged: (value) => nome = value,
             ),
             TextFormField(
+              minLines: 1,
+              maxLength: 250,
               style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Descrição',
                 labelStyle: TextStyle(color: Colors.white),
+                counter: Offstage(),
               ),
               onChanged: (value) => descricao = value,
             ),
             TextFormField(
+              maxLines: 1,
+              maxLength: 30,
               style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
-                  labelText: 'Link Discord',
-                  labelStyle: TextStyle(color: Colors.white)),
+                labelText: 'Link Discord',
+                labelStyle: TextStyle(color: Colors.white),
+                counter: Offstage(),
+              ),
               onChanged: (value) => discord = value,
             ),
             TextFormField(
+              maxLines: 1,
+              maxLength: 2,
               style: TextStyle(color: Colors.white),
               decoration: const InputDecoration(
                 labelText: 'Número de Jogadores',
                 labelStyle: TextStyle(color: Colors.white),
+                counter: Offstage(),
               ),
               keyboardType: TextInputType.number,
               onChanged: (value) => jogadores = int.tryParse(value) ?? 0,
