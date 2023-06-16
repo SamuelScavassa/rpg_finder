@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/src/widgets/framework.dart';
 import '../../controllers/conviteController.dart';
-import '../../controllers/navigationController.dart';
 
 class DetalhesCampanha extends StatefulWidget {
   final QueryDocumentSnapshot<Map<String, dynamic>> campanha;
@@ -27,8 +26,10 @@ class _DetalhesCampanha extends State<DetalhesCampanha> {
       enviarConvite(campanha.id, context);
     } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(behavior: SnackBarBehavior.floating,
-            elevation: 150.0,content: Text('Erro ao enviar o convite $e')),
+        SnackBar(
+            behavior: SnackBarBehavior.floating,
+            elevation: 150.0,
+            content: Text('Erro ao enviar o convite $e')),
       );
     }
   }
@@ -147,39 +148,6 @@ class _DetalhesCampanha extends State<DetalhesCampanha> {
               ],
             ),
           ],
-        ),
-      ),
-
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: Color.fromARGB(255, 169, 12, 255),
-        onPressed: () => createCampanha(context),
-        child: const Icon(Icons.add),
-      ),
-
-      //
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        child: IconTheme(
-          data: IconThemeData(color: Theme.of(context).colorScheme.onPrimary),
-          child: Padding(
-            padding: const EdgeInsets.all(4.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                IconButton(
-                    onPressed: () => null,
-                    icon: const Icon(
-                      Icons.home,
-                      color: Colors.black,
-                    )),
-                const SizedBox(width: 80),
-                IconButton(
-                    onPressed: () => user(context),
-                    icon: const Icon(Icons.people))
-              ],
-            ),
-          ),
         ),
       ),
     );

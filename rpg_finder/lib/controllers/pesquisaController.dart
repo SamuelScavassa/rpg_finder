@@ -7,8 +7,9 @@ Future<void> procurar(String pesquisa, BuildContext context) async {
   pesquisa = pesquisa.toLowerCase();
   var x = pesquisa.split(' ');
 
-  final query1 = await firestore
+  var query1 = await firestore
       .collection('campanha')
+      .where('disable', isEqualTo: true)
       .where('tags'.toLowerCase(), arrayContainsAny: x)
       .snapshots();
 

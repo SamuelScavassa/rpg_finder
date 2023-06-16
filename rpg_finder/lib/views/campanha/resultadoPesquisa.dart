@@ -73,7 +73,7 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
                     size: 20,
                   ),
                   onPressed: () =>
-                      procurar(pesquisa.text.toLowerCase() , context),
+                      procurar(pesquisa.text.toLowerCase(), context),
                 ),
               ),
             ],
@@ -88,6 +88,7 @@ class _ResultadoPesquisaState extends State<ResultadoPesquisa> {
             }
 
             var campanhas = snapshot.data!.docs;
+
             return ListView(
               children: campanhas
                   .map(
