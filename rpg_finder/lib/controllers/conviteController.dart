@@ -71,7 +71,7 @@ void aceitarConvite(String idConvite) async {
           await firestore
               .collection('campanha')
               .doc(campanha.id)
-              .update({'disable': false});
+              .update({'disable': false, 'players': 0});
         } else {
           await firestore
               .collection('campanha')
