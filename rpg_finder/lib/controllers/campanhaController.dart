@@ -135,7 +135,8 @@ void retirarUserCampanha(
       await firestore
           .collection('campanha')
           .doc(campanha.id)
-          .update({'disable': true});
+          //mudança
+          .update({'disable': true, 'players': 1});
     }
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(content: Text('Player removido')),
@@ -152,7 +153,11 @@ void atualizarCampanha(String nome, String descricao, String discord,
     int jogadores, campanhaId, sessoesId, tags) {
   final campanha = firestore.collection('campanha').doc(campanhaId);
   final sessoes = firestore.collection('sessoes').doc(sessoesId);
-
+  if (jogadores == 0) {
+    campanha.update({'disable': false});
+  } else {
+    campanha.update({'disable': true});
+  }
   sessoes.update({
     'campanha-name': nome,
   }).then((_) {
