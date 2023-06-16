@@ -54,12 +54,12 @@ Future<void> updateUser(String name, String email, String selectedImage,
     /////////////////////////////////////
     final usuario = firestore.collection('usuario').doc(auth.currentUser!.uid);
     // Atualizar o nome do usuário
-    await user.updateDisplayName(name);
+    await auth.currentUser!.updateDisplayName(name);
 
     // Verificar se o email foi alterado
-    if (email != user.email) {
+    if (email != auth.currentUser!.email) {
       // Atualizar o email do usuário
-      await user.updateEmail(email);
+      await auth.currentUser!.updateEmail(email);
     }
 
     usuario.update({
@@ -72,6 +72,9 @@ Future<void> updateUser(String name, String email, String selectedImage,
 
     Navigator.of(context).popAndPushNamed("/user-home");
   } catch (e) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      const SnackBar(content: Text('Falha ao atualizar')),
+    );
     print(e);
   }
 }
