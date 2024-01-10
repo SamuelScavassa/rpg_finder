@@ -9,7 +9,7 @@ class AppTheme {
 
   ThemeData theme() {
     return ThemeData(
-      //////////////////////////////
+      ////////////////////////////// teste
       primaryColor: primary,
       scaffoldBackgroundColor: backgroundapp,
       appBarTheme: AppBarTheme(
