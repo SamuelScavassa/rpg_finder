@@ -1,0 +1,15 @@
+# {$DOMAIN} vem do .env. Com um domínio real, o Caddy obtém e renova o certificado HTTPS sozinho.
+# Para testar só por IP/HTTP, use DOMAIN=:80
+{$DOMAIN} {
+	encode gzip
+
+	# /api/* -> back-end (o prefixo /api é removido; WebSocket passa sem configuração extra)
+	handle_path /api/* {
+		reverse_proxy backend:8000
+	}
+
+	# todo o resto -> front-end estático
+	handle {
+		reverse_proxy frontend:80
+	}
+}

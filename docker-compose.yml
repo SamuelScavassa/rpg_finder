@@ -1,0 +1,69 @@
+# Produção: Postgres + API (FastAPI) + front (nginx) + Caddy (HTTPS).
+# Uso:  cp .env.example .env  (preencher)  &&  docker compose up -d --build
+name: rpg-finder
+
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: rpg
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?defina POSTGRES_PASSWORD no .env}
+      POSTGRES_DB: rpg_finder
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U rpg -d rpg_finder"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    networks: [internal]          # sem portas publicadas: só os outros contêineres acessam
+
+  backend:
+    build: ./backend
+    restart: unless-stopped
+    environment:
+      APP_ENV: production
+      DATABASE_URL: postgresql+psycopg://rpg:${POSTGRES_PASSWORD}@db:5432/rpg_finder
+      JWT_SECRET: ${JWT_SECRET:?defina JWT_SECRET no .env (mín. 32 caracteres)}
+      JWT_EXPIRE_MINUTES: ${JWT_EXPIRE_MINUTES:-60}
+      # Mesma origem via Caddy, então o CORS nem é usado; fica restrito ao próprio site.
+      CORS_ORIGINS: ${PUBLIC_URL:?defina PUBLIC_URL no .env}
+    depends_on:
+      db:
+        condition: service_healthy
+    networks: [internal]
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_URL: /api
+    restart: unless-stopped
+    networks: [internal]
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    environment:
+      DOMAIN: ${DOMAIN:?defina DOMAIN no .env}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"             # HTTP/3
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy_data:/data          # certificados: não apague, há limite de emissões
+      - caddy_config:/config
+    depends_on:
+      - backend
+      - frontend
+    networks: [internal]
+
+networks:
+  internal:
+
+volumes:
+  pgdata:
+  caddy_data:
+  caddy_config:
